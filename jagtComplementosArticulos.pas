@@ -112,14 +112,14 @@ end;
 
 procedure Tjagt_frmArticulosComplementarios.FormCreate(Sender: TObject);
 begin
-  dbNombre   :='CORREOS';
-  dbUsuario  :='SYSDBA ';
-  dbPass     :='LUM10309';
-  cxTipo     :='1';
-  cxNombre   :='Mi_PC';
-  cxServidor :='192.168.4.9';
-  cxProtocolo:='0';
-  cxCarpeta  :='C:\Users\lumi\Documents\Cursos Delphi\bases de datos\';
+  dbNombre    :=ParamStr(1);//  'Prueba_Diagonal';
+  dbUsuario   :=ParamStr(2);//  '16ANTONIOG';
+  dbPass      :=ParamStr(3);//  '123456';
+  cxTipo      :=ParamStr(4);//  '1';
+  cxNombre    :=ParamStr(5);//  'Local';
+  cxCarpeta   :=ParamStr(6);//  ''C:\Microsip datos\';
+  cxServidor  :=ParamStr(7);//  '';
+  cxProtocolo :=ParamStr(8);//  '';
   ConectarADB;
 
 end;
