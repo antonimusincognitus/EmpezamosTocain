@@ -1,4 +1,4 @@
-object axvfrmArticulosComplementarios: TaxvfrmArticulosComplementarios
+object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
   Left = 734
   Top = 160
   BorderStyle = bsSingle
@@ -14,6 +14,7 @@ object axvfrmArticulosComplementarios: TaxvfrmArticulosComplementarios
   Menu = AdvMainMenu1
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
   object PGCArticulos: TAdvPageControl

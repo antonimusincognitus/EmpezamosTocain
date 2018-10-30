@@ -1,4 +1,4 @@
-object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
+object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
   Left = 734
   Top = 160
   BorderStyle = bsSingle
@@ -13,6 +13,7 @@ object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
   object PGCArticulos: TAdvPageControl

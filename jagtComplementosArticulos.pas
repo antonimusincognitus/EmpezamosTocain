@@ -1,4 +1,4 @@
-unit uComplementosArticulos;
+unit jagtComplementosArticulos;
 
 interface
 
@@ -9,7 +9,7 @@ uses
   ActnList, ImgList, Menus, AdvMenus, AdvStickyPopupMenu;
 
 type
-  Taxv_frmArticulosComplementarios = class(TForm)
+  Tjagt_frmArticulosComplementarios = class(TForm)
     PGCArticulos: TAdvPageControl;
     tabGeneral: TAdvTabSheet;
     tabAlternativas: TAdvTabSheet;
@@ -57,6 +57,7 @@ type
     Nuevaalternativa1: TMenuItem;
     Nuevocomplemento1: TMenuItem;
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -73,15 +74,68 @@ type
   end;
 
 var
-  axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios;
+  jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios;
 
 implementation
+uses Database, Query, FIBQuery, pFIBQuery, DateUtils,
+  Math;
+var
+  dbConectar:TdmDataBase;
+  fqDummy:TdmQuerys;
 
 {$R *.dfm}
-
-procedure Taxv_frmArticulosComplementarios.FormCreate(Sender: TObject);
+//VALIDA LA CONEXION AL SERVIDOR
+function ConectarADB: Boolean;
 begin
-//.
+  Result := False;
+  dbConectar:= TdmDataBase.Create(nil);
+  if jagt_frmArticulosComplementarios.cxTipo ='1' then//Es local
+        dbConectar.idbDatabase.DatabaseName := 'localhost:'+ jagt_frmArticulosComplementarios.cxCarpeta + jagt_frmArticulosComplementarios.dbNombre + '.fdb'
+  else if jagt_frmArticulosComplementarios.cxProtocolo ='0'
+    then dbConectar.idbDatabase.DatabaseName := jagt_frmArticulosComplementarios.cxServidor+':'+jagt_frmArticulosComplementarios.cxCarpeta+jagt_frmArticulosComplementarios.dbNombre + '.fdb'
+  else if jagt_frmArticulosComplementarios.cxProtocolo ='1'
+    then dbConectar.idbDatabase.DatabaseName := '\\'+jagt_frmArticulosComplementarios.cxServidor+'\'+jagt_frmArticulosComplementarios.cxCarpeta+jagt_frmArticulosComplementarios.dbNombre + '.fdb'
+  else if jagt_frmArticulosComplementarios.cxProtocolo ='2'
+    then dbConectar.idbDatabase.DatabaseName := jagt_frmArticulosComplementarios.cxServidor+'@'+jagt_frmArticulosComplementarios.cxCarpeta+jagt_frmArticulosComplementarios.dbNombre + '.fdb';
+  dbConectar.idbDatabase.DBParams.Clear;
+  dbConectar.idbDatabase.DBParams.Add('user_name=' + jagt_frmArticulosComplementarios.dbUsuario);
+  dbConectar.idbDatabase.DBParams.Add('password=' + jagt_frmArticulosComplementarios.dbPass);
+  dbConectar.idbDatabase.DBParams.Add('sql_role_name=USUARIO_MICROSIP');
+     try dbConectar.idbDatabase.Connected := True;
+        Result := True;
+     except
+        MessageDlg('El nombre de usuario o la contraseña no son válidos para el Servidor de la conexión "' + jagt_frmArticulosComplementarios.cxNombre +
+           '".' + #13#10 + 'Escriba los datos correctamente o consulte al Administrador del sistema.',mtError,[mbOK],0);
+        result:=false;
+     end;//try
+end;
+
+procedure Tjagt_frmArticulosComplementarios.FormCreate(Sender: TObject);
+begin
+  dbNombre   :='CORREOS';
+  dbUsuario  :='SYSDBA ';
+  dbPass     :='LUM10309';
+  cxTipo     :='1';
+  cxNombre   :='Mi_PC';
+  cxServidor :='192.168.4.9';
+  cxProtocolo:='0';
+  cxCarpeta  :='C:\Users\lumi\Documents\Cursos Delphi\bases de datos\';
+  ConectarADB;
+
+end;
+
+procedure Tjagt_frmArticulosComplementarios.FormShow(Sender: TObject);
+begin
+  dbNombre   :='CORREOS';
+  dbUsuario  :='SYSDBA ';
+  dbPass     :='LUM10309';
+  cxTipo     :='1';
+  cxNombre   :='Mi_PC';
+  cxServidor :='192.168.4.9';
+  cxProtocolo:='0';
+  cxCarpeta  :='C:\Users\lumi\Documents\Cursos Delphi\bases de datos\';
+  ConectarADB;
+
 end;
 
 end.
