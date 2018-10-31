@@ -4,8 +4,8 @@ object frmBuscarCliente: TfrmBuscarCliente
   BorderIcons = [biSystemMenu, biHelp]
   BorderStyle = bsSingle
   Caption = 'Buscar'
-  ClientHeight = 332
-  ClientWidth = 485
+  ClientHeight = 310
+  ClientWidth = 453
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,34 +17,34 @@ object frmBuscarCliente: TfrmBuscarCliente
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   DesignSize = (
-    485
-    332)
+    453
+    310)
   PixelsPerInch = 96
-  TextHeight = 15
+  TextHeight = 14
   object lbllistaClentes: TLabel
-    Left = 10
-    Top = 96
+    Left = 9
+    Top = 90
     Width = 162
-    Height = 15
+    Height = 14
     Caption = 'Lista de los clientes encontrados:'
   end
   object lblCantidadClientes: TLabel
-    Left = 16
-    Top = 300
+    Left = 15
+    Top = 280
     Width = 3
-    Height = 15
+    Height = 14
   end
   object Bevel1: TBevel
-    Left = 10
-    Top = 88
-    Width = 463
+    Left = 9
+    Top = 82
+    Width = 432
     Height = 2
   end
   object cbxCoincidirMayusculas: TCheckBox
-    Left = 11
-    Top = 40
-    Width = 201
-    Height = 17
+    Left = 10
+    Top = 37
+    Width = 188
+    Height = 16
     Anchors = []
     BiDiMode = bdLeftToRight
     Caption = 'Coincidir may'#250'sculas y min'#250'sculas'
@@ -56,10 +56,10 @@ object frmBuscarCliente: TfrmBuscarCliente
     TabOrder = 2
   end
   object cbxPalabras: TCheckBox
-    Left = 11
-    Top = 63
-    Width = 201
-    Height = 17
+    Left = 10
+    Top = 59
+    Width = 188
+    Height = 16
     BiDiMode = bdRightToLeftNoAlign
     Caption = 'Palabras en cualquier posici'#243'n '
     Checked = True
@@ -70,10 +70,11 @@ object frmBuscarCliente: TfrmBuscarCliente
     TabOrder = 3
   end
   object edtClave: TAdvEdit
-    Left = 45
-    Top = 9
-    Width = 137
+    Left = 42
+    Top = 8
+    Width = 128
     Height = 23
+    EmptyTextStyle = []
     FocusColor = clBtnHighlight
     LabelCaption = 'Clave:'
     LabelPosition = lpLeftCenter
@@ -82,19 +83,23 @@ object frmBuscarCliente: TfrmBuscarCliente
     LabelFont.Height = -11
     LabelFont.Name = 'MS Sans Serif'
     LabelFont.Style = []
+    Lookup.Font.Charset = DEFAULT_CHARSET
+    Lookup.Font.Color = clWindowText
+    Lookup.Font.Height = -11
+    Lookup.Font.Name = 'Arial'
+    Lookup.Font.Style = []
     Lookup.Separator = ';'
     Color = clBtnHighlight
-    Enabled = True
     TabOrder = 0
     Visible = True
     OnChange = edtClaveChange
-    Version = '2.9.0.0'
+    Version = '3.3.2.8'
   end
   object sgBusqueda: TAdvStringGrid
-    Left = 10
-    Top = 120
-    Width = 465
-    Height = 177
+    Left = 9
+    Top = 112
+    Width = 434
+    Height = 165
     Cursor = crDefault
     BiDiMode = bdLeftToRight
     ColCount = 3
@@ -105,7 +110,7 @@ object frmBuscarCliente: TfrmBuscarCliente
     RowCount = 2
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
+    Font.Height = -9
     Font.Name = 'Tahoma'
     Font.Style = []
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goEditing, goRowSelect]
@@ -118,6 +123,7 @@ object frmBuscarCliente: TfrmBuscarCliente
     TabOrder = 4
     OnDblClick = btnAceptarClick
     HoverRowColor = clInactiveCaption
+    HoverRowCells = [hcNormal, hcSelected]
     ActiveCellFont.Charset = DEFAULT_CHARSET
     ActiveCellFont.Color = clWindowText
     ActiveCellFont.Height = -11
@@ -158,6 +164,14 @@ object frmBuscarCliente: TfrmBuscarCliente
     FilterDropDown.Font.Name = 'MS Sans Serif'
     FilterDropDown.Font.Style = []
     FilterDropDownClear = '(All)'
+    FilterEdit.TypeNames.Strings = (
+      'Starts with'
+      'Ends with'
+      'Contains'
+      'Not contains'
+      'Equal'
+      'Not equal'
+      'Clear')
     FixedColWidth = 95
     FixedRowHeight = 19
     FixedRowAlways = True
@@ -168,6 +182,8 @@ object frmBuscarCliente: TfrmBuscarCliente
     FixedFont.Style = [fsBold]
     FloatFormat = '%.2f'
     FocusHelper.Enabled = True
+    HoverButtons.Buttons = <>
+    HoverButtons.Position = hbLeftFromColumnLeft
     Look = glListView
     MouseActions.AutoSizeColOnDblClick = False
     MouseActions.RowSelect = True
@@ -213,43 +229,44 @@ object frmBuscarCliente: TfrmBuscarCliente
     SelectionColor = clMenuHighlight
     SelectionTextColor = clHighlightText
     ShowDesignHelper = False
+    SortSettings.DefaultFormat = ssAutomatic
     SortSettings.HeaderColorTo = 16579058
     SortSettings.HeaderMirrorColor = 16380385
     SortSettings.HeaderMirrorColorTo = 16182488
     SyncGrid.SelectionRow = True
     SyncGrid.MoveColumn = True
     SyncGrid.MoveRow = True
-    Version = '5.8.0.2'
+    Version = '7.4.6.3'
     ColWidths = (
       95
       363
       64)
   end
   object btnBuscar: TButton
-    Left = 200
-    Top = 9
-    Width = 75
-    Height = 20
+    Left = 187
+    Top = 8
+    Width = 70
+    Height = 19
     Caption = 'Buscar'
     Enabled = False
     TabOrder = 1
     OnClick = btnBuscarClick
   end
   object btnAceptar: TButton
-    Left = 280
-    Top = 304
-    Width = 75
-    Height = 20
+    Left = 261
+    Top = 284
+    Width = 70
+    Height = 18
     Caption = '&Aceptar'
     Enabled = False
     TabOrder = 5
     OnClick = btnAceptarClick
   end
   object btnCancelar: TButton
-    Left = 376
-    Top = 304
-    Width = 75
-    Height = 20
+    Left = 351
+    Top = 284
+    Width = 70
+    Height = 18
     Cancel = True
     Caption = '&Cancelar'
     TabOrder = 6

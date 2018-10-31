@@ -81,7 +81,7 @@ var
   jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios;
 
 implementation
-uses Database, Query, FIBQuery, pFIBQuery, DateUtils,
+uses Database, Query, FIBQuery, pFIBQuery, DateUtils, buscarclientes,
   Math;
 var
   dbConectar:TdmDataBase;
@@ -139,7 +139,8 @@ end;
 
 procedure Tjagt_frmArticulosComplementarios.FormShow(Sender: TObject);
 begin
-
+  frmBuscarCliente.tipoBusqueda := 'clave'
+  frmBuscarCliente.Show;
 {
   {
   dbNombre   :='CORREOS';
