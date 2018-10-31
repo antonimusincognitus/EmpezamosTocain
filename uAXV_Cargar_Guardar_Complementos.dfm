@@ -1,10 +1,9 @@
-object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
-  Left = 472
-  Top = 149
-  BorderStyle = bsSingle
-  Caption = 'Articulos complementarios'
-  ClientHeight = 333
-  ClientWidth = 485
+object frmAXV: TfrmAXV
+  Left = 182
+  Top = 119
+  Width = 505
+  Height = 376
+  Caption = 'frmAXV'
   Color = clBtnHighlight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,29 +11,242 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
   Font.Name = 'Arial Unicode MS'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
+  object AdvDPAcciones: TAdvDockPanel
+    Left = 0
+    Top = 0
+    Width = 489
+    Height = 72
+    MinimumSize = 3
+    LockHeight = False
+    Persistence.Location = plRegistry
+    Persistence.Enabled = False
+    ToolBarStyler = AdvToolBarOfficeStyler1
+    UseRunTimeHeight = False
+    Version = '5.2.2.0'
+    object ATBMenues: TAdvToolBar
+      Left = 3
+      Top = 1
+      Width = 483
+      Height = 26
+      AllowFloating = True
+      Caption = 'Untitled'
+      CaptionFont.Charset = DEFAULT_CHARSET
+      CaptionFont.Color = clWindowText
+      CaptionFont.Height = -11
+      CaptionFont.Name = 'MS Sans Serif'
+      CaptionFont.Style = []
+      CompactImageIndex = -1
+      FullSize = True
+      TextAutoOptionMenu = 'Add or Remove Buttons'
+      TextOptionMenu = 'Options'
+      ToolBarStyler = AdvToolBarOfficeStyler1
+      ParentOptionPicture = True
+      ToolBarIndex = -1
+      object AdvToolBarMenuButton1: TAdvToolBarMenuButton
+        Left = 9
+        Top = 2
+        Width = 49
+        Height = 23
+        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
+        Appearance.CaptionFont.Color = clWindowText
+        Appearance.CaptionFont.Height = -11
+        Appearance.CaptionFont.Name = 'Segoe UI'
+        Appearance.CaptionFont.Style = []
+        DropDownMenu = AdvPopupMenu1
+        Caption = '&Archivo'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Position = daTop
+        ShowCaption = True
+        Version = '5.2.2.0'
+      end
+      object AdvToolBarMenuButton2: TAdvToolBarMenuButton
+        Left = 58
+        Top = 2
+        Width = 47
+        Height = 23
+        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
+        Appearance.CaptionFont.Color = clWindowText
+        Appearance.CaptionFont.Height = -11
+        Appearance.CaptionFont.Name = 'Segoe UI'
+        Appearance.CaptionFont.Style = []
+        Caption = '&Edici'#243'n'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Position = daTop
+        ShowCaption = True
+        Version = '5.2.2.0'
+      end
+      object AdvToolBarMenuButton3: TAdvToolBarMenuButton
+        Left = 105
+        Top = 2
+        Width = 24
+        Height = 23
+        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
+        Appearance.CaptionFont.Color = clWindowText
+        Appearance.CaptionFont.Height = -11
+        Appearance.CaptionFont.Name = 'Segoe UI'
+        Appearance.CaptionFont.Style = []
+        Caption = '&Ver'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Position = daTop
+        ShowCaption = True
+        Version = '5.2.2.0'
+      end
+    end
+    object ATBBotones: TAdvToolBar
+      Left = 3
+      Top = 28
+      Width = 312
+      Height = 30
+      AllowFloating = True
+      Caption = 'Untitled'
+      CaptionFont.Charset = DEFAULT_CHARSET
+      CaptionFont.Color = clWindowText
+      CaptionFont.Height = -11
+      CaptionFont.Name = 'MS Sans Serif'
+      CaptionFont.Style = []
+      CompactImageIndex = -1
+      TextAutoOptionMenu = 'Add or Remove Buttons'
+      TextOptionMenu = 'Options'
+      ToolBarStyler = AdvToolBarOfficeStyler1
+      ParentOptionPicture = True
+      ToolBarIndex = -1
+      object ATBBGuardarCerrar: TAdvToolBarButton
+        Left = 9
+        Top = 2
+        Width = 110
+        Height = 26
+        Action = GuardarCerrar
+        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
+        Appearance.CaptionFont.Color = clWindowText
+        Appearance.CaptionFont.Height = -11
+        Appearance.CaptionFont.Name = 'Segoe UI'
+        Appearance.CaptionFont.Style = []
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ImageIndex = 6
+        ParentFont = False
+        Position = daTop
+        ShowCaption = True
+        Version = '5.2.2.0'
+      end
+      object ATBBGuardarNuevo: TAdvToolBarButton
+        Left = 119
+        Top = 2
+        Width = 113
+        Height = 26
+        Action = GuardarNuevo
+        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
+        Appearance.CaptionFont.Color = clWindowText
+        Appearance.CaptionFont.Height = -11
+        Appearance.CaptionFont.Name = 'Segoe UI'
+        Appearance.CaptionFont.Style = []
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ImageIndex = 7
+        ParentFont = False
+        Position = daTop
+        ShowCaption = True
+        Version = '5.2.2.0'
+      end
+      object ATBS1: TAdvToolBarSeparator
+        Left = 232
+        Top = 2
+        Width = 9
+        Height = 23
+        LineColor = clBtnShadow
+      end
+      object ATBBModificar: TAdvToolBarButton
+        Left = 241
+        Top = 2
+        Width = 24
+        Height = 26
+        Action = Modificar
+        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
+        Appearance.CaptionFont.Color = clWindowText
+        Appearance.CaptionFont.Height = -11
+        Appearance.CaptionFont.Name = 'Segoe UI'
+        Appearance.CaptionFont.Style = []
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ImageIndex = 5
+        ParentFont = False
+        Position = daTop
+        Version = '5.2.2.0'
+      end
+      object ATBBEliminar: TAdvToolBarButton
+        Left = 265
+        Top = 2
+        Width = 24
+        Height = 26
+        Action = Eliminar
+        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
+        Appearance.CaptionFont.Color = clWindowText
+        Appearance.CaptionFont.Height = -11
+        Appearance.CaptionFont.Name = 'Segoe UI'
+        Appearance.CaptionFont.Style = []
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ImageIndex = 4
+        ParentFont = False
+        Position = daTop
+        Version = '5.2.2.0'
+      end
+      object ATBS2: TAdvToolBarSeparator
+        Left = 289
+        Top = 2
+        Width = 9
+        Height = 23
+        LineColor = clBtnShadow
+      end
+    end
+  end
   object PGCArticulos: TAdvPageControl
     Left = 8
     Top = 59
     Width = 472
     Height = 270
-    ActivePage = tabAlternativas
+    ActivePage = tabComplementos
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
     ActiveFont.Name = 'Tahoma'
     ActiveFont.Style = []
+    PopupMenu = axv_PopMenuAlternativas
     ActiveColor = clBtnHighlight
     TabBackGroundColor = clBtnHighlight
     TabMargin.RightMargin = 0
     TabOverlap = 0
     Version = '1.7.1.0'
-    TabOrder = 0
+    TabOrder = 2
     object tabGeneral: TAdvTabSheet
-      Caption = 'General'
+      Caption = '       General   '
       Color = clBtnHighlight
       ColorTo = clNone
       TabColor = clBtnFace
@@ -256,18 +468,18 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       end
     end
     object tabAlternativas: TAdvTabSheet
-      Caption = 'Alternativas'
+      Caption = ' Alternativas '
       Color = clBtnHighlight
       ColorTo = clNone
       TabColor = clBtnFace
       TabColorTo = clNone
       object sstrgAlternativas: TAdvStringGrid
-        Left = 5
+        Left = 1
         Top = 2
-        Width = 449
-        Height = 235
+        Width = 462
+        Height = 238
         Cursor = crDefault
-        ColCount = 3
+        ColCount = 6
         FixedCols = 0
         RowCount = 2
         Font.Charset = DEFAULT_CHARSET
@@ -276,10 +488,17 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ScrollBars = ssBoth
+        ParentShowHint = False
+        ScrollBars = ssVertical
+        ShowHint = True
         TabOrder = 0
+        OnKeyDown = sstrgAlternativasKeyDown
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
+        OnCanAddRow = sstrgAlternativasCanAddRow
+        HintShowCells = True
+        HintShowLargeText = True
+        HintShowSizing = True
         ActiveCellFont.Charset = DEFAULT_CHARSET
         ActiveCellFont.Color = clWindowText
         ActiveCellFont.Height = -11
@@ -290,7 +509,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         ColumnHeaders.Strings = (
           'Clave'
           'Descripci'#243'n'
-          'Comentarios')
+          'Pzs. Rel.'
+          'Comentarios'
+          'Articulo_id_dest'
+          'Relacion_id')
         ControlLook.FixedGradientMirrorFrom = 16447735
         ControlLook.FixedGradientMirrorTo = 16052977
         ControlLook.FixedGradientHoverFrom = 16775139
@@ -332,6 +554,8 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         FixedFont.Style = [fsBold]
         FloatFormat = '%.2f'
         Look = glVista
+        Navigation.AdvanceOnEnter = True
+        Navigation.AdvanceInsert = True
         PrintSettings.DateFormat = 'dd/mm/yyyy'
         PrintSettings.Font.Charset = DEFAULT_CHARSET
         PrintSettings.Font.Color = clWindowText
@@ -354,6 +578,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         PrintSettings.FooterFont.Name = 'MS Sans Serif'
         PrintSettings.FooterFont.Style = []
         PrintSettings.PageNumSep = '/'
+        ScrollBarAlways = saVert
         SearchFooter.ColorTo = 16052977
         SearchFooter.FindNextCaption = 'Find &next'
         SearchFooter.FindPrevCaption = 'Find &previous'
@@ -375,23 +600,26 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Version = '5.8.0.2'
         ColWidths = (
           78
-          233
-          131)
+          215
+          2
+          146
+          64
+          64)
       end
     end
     object tabComplementos: TAdvTabSheet
-      Caption = 'Complementos'
+      Caption = ' Complementos '
       Color = clBtnHighlight
       ColorTo = clNone
       TabColor = clBtnFace
       TabColorTo = clNone
       object strgComplementos: TAdvStringGrid
-        Left = 3
+        Left = 1
         Top = 2
-        Width = 461
+        Width = 462
         Height = 238
         Cursor = crDefault
-        ColCount = 4
+        ColCount = 6
         FixedCols = 0
         RowCount = 2
         Font.Charset = DEFAULT_CHARSET
@@ -400,10 +628,13 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ScrollBars = ssBoth
+        PopupMenu = axv_PopMenuComplementos
+        ScrollBars = ssVertical
         TabOrder = 0
+        OnKeyDown = strgComplementosKeyDown
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
+        OnCanAddRow = strgComplementosCanAddRow
         ActiveCellFont.Charset = DEFAULT_CHARSET
         ActiveCellFont.Color = clWindowText
         ActiveCellFont.Height = -11
@@ -415,7 +646,9 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
           'Clave'
           'Descripci'#243'n'
           'Pzs. Rel.'
-          'Comentarios')
+          'Comentarios'
+          'Articulo_id_dest'
+          'Relacion_id')
         ControlLook.FixedGradientMirrorFrom = 16447735
         ControlLook.FixedGradientMirrorTo = 16052977
         ControlLook.FixedGradientHoverFrom = 16775139
@@ -479,6 +712,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         PrintSettings.FooterFont.Name = 'MS Sans Serif'
         PrintSettings.FooterFont.Style = []
         PrintSettings.PageNumSep = '/'
+        ScrollBarAlways = saVert
         SearchFooter.ColorTo = 16052977
         SearchFooter.FindNextCaption = 'Find &next'
         SearchFooter.FindPrevCaption = 'Find &previous'
@@ -502,241 +736,9 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
           78
           204
           37
-          136)
-      end
-    end
-  end
-  object AdvDPAcciones: TAdvDockPanel
-    Left = 0
-    Top = 0
-    Width = 485
-    Height = 72
-    MinimumSize = 3
-    LockHeight = False
-    Persistence.Location = plRegistry
-    Persistence.Enabled = False
-    ToolBarStyler = AdvToolBarOfficeStyler1
-    UseRunTimeHeight = False
-    Version = '5.2.2.0'
-    object ATBMenues: TAdvToolBar
-      Left = 3
-      Top = 1
-      Width = 479
-      Height = 26
-      AllowFloating = True
-      Caption = 'Untitled'
-      CaptionFont.Charset = DEFAULT_CHARSET
-      CaptionFont.Color = clWindowText
-      CaptionFont.Height = -11
-      CaptionFont.Name = 'MS Sans Serif'
-      CaptionFont.Style = []
-      CompactImageIndex = -1
-      FullSize = True
-      TextAutoOptionMenu = 'Add or Remove Buttons'
-      TextOptionMenu = 'Options'
-      ToolBarStyler = AdvToolBarOfficeStyler1
-      ParentOptionPicture = True
-      ToolBarIndex = -1
-      object AdvToolBarMenuButton1: TAdvToolBarMenuButton
-        Left = 9
-        Top = 2
-        Width = 49
-        Height = 23
-        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
-        Appearance.CaptionFont.Color = clWindowText
-        Appearance.CaptionFont.Height = -11
-        Appearance.CaptionFont.Name = 'Segoe UI'
-        Appearance.CaptionFont.Style = []
-        DropDownMenu = AdvPopupMenu1
-        Caption = '&Archivo'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        Position = daTop
-        ShowCaption = True
-        Version = '5.2.2.0'
-      end
-      object AdvToolBarMenuButton2: TAdvToolBarMenuButton
-        Left = 58
-        Top = 2
-        Width = 47
-        Height = 23
-        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
-        Appearance.CaptionFont.Color = clWindowText
-        Appearance.CaptionFont.Height = -11
-        Appearance.CaptionFont.Name = 'Segoe UI'
-        Appearance.CaptionFont.Style = []
-        Caption = '&Edici'#243'n'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        Position = daTop
-        ShowCaption = True
-        Version = '5.2.2.0'
-      end
-      object AdvToolBarMenuButton3: TAdvToolBarMenuButton
-        Left = 105
-        Top = 2
-        Width = 24
-        Height = 23
-        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
-        Appearance.CaptionFont.Color = clWindowText
-        Appearance.CaptionFont.Height = -11
-        Appearance.CaptionFont.Name = 'Segoe UI'
-        Appearance.CaptionFont.Style = []
-        Caption = '&Ver'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        Position = daTop
-        ShowCaption = True
-        Version = '5.2.2.0'
-      end
-    end
-    object ATBBotones: TAdvToolBar
-      Left = 3
-      Top = 28
-      Width = 409
-      Height = 30
-      AllowFloating = True
-      Caption = 'Untitled'
-      CaptionFont.Charset = DEFAULT_CHARSET
-      CaptionFont.Color = clWindowText
-      CaptionFont.Height = -11
-      CaptionFont.Name = 'MS Sans Serif'
-      CaptionFont.Style = []
-      CompactImageIndex = -1
-      TextAutoOptionMenu = 'Add or Remove Buttons'
-      TextOptionMenu = 'Options'
-      ToolBarStyler = AdvToolBarOfficeStyler1
-      ParentOptionPicture = True
-      ToolBarIndex = -1
-      object ATBBGuardarCerrar: TAdvToolBarButton
-        Left = 106
-        Top = 2
-        Width = 110
-        Height = 26
-        Action = GuardarCerrar
-        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
-        Appearance.CaptionFont.Color = clWindowText
-        Appearance.CaptionFont.Height = -11
-        Appearance.CaptionFont.Name = 'Segoe UI'
-        Appearance.CaptionFont.Style = []
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ImageIndex = 6
-        ParentFont = False
-        Position = daTop
-        ShowCaption = True
-        Version = '5.2.2.0'
-      end
-      object ATBBGuardarNuevo: TAdvToolBarButton
-        Left = 216
-        Top = 2
-        Width = 113
-        Height = 26
-        Action = GuardarNuevo
-        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
-        Appearance.CaptionFont.Color = clWindowText
-        Appearance.CaptionFont.Height = -11
-        Appearance.CaptionFont.Name = 'Segoe UI'
-        Appearance.CaptionFont.Style = []
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ImageIndex = 7
-        ParentFont = False
-        Position = daTop
-        ShowCaption = True
-        Version = '5.2.2.0'
-      end
-      object ATBS1: TAdvToolBarSeparator
-        Left = 329
-        Top = 2
-        Width = 9
-        Height = 23
-        LineColor = clBtnShadow
-      end
-      object ATBBModificar: TAdvToolBarButton
-        Left = 338
-        Top = 2
-        Width = 24
-        Height = 26
-        Action = Modificar
-        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
-        Appearance.CaptionFont.Color = clWindowText
-        Appearance.CaptionFont.Height = -11
-        Appearance.CaptionFont.Name = 'Segoe UI'
-        Appearance.CaptionFont.Style = []
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ImageIndex = 5
-        ParentFont = False
-        Position = daTop
-        Version = '5.2.2.0'
-      end
-      object ATBBEliminar: TAdvToolBarButton
-        Left = 362
-        Top = 2
-        Width = 24
-        Height = 26
-        Action = Eliminar
-        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
-        Appearance.CaptionFont.Color = clWindowText
-        Appearance.CaptionFont.Height = -11
-        Appearance.CaptionFont.Name = 'Segoe UI'
-        Appearance.CaptionFont.Style = []
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ImageIndex = 4
-        ParentFont = False
-        Position = daTop
-        Version = '5.2.2.0'
-      end
-      object ATBS2: TAdvToolBarSeparator
-        Left = 386
-        Top = 2
-        Width = 9
-        Height = 23
-        LineColor = clBtnShadow
-      end
-      object AdvToolBarButton1: TAdvToolBarButton
-        Left = 9
-        Top = 2
-        Width = 97
-        Height = 26
-        Action = NuevaAlternativa
-        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
-        Appearance.CaptionFont.Color = clWindowText
-        Appearance.CaptionFont.Height = -12
-        Appearance.CaptionFont.Name = 'Segoe UI'
-        Appearance.CaptionFont.Style = []
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        Position = daTop
-        ShowCaption = True
-        Version = '5.2.2.0'
+          136
+          107
+          84)
       end
     end
   end
@@ -1034,6 +1036,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       Caption = 'Guardar y cerrar'
       ImageIndex = 6
       ShortCut = 122
+      OnExecute = GuardarCerrarExecute
     end
     object GuardarNuevo: TAction
       Caption = 'Guardar y nuevo'
@@ -1052,9 +1055,11 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     end
     object NuevaAlternativa: TAction
       Caption = 'Nueva alternativa'
+      OnExecute = NuevaAlternativaExecute
     end
     object NuevoComplemento: TAction
       Caption = 'Nuevo complemento'
+      OnExecute = NuevoComplementoExecute
     end
     object Nuevo: TAction
       Caption = 'Nuevo'
@@ -2029,6 +2034,28 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     end
     object Nuevocomplemento1: TMenuItem
       Action = NuevoComplemento
+    end
+  end
+  object axv_PopMenuAlternativas: TAdvPopupMenu
+    Version = '2.5.3.4'
+    Left = 424
+    Top = 40
+    object Nuevaalternativa2: TMenuItem
+      Action = NuevaAlternativa
+    end
+    object Eliminaralternativa1: TMenuItem
+      Action = EliminarAlternativa
+    end
+  end
+  object axv_PopMenuComplementos: TAdvPopupMenu
+    Version = '2.5.3.4'
+    Left = 448
+    Top = 40
+    object EliminarComplemento1: TMenuItem
+      Action = NuevoComplemento
+    end
+    object EliminarComplemento2: TMenuItem
+      Action = EliminarComplemento
     end
   end
 end
