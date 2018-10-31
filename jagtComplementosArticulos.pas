@@ -58,6 +58,9 @@ type
     Nuevocomplemento1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure edtClaveExit(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure PGCArticulosChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,6 +74,7 @@ type
     cxServidor, //  '192.168.3.6; cualquiera que sea el servidor microsip';
     cxProtocolo //  0: tcp/ip 1: net/bieu   2: spx
     : string;
+    articulo : string;
   end;
 
 var
@@ -118,14 +122,26 @@ begin
   cxTipo      :=ParamStr(4);//  '1';
   cxNombre    :=ParamStr(5);//  'Local';
   cxCarpeta   :=ParamStr(6);//  ''C:\Microsip datos\';
-  cxServidor  :=ParamStr(7);//  '';
-  cxProtocolo :=ParamStr(8);//  '';
+  if cxtipo = '0' then
+  begin
+    cxServidor  :=ParamStr(7);//  '';
+    cxProtocolo :=ParamStr(8);//  '';
+    edtClave.Text := ParamStr(9);
+  end
+  else
+  begin
+    edtClave.Text := ParamStr(7);
+    ShowMessage(articulo);
+  end;
   ConectarADB;
 
 end;
 
 procedure Tjagt_frmArticulosComplementarios.FormShow(Sender: TObject);
 begin
+
+{
+
   dbNombre   :='CORREOS';
   dbUsuario  :='SYSDBA ';
   dbPass     :='LUM10309';
@@ -134,8 +150,36 @@ begin
   cxServidor :='192.168.4.9';
   cxProtocolo:='0';
   cxCarpeta  :='C:\Users\lumi\Documents\Cursos Delphi\bases de datos\';
-  ConectarADB;
+//  ConectarADB;
+}
+  edtClave.SetFocus;
+end;
 
+procedure Tjagt_frmArticulosComplementarios.edtClaveExit(Sender: TObject);
+begin
+  if edtClave.Text <> 'Buscar' then
+  begin
+    jagt_frmArticulosComplementarios.Text := edtClave.Text;
+  end;
+end;
+
+procedure Tjagt_frmArticulosComplementarios.FormKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if Key=#13 then jagt_frmArticulosComplementarios.Perform(WM_NEXTDLGCTL, 0, 0);
+  if key = #27 then
+    Self.Close;
+end;
+
+procedure Tjagt_frmArticulosComplementarios.PGCArticulosChange(
+  Sender: TObject);
+begin
+  if (edtClave.Text='Buscar') or (edtNombre.Text='Buscar')
+  then begin
+    MessageDlg('El árticulo no ha sido indicado.'
+      + #13#10 + 'Indiquelo antes de continuar.',mtError,[mbOk],0);
+    PGCArticulos.ActivePageIndex:=0;
+  end;
 end;
 
 end.

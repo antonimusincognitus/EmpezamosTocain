@@ -11,8 +11,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
   Font.Height = -11
   Font.Name = 'Arial Unicode MS'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
@@ -35,6 +37,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     PersistPagesState.Location = plRegistry
     PersistPagesState.Enabled = False
     TabOrder = 0
+    OnChange = PGCArticulosChange
     object tabGeneral: TAdvTabSheet
       Caption = 'General'
       Color = clBtnHighlight
@@ -64,7 +67,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
         ParentCtl3D = False
-        TabOrder = 0
+        TabOrder = 2
         Text = 'Lineas'
       end
       object cbxUnidadMedida: TAdvComboBox
@@ -90,7 +93,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
         ParentCtl3D = False
-        TabOrder = 1
+        TabOrder = 3
         Text = 'Unidades de medida'
       end
       object cbxEstatus: TAdvComboBox
@@ -116,7 +119,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
         ParentCtl3D = False
-        TabOrder = 2
+        TabOrder = 8
         Text = 'Estatus'
       end
       object edtNombre: TAdvEditBtn
@@ -143,8 +146,8 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         BorderStyle = bsNone
         Color = clBtnHighlight
         ReadOnly = False
-        TabOrder = 3
-        Text = 'Nombre'
+        TabOrder = 1
+        Text = 'Buscar'
         Visible = True
         Version = '1.3.5.0'
         ButtonStyle = bsButton
@@ -202,9 +205,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         BorderStyle = bsNone
         Color = clBtnHighlight
         ReadOnly = False
-        TabOrder = 4
-        Text = 'Clave Principal'
+        TabOrder = 0
+        Text = 'Buscar'
         Visible = True
+        OnExit = edtClaveExit
         Version = '1.3.5.0'
         ButtonStyle = bsButton
         ButtonWidth = 16
@@ -222,7 +226,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 90
         Height = 16
         Caption = 'Almacenable'
-        TabOrder = 5
+        TabOrder = 4
       end
       object cbJuego: TCheckBox
         Left = 254
@@ -230,7 +234,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 89
         Height = 16
         Caption = 'Juego (Kit)'
-        TabOrder = 6
+        TabOrder = 5
       end
       object cbPesarEnBascula: TCheckBox
         Left = 255
@@ -238,7 +242,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 104
         Height = 16
         Caption = 'Pesar en bascula'
-        TabOrder = 7
+        TabOrder = 6
       end
       object edtPesoUnit: TAdvEdit
         Left = 305
@@ -269,7 +273,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Font.Name = 'Arial Unicode MS'
         Font.Style = []
         ParentFont = False
-        TabOrder = 8
+        TabOrder = 7
         Text = '0.000'
         Visible = True
         Version = '3.3.2.8'
