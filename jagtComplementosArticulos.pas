@@ -150,8 +150,8 @@ begin
   cxServidor :='192.168.4.9';
   cxProtocolo:='0';
   cxCarpeta  :='C:\Users\lumi\Documents\Cursos Delphi\bases de datos\';
-//  ConectarADB;}
-}
+//  ConectarADB;
+
 }
   edtClave.SetFocus;
 end;
