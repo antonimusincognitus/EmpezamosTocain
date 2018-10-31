@@ -67,6 +67,7 @@ type
     procedure axv_CargarAlternativas(articulo_id_ori:string);
     procedure axv_GuardarComplementos(articulo_id_ori:string);
     procedure axv_GuardarAlternativas(articulo_id_ori:string);
+    procedure axv_getArticulo;
     procedure NuevaAlternativaExecute(Sender: TObject);
     procedure NuevoComplementoExecute(Sender: TObject);
     procedure sstrgAlternativasKeyDown(Sender: TObject; var Key: Word;
