@@ -373,6 +373,58 @@ begin
   Self.Close;
 end;
 
-
+Procedure frmAXV.axv_getArticulo;
+var
+  fqCargar:TdmQuerys;
+begin
+  fqCargar:=TdmQuerys.Create(nil);
+  fqCargar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
+  fqCargar.figQuery.Database:=dbConectar.idbDatabase;
+  fqCargar.dbtTransaccion.Active:=true;
+  with fqCargar.figQuery do begin
+    Close;
+    SQL.Clear;
+    if ssgrdArticulos.Col=cNombre then
+      SQL.Add('select a.nombre, a.articulo_id, ca.clave_articulo, a.unidad_venta, la.ea, la.ed, la.e16, pa.precio '
+          + ' from articulos as a'
+          + ' left join claves_articulos as ca on a.articulo_id = ca.articulo_id'
+          + ' left join libres_articulos as la on a.articulo_id = la.articulo_id'
+          + ' left Join precios_articulos as pa on a.articulo_id = pa.articulo_id'
+          + ' left join precios_empresa as pe on pa.precio_empresa_id = pe.precio_empresa_id'
+          + ' where a.nombre = ' + QuotedStr(frmCotizacion.grdArticulos.Cells[cNombre,frmCotizacion.grdArticulos.Row])
+          + ' and pe.id_interno = ''M''')
+    else if frmCotizacion.grdArticulos.Col=cClave then
+      SQL.Add('select a.nombre, a.articulo_id, ca.clave_articulo, a.unidad_venta, la.ea, la.ed, la.e16, pa.precio '
+          + ' from articulos as a'
+          + ' left join claves_articulos as ca on a.articulo_id = ca.articulo_id'
+          + ' left join libres_articulos as la on a.articulo_id = la.articulo_id'
+          + ' left Join precios_articulos as pa on a.articulo_id = pa.articulo_id'
+          + ' left join precios_empresa as pe on pa.precio_empresa_id = pe.precio_empresa_id'
+          + ' where ca.clave_articulo = ' + QuotedStr(frmCotizacion.grdArticulos.Cells[cClave,frmCotizacion.grdArticulos.Row])
+          + ' and pe.id_interno = ''M''')
+    else if frmCotizacion.grdArticulos.Cells[cArticulo_id,frmCotizacion.grdArticulos.Row]<>'' then
+      SQL.Add('select a.nombre, a.articulo_id, ca.clave_articulo, a.unidad_venta, la.ea, la.ed, la.e16, pa.precio '
+          + ' from articulos as a'
+          + ' left join claves_articulos as ca on a.articulo_id = ca.articulo_id'
+          + ' left join libres_articulos as la on a.articulo_id = la.articulo_id'
+          + ' left Join precios_articulos as pa on a.articulo_id = pa.articulo_id'
+          + ' left join precios_empresa as pe on pa.precio_empresa_id = pe.precio_empresa_id'
+          + ' where a.articulo_id = ' + QuotedStr(frmCotizacion.grdArticulos.Cells[cArticulo_id,frmCotizacion.grdArticulos.Row])
+          + ' and pe.id_interno = ''M''');
+    ExecQuery;
+    IF fn('nombre').AsString<>'' then begin
+      frmCotizacion.grdArticulos.Cells[cClave,frmCotizacion.grdArticulos.Row]:=(fn('clave_articulo').AsString);
+      frmCotizacion.grdArticulos.Cells[cNombre,frmCotizacion.grdArticulos.Row]:=(fn('nombre').AsString);
+      frmCotizacion.grdArticulos.Cells[cUM,frmCotizacion.grdArticulos.Row]:=(fn('unidad_venta').AsString);
+      frmCotizacion.grdArticulos.Ints[cExistencias2,frmCotizacion.grdArticulos.Row]:=(fn('ed').AsInteger);
+      frmCotizacion.grdArticulos.Ints[cExistencias3,frmCotizacion.grdArticulos.Row]:=(fn('e16').AsInteger);
+      frmCotizacion.grdArticulos.AllFloats[cPrecio_minimo,frmCotizacion.grdArticulos.Row]:=(fn('precio').AsExtended);
+      frmCotizacion.grdArticulos.Ints[cArticulo_id,frmCotizacion.grdArticulos.Row]:=(fn('articulo_id').AsInteger);
+      frmCotizacion.grdArticulos.Ints[cUnidades,frmCotizacion.grdArticulos.Row]:=1;
+    end;
+  end;//with
+  fqArticulo.dbtTransaccion.Commit;
+  FreeAndNil(fqArticulo);
+end;
 
 end.
