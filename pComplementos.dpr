@@ -14,8 +14,5 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(Tjagt_frmArticulosComplementarios, jagt_frmArticulosComplementarios);
-  Application.CreateForm(Tjagt_frmArticulosComplementarios, jagt_frmArticulosComplementarios);
-  Application.CreateForm(TfrmBuscarCliente, frmBuscarCliente);
-  Application.CreateForm(TfrmLocalizar, frmLocalizar);
   Application.Run;
 end.

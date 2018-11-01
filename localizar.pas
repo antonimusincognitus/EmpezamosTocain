@@ -48,7 +48,7 @@ var
   frmLocalizar: TfrmLocalizar;
 
 implementation
-uses Database, Query, FIBQuery, Cotizacion, StrUtils, buscarclientes, Math;
+uses Database, Query, FIBQuery, StrUtils, buscarclientes, Math;
 var
   dbConectar:TdmDataBase;
   fqDummy:TdmQuerys;
@@ -93,6 +93,7 @@ function ConectarADB: Boolean;
 begin
   Result := False;
   dbConectar:= TdmDataBase.Create(nil);
+{
   if frmCotizacion.cxTipo ='1' then//Es local
         dbConectar.idbDatabase.DatabaseName := 'localhost:'+ frmCotizacion.cxCarpeta + frmCotizacion.dbNombre + '.fdb'
   else if frmCotizacion.cxProtocolo ='0'
@@ -112,6 +113,7 @@ begin
            '".' + #13#10 + 'Escriba los datos correctamente o consulte al Administrador del sistema.',mtError,[mbOK],0);
         result:=false;
      end;//try
+}
 end;
 
 procedure TfrmLocalizar.edtFolioChange(Sender: TObject);
@@ -306,6 +308,7 @@ begin
       if fn('docto_ve_id').AsString =''
       then MessageDlg('La cotización no se encuentra registrada.',mtError,[mbOK],0)
       else begin
+{
         frmCotizacion.edtClave.Text:=fn('clave_cliente').AsString;
         frmCotizacion.edtNombre.Text:=fn('nombre').AsString;
         frmCotizacion.cbxSerie.Text:=fn('folio').AsString;
@@ -322,6 +325,7 @@ begin
         frmCotizacion.timePikerFecha.Date:=fn('fecha').AsDateTime;
         frmCotizacion.TimePickerVigencia.Date:=fn('fecha_vigencia_entrega').AsDateTime;
         //frmCotizacion.memoDescripcion.Text:=fn('descripcion').AsWideString;
+}
       end;//if
     except ShowMessage(SQL.Text);
     end;//TRY
@@ -344,7 +348,7 @@ begin
   frmBuscarCliente.cxCarpeta := cxCarpeta;
   frmBuscarCliente.tipoBusqueda:='Clave';
   frmBuscarCliente.origenBusqueda:='Cliente';
-  frmBuscarCliente.edtClave.text:=frmCotizacion.edtNombre.Text;
+//  frmBuscarCliente.edtClave.text:=frmCotizacion.edtNombre.Text;
   frmBuscarCliente.ShowModal;
   if (frmBuscarCliente.resultadoClave <> '') or (frmBuscarCliente.resultadoNombre <> '') then begin
     edtNombreCliente.Text:=frmBuscarCliente.resultadoNombre;
@@ -367,7 +371,7 @@ begin
   frmBuscarCliente.cxCarpeta := cxCarpeta;
   frmBuscarCliente.tipoBusqueda:='Nombre';
   frmBuscarCliente.origenBusqueda:='Cliente';
-  frmBuscarCliente.edtClave.text:=frmCotizacion.edtNombre.Text;
+//  frmBuscarCliente.edtClave.text:=frmCotizacion.edtNombre.Text;
   frmBuscarCliente.ShowModal;
   if (frmBuscarCliente.resultadoClave <> '') or (frmBuscarCliente.resultadoNombre <> '') then begin
     edtNombreCliente.Text:=frmBuscarCliente.resultadoNombre;

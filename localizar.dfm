@@ -29,7 +29,9 @@ object frmLocalizar: TfrmLocalizar
     TabBackGroundColor = clBtnFace
     TabMargin.RightMargin = 0
     TabOverlap = 0
-    Version = '1.7.1.0'
+    Version = '2.0.0.4'
+    PersistPagesState.Location = plRegistry
+    PersistPagesState.Enabled = False
     TabOrder = 0
     OnChange = pgControlLocalizarChange
     OnResize = pgControlLocalizarResize
@@ -44,6 +46,7 @@ object frmLocalizar: TfrmLocalizar
         Top = 8
         Width = 65
         Height = 19
+        EmptyTextStyle = []
         FocusBorder = True
         FocusBorderColor = clMenuHighlight
         LabelCaption = '&Folio:'
@@ -53,10 +56,14 @@ object frmLocalizar: TfrmLocalizar
         LabelFont.Height = -11
         LabelFont.Name = 'Arial Unicode MS'
         LabelFont.Style = []
+        Lookup.Font.Charset = DEFAULT_CHARSET
+        Lookup.Font.Color = clWindowText
+        Lookup.Font.Height = -11
+        Lookup.Font.Name = 'Arial'
+        Lookup.Font.Style = []
         Lookup.Separator = ';'
         Color = clWindow
         Ctl3D = False
-        Enabled = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -67,7 +74,7 @@ object frmLocalizar: TfrmLocalizar
         TabOrder = 0
         Visible = True
         OnChange = edtFolioChange
-        Version = '2.9.0.0'
+        Version = '3.3.2.8'
       end
     end
     object Cliente: TAdvTabSheet
@@ -88,6 +95,7 @@ object frmLocalizar: TfrmLocalizar
         Top = 7
         Width = 121
         Height = 21
+        EmptyTextStyle = []
         Flat = False
         SoftBorder = True
         LabelCaption = '&Clave:     '
@@ -97,12 +105,16 @@ object frmLocalizar: TfrmLocalizar
         LabelFont.Height = -11
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
+        Lookup.Font.Charset = DEFAULT_CHARSET
+        Lookup.Font.Color = clWindowText
+        Lookup.Font.Height = -11
+        Lookup.Font.Name = 'Arial'
+        Lookup.Font.Style = []
         Lookup.Separator = ';'
         BevelInner = bvNone
         BevelOuter = bvNone
         Color = clBtnHighlight
         Ctl3D = False
-        Enabled = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -116,7 +128,7 @@ object frmLocalizar: TfrmLocalizar
         Transparent = True
         Visible = True
         OnExit = edtClaveClienteExit
-        Version = '1.3.2.8'
+        Version = '1.3.5.0'
         ButtonStyle = bsButton
         ButtonWidth = 16
         Etched = False
@@ -154,6 +166,7 @@ object frmLocalizar: TfrmLocalizar
         Top = 36
         Width = 365
         Height = 21
+        EmptyTextStyle = []
         Flat = False
         SoftBorder = True
         LabelCaption = '&Nombre: '
@@ -163,12 +176,16 @@ object frmLocalizar: TfrmLocalizar
         LabelFont.Height = -11
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
+        Lookup.Font.Charset = DEFAULT_CHARSET
+        Lookup.Font.Color = clWindowText
+        Lookup.Font.Height = -11
+        Lookup.Font.Name = 'Arial'
+        Lookup.Font.Style = []
         Lookup.Separator = ';'
         BevelInner = bvNone
         BevelOuter = bvNone
         Color = clBtnHighlight
         Ctl3D = False
-        Enabled = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -182,7 +199,7 @@ object frmLocalizar: TfrmLocalizar
         Transparent = True
         Visible = True
         OnChange = edtNombreClienteChange
-        Version = '1.3.2.8'
+        Version = '1.3.5.0'
         ButtonStyle = bsButton
         ButtonWidth = 16
         Etched = False
@@ -219,10 +236,13 @@ object frmLocalizar: TfrmLocalizar
         Left = 64
         Top = 65
         Width = 121
-        Height = 23
+        Height = 22
         Color = clWindow
-        Version = '1.3.2.2'
+        Version = '1.5.1.1'
         Visible = True
+        BevelKind = bkSoft
+        BevelInner = bvNone
+        EmptyTextStyle = []
         Ctl3D = False
         DropWidth = 0
         Enabled = True
@@ -232,7 +252,7 @@ object frmLocalizar: TfrmLocalizar
         Font.Name = 'Arial Unicode MS'
         Font.Style = []
         ItemIndex = -1
-        ItemHeight = 15
+        ItemHeight = 14
         Items.Strings = (
           'Pendientes'
           'Cerradas'
@@ -250,14 +270,12 @@ object frmLocalizar: TfrmLocalizar
         Text = 'Todas'
         BiDiMode = bdLeftToRight
         ParentBiDiMode = False
-        BevelKind = bkSoft
-        BevelInner = bvNone
       end
       object AdvDateTimePicker2: TAdvDateTimePicker
         Left = 64
         Top = 97
         Width = 121
-        Height = 23
+        Height = 22
         BevelEdges = []
         BevelInner = bvNone
         Date = 43327.000000000000000000
@@ -270,11 +288,12 @@ object frmLocalizar: TfrmLocalizar
         Kind = dkDate
         ParentFont = False
         TabOrder = 3
+        TabStop = True
         BorderStyle = bsSingle
         Ctl3D = False
         DateTime = 43327.000000000000000000
         TimeFormat = ' '
-        Version = '1.1.0.1'
+        Version = '1.2.2.0'
         LabelCaption = '&Periodo:  '
         LabelPosition = lpLeftCenter
         LabelFont.Charset = DEFAULT_CHARSET
@@ -287,7 +306,7 @@ object frmLocalizar: TfrmLocalizar
         Left = 210
         Top = 97
         Width = 121
-        Height = 23
+        Height = 22
         BevelEdges = []
         BevelInner = bvNone
         Date = 43327.000000000000000000
@@ -300,11 +319,12 @@ object frmLocalizar: TfrmLocalizar
         Kind = dkDate
         ParentFont = False
         TabOrder = 4
+        TabStop = True
         BorderStyle = bsSingle
         Ctl3D = False
         DateTime = 43327.000000000000000000
         TimeFormat = ' '
-        Version = '1.1.0.1'
+        Version = '1.2.2.0'
         LabelCaption = 'al: '
         LabelPosition = lpLeftCenter
         LabelFont.Charset = DEFAULT_CHARSET
@@ -340,6 +360,7 @@ object frmLocalizar: TfrmLocalizar
         ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 6
+        HoverRowCells = [hcNormal, hcSelected]
         ActiveCellFont.Charset = DEFAULT_CHARSET
         ActiveCellFont.Color = clWindowText
         ActiveCellFont.Height = -11
@@ -385,6 +406,14 @@ object frmLocalizar: TfrmLocalizar
         FilterDropDown.Font.Name = 'MS Sans Serif'
         FilterDropDown.Font.Style = []
         FilterDropDownClear = '(All)'
+        FilterEdit.TypeNames.Strings = (
+          'Starts with'
+          'Ends with'
+          'Contains'
+          'Not contains'
+          'Equal'
+          'Not equal'
+          'Clear')
         FixedColWidth = 67
         FixedRowHeight = 18
         FixedFont.Charset = DEFAULT_CHARSET
@@ -393,6 +422,8 @@ object frmLocalizar: TfrmLocalizar
         FixedFont.Name = 'Arial Unicode MS'
         FixedFont.Style = []
         FloatFormat = '%.2f'
+        HoverButtons.Buttons = <>
+        HoverButtons.Position = hbLeftFromColumnLeft
         Look = glListView
         Navigation.AllowCtrlEnter = False
         PrintSettings.DateFormat = 'dd/mm/yyyy'
@@ -434,10 +465,11 @@ object frmLocalizar: TfrmLocalizar
         SelectionColor = clHighlight
         SelectionTextColor = clHighlightText
         ShowDesignHelper = False
+        SortSettings.DefaultFormat = ssAutomatic
         SortSettings.HeaderColorTo = 16579058
         SortSettings.HeaderMirrorColor = 16380385
         SortSettings.HeaderMirrorColorTo = 16182488
-        Version = '5.8.0.2'
+        Version = '7.4.6.3'
         ColWidths = (
           67
           63
