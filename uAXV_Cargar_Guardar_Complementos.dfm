@@ -232,7 +232,7 @@ object frmAXV: TfrmAXV
     Top = 59
     Width = 472
     Height = 270
-    ActivePage = tabComplementos
+    ActivePage = tabAlternativas
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -496,6 +496,7 @@ object frmAXV: TfrmAXV
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
         OnCanAddRow = sstrgAlternativasCanAddRow
+        OnCellValidate = sstrgAlternativasCellValidate
         HintShowCells = True
         HintShowLargeText = True
         HintShowSizing = True
@@ -627,6 +628,7 @@ object frmAXV: TfrmAXV
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
         ParentFont = False
         PopupMenu = axv_PopMenuComplementos
         ScrollBars = ssVertical
@@ -635,6 +637,7 @@ object frmAXV: TfrmAXV
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
         OnCanAddRow = strgComplementosCanAddRow
+        OnCellValidate = strgComplementosCellValidate
         ActiveCellFont.Charset = DEFAULT_CHARSET
         ActiveCellFont.Color = clWindowText
         ActiveCellFont.Height = -11
@@ -1047,11 +1050,13 @@ object frmAXV: TfrmAXV
       Caption = 'Modificar'
       ImageIndex = 5
       ShortCut = 16461
+      OnExecute = ModificarExecute
     end
     object Eliminar: TAction
       Caption = 'Eliminar'
       ImageIndex = 4
       ShortCut = 16453
+      OnExecute = EliminarExecute
     end
     object NuevaAlternativa: TAction
       Caption = 'Nueva alternativa'
@@ -1068,9 +1073,11 @@ object frmAXV: TfrmAXV
     end
     object EliminarAlternativa: TAction
       Caption = 'Eliminar alternativa'
+      OnExecute = EliminarAlternativaExecute
     end
     object EliminarComplemento: TAction
       Caption = 'Eliminar Complemento'
+      OnExecute = EliminarComplementoExecute
     end
   end
   object ImgLstgrdArticulos: TImageList
