@@ -140,8 +140,10 @@ end;
 procedure Tjagt_frmArticulosComplementarios.FormShow(Sender: TObject);
 begin
   Application.CreateForm(TfrmBuscarCliente, frmBuscarCliente);
-  frmBuscarCliente.tipoBusqueda := 'clave';
+  frmBuscarCliente.tipoBusqueda := 'Clave';
+  frmBuscarCliente.origenBusqueda := 'Artículo';
   frmBuscarCliente.edtClave := edtclave;
+  frmBuscarCliente.dbConectar := dbConectar;
   frmBuscarCliente.Show;
 {
   {

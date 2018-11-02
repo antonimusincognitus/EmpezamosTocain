@@ -1,7 +1,7 @@
 object dmDataBase: TdmDataBase
   OldCreateOrder = False
-  Left = 522
-  Top = 326
+  Left = 740
+  Top = 325
   Height = 150
   Width = 215
   object idbDataBase: TpFIBDatabase

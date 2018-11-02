@@ -4,6 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+Database,
   Dialogs, StdCtrls, Grids, AdvObj, BaseGrid, AdvGrid, AdvEdit, ExtCtrls;
 
 type
@@ -31,6 +32,7 @@ type
   public
     dbNombre,dbUsuario,dbPass,cxTipo,cxNombre,cxServidor,cxProtocolo,cxCarpeta:string;
     resultadoClave, resultadoNombre, resultadoID, tipoBusqueda, origenBusqueda:string;
+  dbConectar:TdmDataBase;
     { Public declarations }
   end;
 
@@ -38,17 +40,17 @@ var
   frmBuscarCliente: TfrmBuscarCliente;
 
 implementation
-uses Database, Query, FIBQuery, pFIBQuery;
-var
-  dbConectar:TdmDataBase;
+uses Query, FIBQuery, pFIBQuery;
+//var
 const
   cClave=0;
   cNombre=1;
   cID=2;
 {$R *.dfm}
 
-function ConectarADB: Boolean;
+function ConectarADB_: Boolean;
 begin
+{
   Result := False;
   dbConectar:= TdmDataBase.Create(nil);
   if frmBuscarCliente.cxTipo ='1' then//Es local
@@ -70,6 +72,7 @@ begin
            '".' + #13#10 + 'Escriba los datos correctamente o consulte al Administrador del sistema.',mtError,[mbOK],0);
         result:=false;
      end;//try
+}
 end;
 
 function txtSQLbuscado(campo:string):string;
@@ -92,8 +95,8 @@ begin
   frmBuscarCliente.sgBusqueda.FocusCell(0,0);
 //  frmBuscarCliente.sgBusqueda.Row:=1;
   fqCliente:= TdmQuerys.Create(nil);
-  fqCliente.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
-  fqCliente.figQuery.Database:=dbConectar.idbDatabase;
+  fqCliente.dbtTransaccion.DefaultDatabase:=frmBuscarCliente.dbConectar.idbDatabase;
+  fqCliente.figQuery.Database:=frmBuscarCliente.dbConectar.idbDatabase;
   with fqCliente.figQuery do begin
     Close;
     SQL.Clear;
@@ -153,7 +156,7 @@ procedure TfrmBuscarCliente.FormShow(Sender: TObject);
 var
   dbclientes:TdmQuerys;
 begin
-  if ConectarADB then
+  if (frmBuscarCliente.dbConectar.idbDataBase.TestConnected ) then
     begin
       IF tipoBusqueda='Nombre' then
         begin
@@ -203,7 +206,7 @@ end;
 
 procedure TfrmBuscarCliente.btnBuscarClick(Sender: TObject);
 begin
-  if ConectarADB then GetClientes;
+  if not(dbConectar = nil) then GetClientes;
 end;
 
 procedure TfrmBuscarCliente.FormClose(Sender: TObject;
