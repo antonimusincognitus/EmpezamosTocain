@@ -144,6 +144,7 @@ begin
   frmBuscarCliente.origenBusqueda := 'Artículo';
   frmBuscarCliente.edtClave := edtclave;
   frmBuscarCliente.dbConectar := dbConectar;
+  frmBuscarCliente.buscar_y_cerrar := true;
   frmBuscarCliente.Show;
 {
   {

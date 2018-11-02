@@ -33,6 +33,7 @@ type
     dbNombre,dbUsuario,dbPass,cxTipo,cxNombre,cxServidor,cxProtocolo,cxCarpeta:string;
     resultadoClave, resultadoNombre, resultadoID, tipoBusqueda, origenBusqueda:string;
   dbConectar:TdmDataBase;
+  buscar_y_cerrar : boolean;
     { Public declarations }
   end;
 
@@ -176,6 +177,11 @@ begin
       frmBuscarCliente.Caption:= 'Buscar ' + origenBusqueda + ' por ' + tipoBusqueda;
       frmBuscarCliente.lbllistaClentes.Caption := 'Lista de los ' + origenBusqueda + 's encontrados';
       If edtClave.Text <> '' then GetClientes;
+      if buscar_y_cerrar then
+      begin
+        sgBusqueda.Row := 1;
+        btnAceptarClick(nil);
+      end;
     end
   else frmBuscarCliente.Close;
 end;
