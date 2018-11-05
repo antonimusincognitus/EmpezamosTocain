@@ -67,10 +67,6 @@ type
     procedure axv_CargarAlternativas(articulo_id_ori:string);
     procedure axv_GuardarComplementos(articulo_id_ori:string);
     procedure axv_GuardarAlternativas(articulo_id_ori:string);
-<<<<<<< HEAD
-=======
-    procedure axv_getArticulo(grd:TAdvStringGrid; columna,fila:integer; nombre,clave,art_id:string);
->>>>>>> axv2
     procedure NuevaAlternativaExecute(Sender: TObject);
     procedure NuevoComplementoExecute(Sender: TObject);
     procedure sstrgAlternativasKeyDown(Sender: TObject; var Key: Word;
@@ -82,17 +78,6 @@ type
     procedure strgComplementosCanAddRow(Sender: TObject;
       var CanAdd: Boolean);
     procedure GuardarCerrarExecute(Sender: TObject);
-<<<<<<< HEAD
-=======
-    procedure EliminarExecute(Sender: TObject);
-    procedure EliminarAlternativaExecute(Sender: TObject);
-    procedure EliminarComplementoExecute(Sender: TObject);
-    procedure strgComplementosCellValidate(Sender: TObject; ACol,
-      ARow: Integer; var Value: String; var Valid: Boolean);
-    procedure ModificarExecute(Sender: TObject);
-    procedure sstrgAlternativasCellValidate(Sender: TObject; ACol,
-      ARow: Integer; var Value: String; var Valid: Boolean);
->>>>>>> axv2
   private
     { Private declarations }
   public
@@ -132,19 +117,11 @@ begin
   dbConectar:= TdmDataBase.Create(nil);
   if frmAXV.cxTipo ='1' then//Es local
         dbConectar.idbDatabase.DatabaseName := 'localhost:'+ frmAXV.cxCarpeta + frmAXV.dbNombre + '.fdb'
-<<<<<<< HEAD
   else if jagt_frmArticulosComplementarios.cxProtocolo ='0'
     then dbConectar.idbDatabase.DatabaseName := frmAXV.cxServidor+':'+frmAXV.cxCarpeta+jagt_frmArticulosComplementarios.dbNombre + '.fdb'
   else if frmAXV.cxProtocolo ='1'
     then dbConectar.idbDatabase.DatabaseName := '\\'+frmAXV.cxServidor+'\'+frmAXV.cxCarpeta+frmAXV.dbNombre + '.fdb'
   else if jagt_frmArticulosComplementarios.cxProtocolo ='2'
-=======
-  else if frmAXV.cxProtocolo ='0'
-    then dbConectar.idbDatabase.DatabaseName := frmAXV.cxServidor+':'+frmAXV.cxCarpeta+frmAXV.dbNombre + '.fdb'
-  else if frmAXV.cxProtocolo ='1'
-    then dbConectar.idbDatabase.DatabaseName := '\\'+frmAXV.cxServidor+'\'+frmAXV.cxCarpeta+frmAXV.dbNombre + '.fdb'
-  else if frmAXV.cxProtocolo ='2'
->>>>>>> axv2
     then dbConectar.idbDatabase.DatabaseName := frmAXV.cxServidor+'@'+frmAXV.cxCarpeta+frmAXV.dbNombre + '.fdb';
   dbConectar.idbDatabase.DBParams.Clear;
   dbConectar.idbDatabase.DBParams.Add('user_name=' + frmAXV.dbUsuario);
@@ -302,7 +279,6 @@ end;
 
 procedure TfrmAXV.FormShow(Sender: TObject);
 begin
-<<<<<<< HEAD
   dbNombre   :='CORREOS';
   dbUsuario  :='SYSDBA ';
   dbPass     :='LUM10309';
@@ -311,16 +287,6 @@ begin
   cxServidor :='192.168.4.9';
   cxProtocolo:='0';
   cxCarpeta  :='C:\Users\lumi\Documents\Cursos Delphi\bases de datos\';
-=======
-  dbNombre   :='LUMI 2018';
-  dbUsuario  :='SYSDBA';
-  dbPass     :='LUM10309';
-  cxTipo     :='0';
-  cxNombre   :='Mi_PC';
-  cxServidor :='192.168.4.9';
-  cxProtocolo:='0';
-  cxCarpeta  :='C:\Microsip datos\';
->>>>>>> axv2
   ConectarADB;
 end;
 
@@ -407,108 +373,5 @@ begin
   Self.Close;
 end;
 
-<<<<<<< HEAD
-=======
-Procedure TfrmAXV.axv_getArticulo(grd:TAdvStringGrid;columna,fila:integer; nombre,clave,art_id:string);
-var
-  fqCargar:TdmQuerys;
-begin
-  fqCargar:=TdmQuerys.Create(nil);
-  fqCargar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
-  fqCargar.figQuery.Database:=dbConectar.idbDatabase;
-  fqCargar.dbtTransaccion.Active:=true;
-  with fqCargar.figQuery do begin
-    Close;
-    SQL.Clear;
-    if columna=cNombre then
-      SQL.Add('select a.nombre, a.articulo_id, ca.clave_articulo'
-          + ' from articulos as a'
-          + ' left join claves_articulos as ca on a.articulo_id = ca.articulo_id'
-          + ' where a.nombre = ' + QuotedStr(nombre))
-    else if columna=cClave then
-      SQL.Add('select a.nombre, a.articulo_id, ca.clave_articulo'
-          + ' from articulos as a'
-          + ' left join claves_articulos as ca on a.articulo_id = ca.articulo_id'
-          + ' where ca.clave_articulo = ' + QuotedStr(clave))
-    else if columna=cArticulo_id then
-      SQL.Add('select a.nombre, a.articulo_id, ca.clave_articulo'
-          + ' from articulos as a'
-          + ' left join claves_articulos as ca on a.articulo_id = ca.articulo_id'
-          + ' where a.articulo_id = ' + QuotedStr(art_id));
-    ExecQuery;
-    IF fn('nombre').AsString<>'' then begin
-      grd.Cells[cClave,fila]:=(fn('clave_articulo').AsString);
-      grd.Cells[cNombre,fila]:=(fn('nombre').AsString);
-      grd.Cells[cArticulo_id,fila]:=fn('articulo_id').AsString;
-      grd.Ints[cPiezas,fila]:=1;
-    end;
-  end;//with
-  fqCargar.dbtTransaccion.Commit;
-  FreeAndNil(fqCargar);
-end;
-
-procedure TfrmAXV.EliminarExecute(Sender: TObject);
-var
-  i:integer;
-begin
-  case MessageDlg('¿Desea eliminar permanentemente las alternativas'
-      + #13#10 + 'y artículos complementarios de este artículo?',mtConfirmation,[mbYes,mbNo],0)
-  of mrYes: begin
-    for i:=1 to sstrgAlternativas.RowCount-1 do axv_BorrarRelacion('A',sstrgAlternativas.Cells[cRelacion_id,i]);
-    sstrgAlternativas.ClearRows(1,sstrgAlternativas.RowCount-1);
-    sstrgAlternativas.RowCount:=2;
-    for i:=1 to strgComplementos.RowCount-1 do axv_BorrarRelacion('C',strgComplementos.Cells[cRelacion_id,i]);
-    strgComplementos.ClearRows(1,strgComplementos.RowCount-1);
-    strgComplementos.RowCount:=2;
-  end;
-  end;
-end;
-
-procedure TfrmAXV.EliminarAlternativaExecute(Sender: TObject);
-begin
-  axv_BorrarRelacion('A',sstrgAlternativas.Cells[cRelacion_id,sstrgAlternativas.Row]);
-end;
-
-procedure TfrmAXV.EliminarComplementoExecute(Sender: TObject);
-begin
-  axv_BorrarRelacion('C',strgComplementos.Cells[cRelacion_id,strgComplementos.Row]);
-end;
-
-procedure TfrmAXV.strgComplementosCellValidate(Sender: TObject; ACol,
-  ARow: Integer; var Value: String; var Valid: Boolean);
-var
-  nombre,clave,art_id:string;
-begin
-  if ((aCol=cNombre) or (acol=cClave)) and (strgComplementos.Cells[cArticulo_id,aRow]='') then begin
-    case ACol of
-      cNombre: nombre:=Value;
-      cClave: clave:=Value;
-      cArticulo_id:art_id:=Value;
-    end;
-    axv_getArticulo(strgComplementos,ACol,Arow,nombre,clave,art_id);
-  end;
-end;
-
-procedure TfrmAXV.ModificarExecute(Sender: TObject);
-begin
-  strgComplementos.EditMode:=true;
-  strgComplementos.EditorMode:=true;
-end;
-
-procedure TfrmAXV.sstrgAlternativasCellValidate(Sender: TObject; ACol,
-  ARow: Integer; var Value: String; var Valid: Boolean);
-var
-  nombre,clave,art_id:string;
-begin
-  if ((aCol=cNombre) or (acol=cClave)) and (strgComplementos.Cells[cArticulo_id,aRow]='') then begin
-    case ACol of
-      cNombre: nombre:=Value;
-      cClave: clave:=Value;
-      cArticulo_id:art_id:=Value;
-    end;
-    axv_getArticulo(sstrgAlternativas,ACol,Arow,nombre,clave,art_id);
-  end;
-end;
->>>>>>> axv2
 
 end.

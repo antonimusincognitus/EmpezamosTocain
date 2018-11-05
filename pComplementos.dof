@@ -135,7 +135,5 @@ ProductName=
 ProductVersion=1.0.0.0
 Comments=
 [Excluded Packages]
-c:\program files (x86)\borland\delphi7\Projects\Bpl\dclIndyCore100.bpl=Indy 10 Core Design Time
-c:\program files (x86)\borland\delphi7\Projects\Bpl\dclIndyProtocols100.bpl=Indy 10 Protocols Design Time
 c:\program files (x86)\borland\delphi7\Projects\Bpl\dclIndyCore70.bpl=Indy 10 Core Design Time
 c:\program files (x86)\borland\delphi7\Projects\Bpl\dclIndyProtocols70.bpl=Indy 10 Protocols Design Time
