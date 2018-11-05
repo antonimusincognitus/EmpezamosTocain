@@ -180,6 +180,7 @@ begin
       if buscar_y_cerrar then
       begin
         sgBusqueda.Row := 1;
+        freeandnil(frmBuscarCliente);
         btnAceptarClick(nil);
       end;
     end
