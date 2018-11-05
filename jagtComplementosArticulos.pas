@@ -143,22 +143,17 @@ begin
   frmBuscarCliente.tipoBusqueda := 'Clave';
   frmBuscarCliente.origenBusqueda := 'Artículo';
   frmBuscarCliente.edtClave := edtclave;
-  frmBuscarCliente.dbConectar := dbConectar;
-  frmBuscarCliente.buscar_y_cerrar := true;
-  frmBuscarCliente.Show;
-{
-  {
-  dbNombre   :='CORREOS';
-  dbUsuario  :='SYSDBA ';
-  dbPass     :='LUM10309';
-  cxTipo     :='1';
-  cxNombre   :='Mi_PC';
-  cxServidor :='192.168.4.9';
-  cxProtocolo:='0';
-  cxCarpeta  :='C:\Users\lumi\Documents\Cursos Delphi\bases de datos\';
-//  ConectarADB;
-
-}
+//  frmBuscarCliente.dbConectar := dbConectar;
+//  frmBuscarCliente.buscar_y_cerrar := true;
+  frmBuscarCliente.dbNombre   :=dbNombre   ;
+  frmBuscarCliente.dbUsuario  :=dbUsuario  ;
+  frmBuscarCliente.dbPass     :=dbPass     ;
+  frmBuscarCliente.cxTipo     :=cxTipo     ;
+  frmBuscarCliente.cxNombre   :=cxNombre   ;
+  frmBuscarCliente.cxServidor :=cxServidor ;
+  frmBuscarCliente.cxProtocolo:=cxProtocolo;
+  frmBuscarCliente.cxCarpeta  :=cxCarpeta  ;
+  if articulo <> '' then
   edtClave.SetFocus;
 end;
 

@@ -4,7 +4,6 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-Database,
   Dialogs, StdCtrls, Grids, AdvObj, BaseGrid, AdvGrid, AdvEdit, ExtCtrls;
 
 type
@@ -32,8 +31,6 @@ type
   public
     dbNombre,dbUsuario,dbPass,cxTipo,cxNombre,cxServidor,cxProtocolo,cxCarpeta:string;
     resultadoClave, resultadoNombre, resultadoID, tipoBusqueda, origenBusqueda:string;
-  dbConectar:TdmDataBase;
-  buscar_y_cerrar : boolean;
     { Public declarations }
   end;
 
@@ -41,17 +38,17 @@ var
   frmBuscarCliente: TfrmBuscarCliente;
 
 implementation
-uses Query, FIBQuery, pFIBQuery;
-//var
+uses Database, Query, FIBQuery, pFIBQuery;
+var
+  dbConectar:TdmDataBase;
 const
   cClave=0;
   cNombre=1;
   cID=2;
 {$R *.dfm}
 
-function ConectarADB_: Boolean;
+function ConectarADB: Boolean;
 begin
-{
   Result := False;
   dbConectar:= TdmDataBase.Create(nil);
   if frmBuscarCliente.cxTipo ='1' then//Es local
@@ -73,7 +70,6 @@ begin
            '".' + #13#10 + 'Escriba los datos correctamente o consulte al Administrador del sistema.',mtError,[mbOK],0);
         result:=false;
      end;//try
-}
 end;
 
 function txtSQLbuscado(campo:string):string;
@@ -96,8 +92,8 @@ begin
   frmBuscarCliente.sgBusqueda.FocusCell(0,0);
 //  frmBuscarCliente.sgBusqueda.Row:=1;
   fqCliente:= TdmQuerys.Create(nil);
-  fqCliente.dbtTransaccion.DefaultDatabase:=frmBuscarCliente.dbConectar.idbDatabase;
-  fqCliente.figQuery.Database:=frmBuscarCliente.dbConectar.idbDatabase;
+  fqCliente.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
+  fqCliente.figQuery.Database:=dbConectar.idbDatabase;
   with fqCliente.figQuery do begin
     Close;
     SQL.Clear;
@@ -157,7 +153,7 @@ procedure TfrmBuscarCliente.FormShow(Sender: TObject);
 var
   dbclientes:TdmQuerys;
 begin
-  if (frmBuscarCliente.dbConectar.idbDataBase.TestConnected ) then
+  if ConectarADB then
     begin
       IF tipoBusqueda='Nombre' then
         begin
@@ -177,12 +173,6 @@ begin
       frmBuscarCliente.Caption:= 'Buscar ' + origenBusqueda + ' por ' + tipoBusqueda;
       frmBuscarCliente.lbllistaClentes.Caption := 'Lista de los ' + origenBusqueda + 's encontrados';
       If edtClave.Text <> '' then GetClientes;
-      if buscar_y_cerrar then
-      begin
-        sgBusqueda.Row := 1;
-        freeandnil(frmBuscarCliente);
-        btnAceptarClick(nil);
-      end;
     end
   else frmBuscarCliente.Close;
 end;
@@ -213,7 +203,7 @@ end;
 
 procedure TfrmBuscarCliente.btnBuscarClick(Sender: TObject);
 begin
-  if not(dbConectar = nil) then GetClientes;
+  if ConectarADB then GetClientes;
 end;
 
 procedure TfrmBuscarCliente.FormClose(Sender: TObject;
