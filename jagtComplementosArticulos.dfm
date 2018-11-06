@@ -1,6 +1,6 @@
 object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
   Left = 734
-  Top = 160
+  Top = 133
   BorderStyle = bsSingle
   Caption = 'Articulos complementarios'
   ClientHeight = 311
@@ -67,8 +67,9 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
         ParentCtl3D = False
-        TabOrder = 2
+        TabOrder = 1
         Text = 'Lineas'
+        OnKeyPress = edtClaveKeyPress
       end
       object cbxUnidadMedida: TAdvComboBox
         Left = 60
@@ -93,8 +94,9 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
         ParentCtl3D = False
-        TabOrder = 3
+        TabOrder = 2
         Text = 'Unidades de medida'
+        OnKeyPress = edtClaveKeyPress
       end
       object cbxEstatus: TAdvComboBox
         Left = 296
@@ -119,8 +121,9 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
         ParentCtl3D = False
-        TabOrder = 8
+        TabOrder = 7
         Text = 'Estatus'
+        OnKeyPress = edtClaveKeyPress
       end
       object edtNombre: TAdvEditBtn
         Left = 60
@@ -146,9 +149,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         BorderStyle = bsNone
         Color = clBtnHighlight
         ReadOnly = False
-        TabOrder = 1
+        TabOrder = 0
         Text = 'Buscar'
         Visible = True
+        OnKeyPress = edtClaveKeyPress
         Version = '1.3.5.0'
         ButtonStyle = bsButton
         ButtonWidth = 16
@@ -205,10 +209,11 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         BorderStyle = bsNone
         Color = clBtnHighlight
         ReadOnly = False
-        TabOrder = 0
+        TabOrder = 8
         Text = 'Buscar'
         Visible = True
         OnExit = edtClaveExit
+        OnKeyPress = edtClaveKeyPress
         Version = '1.3.5.0'
         ButtonStyle = bsButton
         ButtonWidth = 16
@@ -226,7 +231,8 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 90
         Height = 16
         Caption = 'Almacenable'
-        TabOrder = 4
+        TabOrder = 3
+        OnKeyPress = edtClaveKeyPress
       end
       object cbJuego: TCheckBox
         Left = 254
@@ -234,7 +240,8 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 89
         Height = 16
         Caption = 'Juego (Kit)'
-        TabOrder = 5
+        TabOrder = 4
+        OnKeyPress = edtClaveKeyPress
       end
       object cbPesarEnBascula: TCheckBox
         Left = 255
@@ -242,7 +249,8 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 104
         Height = 16
         Caption = 'Pesar en bascula'
-        TabOrder = 6
+        TabOrder = 5
+        OnKeyPress = edtClaveKeyPress
       end
       object edtPesoUnit: TAdvEdit
         Left = 305
@@ -273,9 +281,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Font.Name = 'Arial Unicode MS'
         Font.Style = []
         ParentFont = False
-        TabOrder = 7
+        TabOrder = 6
         Text = '0.000'
         Visible = True
+        OnKeyPress = edtClaveKeyPress
         Version = '3.3.2.8'
       end
     end

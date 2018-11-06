@@ -1,6 +1,6 @@
 object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
   Left = 734
-  Top = 160
+  Top = 133
   BorderStyle = bsSingle
   Caption = 'Articulos complementarios'
   ClientHeight = 291
@@ -22,7 +22,7 @@ object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
     Top = 55
     Width = 441
     Height = 252
-    ActivePage = tabAlternativas
+    ActivePage = tabGeneral
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11

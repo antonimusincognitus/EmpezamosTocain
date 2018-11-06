@@ -61,6 +61,7 @@ type
     procedure edtClaveExit(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure PGCArticulosChange(Sender: TObject);
+    procedure edtClaveKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -75,13 +76,14 @@ type
     cxProtocolo //  0: tcp/ip 1: net/bieu   2: spx
     : string;
     articulo : string;
+    es_nuevo : boolean;
   end;
 
 var
   jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios;
 
 implementation
-uses Database, Query, FIBQuery, pFIBQuery, DateUtils, buscarclientes,
+uses Database, Query, FIBQuery, pFIBQuery, DateUtils, buscarclientes, db_operaciones,
   Math;
 var
   dbConectar:TdmDataBase;
@@ -116,6 +118,7 @@ end;
 
 procedure Tjagt_frmArticulosComplementarios.FormCreate(Sender: TObject);
 begin
+  es_nuevo:= true;
   dbNombre    :=ParamStr(1);//  'Prueba_Diagonal';
   dbUsuario   :=ParamStr(2);//  '16ANTONIOG';
   dbPass      :=ParamStr(3);//  '123456';
@@ -126,12 +129,13 @@ begin
   begin
     cxServidor  :=ParamStr(7);//  '';
     cxProtocolo :=ParamStr(8);//  '';
-    edtClave.Text := ParamStr(9);
+    es_nuevo := ParamStr(9) = '1';
+    edtClave.Text := ParamStr(10);
   end
   else
   begin
-    edtClave.Text := ParamStr(7);
-    ShowMessage(articulo);
+    es_nuevo := ParamStr(7) = '1';
+    edtClave.Text := ParamStr(8);
   end;
   ConectarADB;
 
@@ -153,7 +157,13 @@ begin
   frmBuscarCliente.cxServidor :=cxServidor ;
   frmBuscarCliente.cxProtocolo:=cxProtocolo;
   frmBuscarCliente.cxCarpeta  :=cxCarpeta  ;
-  if articulo <> '' then
+  if es_nuevo then
+  begin
+    edtclave.text := 'Buscar';
+    edtclave.setfocus;
+    exit;
+  end;
+  if edtClave.Text <> 'Buscar' then
   edtClave.SetFocus;
 end;
 
@@ -182,6 +192,13 @@ begin
       + #13#10 + 'Indiquelo antes de continuar.',mtError,[mbOk],0);
     PGCArticulos.ActivePageIndex:=0;
   end;
+end;
+
+procedure Tjagt_frmArticulosComplementarios.edtClaveKeyPress(
+  Sender: TObject; var Key: Char);
+begin
+  if Key=#13 then jagt_frmArticulosComplementarios.Perform(WM_NEXTDLGCTL, 0, 0);
+
 end;
 
 end.
