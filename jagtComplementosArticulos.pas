@@ -276,6 +276,7 @@ end;
 procedure Tjagt_frmArticulosComplementarios.FormCreate(Sender: TObject);
 begin
   es_nuevo:= true;
+  PGCArticulos.ActivePageIndex := 0;
   dbNombre    :=ParamStr(1);//  'Prueba_Diagonal';
   dbUsuario   :=ParamStr(2);//  '16ANTONIOG';
   dbPass      :=ParamStr(3);//  '123456';
@@ -316,11 +317,11 @@ begin
   frmBuscarCliente.cxCarpeta  :=cxCarpeta  ;
   if es_nuevo then
   begin
-    edtclave.text := 'Buscar';
+    edtclave.text := '';
     edtclave.setfocus;
     exit;
   end;
-  if edtClave.Text <> 'Buscar' then
+  if edtClave.Text <> '' then
   edtClave.SetFocus;
 end;
 
@@ -328,7 +329,7 @@ procedure Tjagt_frmArticulosComplementarios.edtClaveExit(Sender: TObject);
 var
   text_consulta : string;
 begin
-  if edtClave.Text <> 'Buscar' then
+  if edtClave.Text <> '' then
   begin
     jagt_frmArticulosComplementarios.Text := edtClave.Text;
     text_consulta := 'select articulo_id from claves_articulos where clave_articulo = ' + quotedstr(edtClave.Text);
@@ -341,7 +342,15 @@ begin
         + #13#10 + 'Para buscarlo oprima la tecla F4.', mtError, [mbOK],0);
       edtClave.SetFocus;
       exit;
-    end
+    end;
+    articulo := dmQuerys.figQuery.FldByName['articulo_id'].AsString;
+    text_consulta := 'select nombre from articulos where articulo_id = ' + articulo;
+    InputBox('','',text_consulta);
+    ejecuta_consulta_lectura(dbConectar,dmQuerys,text_consulta);
+    edtNombre.text := dmQuerys.figQuery.FldByName['nombre'].AsString;
+
+    axv_CargarComplementos(articulo);
+    axv_CargarAlternativas(articulo);
   end;
 end;
 
@@ -356,7 +365,7 @@ end;
 procedure Tjagt_frmArticulosComplementarios.PGCArticulosChange(
   Sender: TObject);
 begin
-  if (edtClave.Text='Buscar') or (edtNombre.Text='Buscar')
+  if (edtClave.Text='') or (edtNombre.Text='')
   then begin
     MessageDlg('El árticulo no ha sido indicado.'
       + #13#10 + 'Indiquelo antes de continuar.',mtError,[mbOk],0);
@@ -375,7 +384,7 @@ procedure Tjagt_frmArticulosComplementarios.edtClaveClickBtn(
   Sender: TObject);
 begin
   frmBuscarCliente.edt_Clave.Text := '';
-  if edtClave.Text <> 'Buscar' then
+  if edtClave.Text <> '' then
   frmBuscarCliente.edt_Clave.text := edtClave.text;
   frmBuscarCliente.ShowModal;
 
