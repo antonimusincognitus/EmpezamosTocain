@@ -58,6 +58,14 @@ type
     Nuevocomplemento1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+//    procedure axv_BorrarRelacion(TipoRel,Rel_Id:string);
+    procedure axv_CargarComplementos(articulo_id_ori:string);
+    procedure axv_CargarAlternativas(articulo_id_ori:string);
+    procedure axv_GuardarComplementos(articulo_id_ori:string);
+    procedure axv_GuardarAlternativas(articulo_id_ori:string);
+//    procedure axv_getArticulo(grd:TAdvStringGrid; columna,fila:integer; nombre,clave,art_id:string);
+//    procedure NuevaAlternativaExecute(Sender: TObject);
+//    procedure NuevoComplementoExecute(Sender: TObject);
     procedure edtClaveExit(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure PGCArticulosChange(Sender: TObject);
@@ -90,6 +98,13 @@ var
   dbConectar:TdmDataBase;
   fqDummy:TdmQuerys;
 
+const
+  cClave=0;
+  cNombre=1;
+  cPiezas=2;
+  cNotas=3;
+  cArticulo_id=4;
+  cRelacion_id=5;
 {$R *.dfm}
 //VALIDA LA CONEXION AL SERVIDOR
 function ConectarADB: Boolean;
@@ -115,6 +130,147 @@ begin
            '".' + #13#10 + 'Escriba los datos correctamente o consulte al Administrador del sistema.',mtError,[mbOK],0);
         result:=false;
      end;//try
+end;
+
+//RECUPERAR LOS COMPLEMENTOS DEL ARTICULO ELEGIDO
+procedure Tjagt_frmArticulosComplementarios.axv_CargarComplementos(articulo_id_ori:string);
+var
+  fqCargar:TdmQuerys;
+begin
+  fqCargar:=TdmQuerys.Create(nil);
+  fqCargar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
+  fqCargar.dbtTransaccion.Active:=true;
+  fqCargar.figQuery.Database:=dbConectar.idbDatabase;
+  with fqCargar.figQuery do begin
+    Close;
+    SQL.Clear;
+    SQL.Add('select c.clave_articulo as clave, a.nombre as articulo, r.articulo_id_dest, r.articulo_rel_id, r.notas, r.unidades_relacionadas from lm_articulos_rel as r'
+      + ' inner join articulos as a'
+      + '   on r.articulo_id_dest=a.articulo_id'
+      + ' left join claves_articulos as c'
+      + '   on (r.articulo_id_dest=c.articulo_id and c.rol_clave_art_id = (select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S''))'
+      + ' where r.tipo_relacion = ''C'''
+      + '   and r.articulo_id_ori = '
+      + articulo_id_ori);
+    ExecQuery;
+    if fn('articulo').AsString <> '' then begin
+      while not eof do begin
+        strgComplementos.Cells[cClave,sstrgAlternativas.RowCount-1]:=fn('clave').AsString;
+        strgComplementos.Cells[cNombre,sstrgAlternativas.RowCount-1]:=fn('articulo').AsString;
+        strgComplementos.Cells[cArticulo_id,sstrgAlternativas.RowCount-1]:=fn('articulo_id_dest').AsString;
+        strgComplementos.Cells[cRelacion_id,sstrgAlternativas.RowCount-1]:=fn('articulo_rel_id').AsString;
+        strgComplementos.Cells[cNotas,sstrgAlternativas.RowCount-1]:=fn('notas').AsWideString;
+        strgComplementos.Cells[cPiezas,sstrgAlternativas.RowCount-1]:=fn('unidades_relacionadas').AsString;
+        sstrgAlternativas.AddRow;
+        Next;
+      end;//while
+    end;//if
+  end;//with
+  if fqCargar.dbtTransaccion.Active then fqCargar.dbtTransaccion.Commit;
+  FreeAndNil(fqCargar);
+end;
+
+//RECUPERA LAS ALTERNATIVAS DEL ARTICULO ELEGIDO
+procedure Tjagt_frmArticulosComplementarios.axv_cargarAlternativas(articulo_id_ori:string);
+var
+  fqCargar:TdmQuerys;
+begin
+  fqCargar:=TdmQuerys.Create(nil);
+  fqCargar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
+  fqCargar.dbtTransaccion.Active:=true;
+  fqCargar.figQuery.Database:=dbConectar.idbDatabase;
+  with fqCargar.figQuery do begin
+    Close;
+    SQL.Clear;
+    SQL.Add('select c.clave_articulo as clave, a.nombre as articulo, r.articulo_id_dest, r.articulo_rel_id, r.notas, r.unidades_relacionadas from lm_articulos_rel as r'
+      + ' inner join articulos as a'
+      + '   on r.articulo_id_dest=a.articulo_id'
+      + ' left join claves_articulos as c'
+      + '   on (r.articulo_id_dest=c.articulo_id and c.rol_clave_art_id = (select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S''))'
+      + ' where r.tipo_relacion = ''A'''
+      + '   and r.articulo_id_ori = '
+      + articulo_id_ori);
+    ExecQuery;
+    if fn('articulo').AsString <> '' then begin
+      while not eof do begin
+        sstrgAlternativas.Cells[cClave,sstrgAlternativas.RowCount-1]:=fn('clave').AsString;
+        sstrgAlternativas.Cells[cNombre,sstrgAlternativas.RowCount-1]:=fn('articulo').AsString;
+        sstrgAlternativas.Cells[cArticulo_id,sstrgAlternativas.RowCount-1]:=fn('articulo_id_dest').AsString;
+        sstrgAlternativas.Cells[cRelacion_id,sstrgAlternativas.RowCount-1]:=fn('articulo_rel_id').AsString;
+        sstrgAlternativas.Cells[cNotas,sstrgAlternativas.RowCount-1]:=fn('notas').AsWideString;
+        sstrgAlternativas.Cells[cPiezas,sstrgAlternativas.RowCount-1]:=fn('unidades_relacionadas').AsString;
+        sstrgAlternativas.AddRow;
+        Next;
+      end;//while
+    end;//if
+  end;//with
+  if fqCargar.dbtTransaccion.Active then fqCargar.dbtTransaccion.Commit;
+  FreeAndNil(fqCargar);
+end;
+
+//INSERTA LAS ALTERNATIVAS EN LA BASE DE DATOS
+procedure Tjagt_frmArticulosComplementarios.axv_GuardarAlternativas(articulo_id_ori:string);
+var
+  fqGuardar:TdmQuerys;
+  i:integer;
+begin
+  fqGuardar:=TdmQuerys.Create(nil);
+  fqGuardar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
+  fqGuardar.dbtTransaccion.Active:=true;
+  fqGuardar.figQuery.Database:=dbConectar.idbDatabase;
+  for i:=1 to jagt_frmArticulosComplementarios.strgComplementos.RowCount-1 do begin
+    with fqGuardar.figQuery do begin
+      Close;
+      SQL.Clear;
+      if sstrgAlternativas.Cells[cRelacion_id,i] = ''
+      then SQL.Add('insert into lm_Articulos_Rel values (gen_id(id_articulos_rel,1)'
+        + ' ,' + articulo_id_ori //id_ori
+        + ' ,' + sstrgAlternativas.Cells[cArticulo_id,i] //id_dest
+        + ' , 1' //unidades_relacionadas
+        + ' ,' + sstrgAlternativas.Cells[cNotas,i] //notas
+        + ' ,''C''') //tipo_relacion
+      else SQL.Add('update lm_Articulos_rel set'
+        + 'articulo_id_dest = ' + sstrgAlternativas.Cells[cArticulo_id,i] //id_dest
+        + ', notas = ' + QuotedStr(sstrgAlternativas.cells[cNotas,i]) //notas
+        + 'where articulo_rel_id = ' + sstrgAlternativas.Cells[cRelacion_id,i]);
+      ExecQuery;
+    end;//with
+  end;//for
+  if fqGuardar.dbtTransaccion.Active then fqGuardar.dbtTransaccion.Commit;
+  FreeAndNil(fqGuardar);
+end;
+
+//INSERTA COMPLEMENTOS EN LA BASE DE DATOS
+procedure Tjagt_frmArticulosComplementarios.axv_GuardarComplementos(articulo_id_ori:string);
+var
+  fqGuardar:TdmQuerys;
+  i:integer;
+begin
+  fqGuardar:=TdmQuerys.Create(nil);
+  fqGuardar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
+  fqGuardar.dbtTransaccion.Active:=true;
+  fqGuardar.figQuery.Database:=dbConectar.idbDatabase;
+  for i:=1 to jagt_frmArticulosComplementarios.strgComplementos.RowCount-1 do begin
+    with fqGuardar.figQuery do begin
+      Close;
+      SQL.Clear;
+      if strgComplementos.Cells[cRelacion_id,i] = ''
+      then SQL.Add('insert into lm_Articulos_Rel values (gen_id(id_articulos_rel,1)'
+        + ' ,' + articulo_id_ori //id_ori
+        + ' ,' + strgComplementos.Cells[cArticulo_id,i] //id_dest
+        + ' ,' + strgComplementos.Cells[cPiezas,i] //unidades_relacionadas
+        + ' ,' + strgComplementos.Cells[cNotas,i] //notas
+        + ' ,''C''') //tipo_relacion
+      else SQL.Add('update lm_Articulos_rel set'
+        + 'articulo_id_dest = ' + strgComplementos.Cells[cArticulo_id,i] //id_dest
+        + ', unidades_relacionadas = ' + strgComplementos.Cells[cPiezas,i] //unidades_relacionadas
+        + ', notas = ' + QuotedStr(strgComplementos.cells[cNotas,i]) //notas
+        + 'where articulo_rel_id = ' + strgComplementos.Cells[cRelacion_id,i]);
+      ExecQuery;
+    end;//with
+  end;//for
+  if fqGuardar.dbtTransaccion.Active then fqGuardar.dbtTransaccion.Commit;
+  FreeAndNil(fqGuardar);
 end;
 
 procedure Tjagt_frmArticulosComplementarios.FormCreate(Sender: TObject);
