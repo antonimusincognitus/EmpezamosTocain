@@ -10,7 +10,7 @@ type
   TfrmBuscarCliente = class(TForm)
     cbxCoincidirMayusculas: TCheckBox;
     cbxPalabras: TCheckBox;
-    edtClave: TAdvEdit;
+    edt_Clave: TAdvEdit;
     lbllistaClentes: TLabel;
     sgBusqueda: TAdvStringGrid;
     btnBuscar: TButton;
@@ -23,9 +23,12 @@ type
       Shift: TShiftState);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnAceptarClick(Sender: TObject);
-    procedure edtClaveChange(Sender: TObject);
+    procedure edt_ClaveChange_(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure edt_ClaveValueValidate(Sender: TObject; Value: String;
+      var IsValid: Boolean);
+    procedure edt_ClaveChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -75,13 +78,13 @@ end;
 function txtSQLbuscado(campo:string):string;
 begin
   If frmBuscarCliente.cbxCoincidirMayusculas.Checked and frmBuscarCliente.cbxPalabras.Checked then
-    Result:= ('where ' + campo + ' like ' + QuotedStr('%' + frmBuscarCliente.edtClave.Text + '%'))
+    Result:= ('where ' + campo + ' like ' + QuotedStr('%' + frmBuscarCliente.edt_Clave.Text + '%'))
   else if frmBuscarCliente.cbxCoincidirMayusculas.Checked=false and frmBuscarCliente.cbxPalabras.Checked then
-    Result:= ('where upper(' + campo + ') like ' + QuotedStr('%' + UpperCase(frmBuscarCliente.edtClave.Text) + '%'))
+    Result:= ('where upper(' + campo + ') like ' + QuotedStr('%' + UpperCase(frmBuscarCliente.edt_Clave.Text) + '%'))
   else if frmBuscarCliente.cbxCoincidirMayusculas.Checked and frmBuscarCliente.cbxPalabras.Checked=false then
-    Result:= ('where ' + campo + ' like ' + QuotedStr(frmBuscarCliente.edtClave.Text + '%'))
+    Result:= ('where ' + campo + ' like ' + QuotedStr(frmBuscarCliente.edt_Clave.Text + '%'))
   else if frmBuscarCliente.cbxCoincidirMayusculas.Checked=false and frmBuscarCliente.cbxPalabras.Checked=false then
-    Result:= ('where upper(' + campo + ') like ' + QuotedStr(UpperCase(frmBuscarCliente.edtClave.Text) + '%'))
+    Result:= ('where upper(' + campo + ') like ' + QuotedStr(UpperCase(frmBuscarCliente.edt_Clave.Text) + '%'))
 end;
 
 procedure GetClientes;
@@ -157,22 +160,22 @@ begin
     begin
       IF tipoBusqueda='Nombre' then
         begin
-          edtClave.Left:=58;
-          edtClave.Width:=300;
+          edt_Clave.Left:=58;
+          edt_Clave.Width:=300;
           btnBuscar.Left:=370;
         end
       else if tipoBusqueda='Clave' then
         begin
-          edtClave.Left:=48;
-          edtClave.Width:=140;
+          edt_Clave.Left:=48;
+          edt_Clave.Width:=140;
           btnBuscar.Left:=200;
         end;
-      edtClave.LabelCaption:=tipoBusqueda+': ';
+      edt_Clave.LabelCaption:=tipoBusqueda+': ';
       resultadoClave:='';
       resultadoNombre:='';
       frmBuscarCliente.Caption:= 'Buscar ' + origenBusqueda + ' por ' + tipoBusqueda;
       frmBuscarCliente.lbllistaClentes.Caption := 'Lista de los ' + origenBusqueda + 's encontrados';
-      If edtClave.Text <> '' then GetClientes;
+      If edt_Clave.Text <> '' then GetClientes;
     end
   else frmBuscarCliente.Close;
 end;
@@ -196,9 +199,12 @@ begin
   frmBuscarCliente.Close;
 end;
 
-procedure TfrmBuscarCliente.edtClaveChange(Sender: TObject);
+procedure TfrmBuscarCliente.edt_ClaveChange_(Sender: TObject);
 begin
-  if edtClave.Text = '' then btnBuscar.Enabled:=False else btnBuscar.Enabled:=true;
+  if edt_Clave.Text = '' then
+    btnBuscar.Enabled:=False
+  else
+    btnBuscar.Enabled:=true;
 end;
 
 procedure TfrmBuscarCliente.btnBuscarClick(Sender: TObject);
@@ -210,6 +216,21 @@ procedure TfrmBuscarCliente.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   FreeAndNil(dbConectar);
+end;
+
+procedure TfrmBuscarCliente.edt_ClaveValueValidate(Sender: TObject;
+  Value: String; var IsValid: Boolean);
+begin
+//
+end;
+
+procedure TfrmBuscarCliente.edt_ClaveChange(Sender: TObject);
+begin
+  if edt_Clave.Modified  then
+    btnBuscar.Enabled:=False
+  else
+    btnBuscar.Enabled:=true;
+
 end;
 
 end.

@@ -56,7 +56,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         EmptyTextStyle = []
         Ctl3D = False
         DropWidth = 0
-        Enabled = True
+        Enabled = False
         ItemIndex = -1
         ItemHeight = 14
         LabelCaption = 'Linea:      '
@@ -66,8 +66,9 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         LabelFont.Height = -11
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
+        ParentColor = True
         ParentCtl3D = False
-        TabOrder = 1
+        TabOrder = 2
         Text = 'Lineas'
         OnKeyPress = edtClaveKeyPress
       end
@@ -83,7 +84,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         EmptyTextStyle = []
         Ctl3D = False
         DropWidth = 0
-        Enabled = True
+        Enabled = False
         ItemIndex = -1
         ItemHeight = 14
         LabelCaption = 'Unidades:'
@@ -93,8 +94,9 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         LabelFont.Height = -11
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
+        ParentColor = True
         ParentCtl3D = False
-        TabOrder = 2
+        TabOrder = 3
         Text = 'Unidades de medida'
         OnKeyPress = edtClaveKeyPress
       end
@@ -110,7 +112,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         EmptyTextStyle = []
         Ctl3D = False
         DropWidth = 0
-        Enabled = True
+        Enabled = False
         ItemIndex = -1
         ItemHeight = 14
         LabelCaption = 'Estatus:  '
@@ -120,8 +122,9 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         LabelFont.Height = -11
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
+        ParentColor = True
         ParentCtl3D = False
-        TabOrder = 7
+        TabOrder = 8
         Text = 'Estatus'
         OnKeyPress = edtClaveKeyPress
       end
@@ -130,6 +133,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Top = 42
         Width = 135
         Height = 21
+        EmptyText = 'Buscar'
         EmptyTextStyle = []
         Flat = True
         FocusColor = clBtnHighlight
@@ -149,8 +153,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         BorderStyle = bsNone
         Color = clBtnHighlight
         ReadOnly = False
-        TabOrder = 0
-        Text = 'Buscar'
+        TabOrder = 1
         Visible = True
         OnKeyPress = edtClaveKeyPress
         Version = '1.3.5.0'
@@ -190,6 +193,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Top = 12
         Width = 135
         Height = 21
+        EmptyText = 'Buscar'
         EmptyTextStyle = []
         Flat = True
         FocusColor = clBtnHighlight
@@ -209,8 +213,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         BorderStyle = bsNone
         Color = clBtnHighlight
         ReadOnly = False
-        TabOrder = 8
-        Text = 'Buscar'
+        TabOrder = 0
         Visible = True
         OnExit = edtClaveExit
         OnKeyPress = edtClaveKeyPress
@@ -224,6 +227,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
           E1E1E1000000E1E1E1E1E1E1E1E1E1000000E1E1E1E1E1E10000000000000000
           00E1E1E1E1E1E1000000E1E1E1000000000000000000000000000000E1E1E100
           0000000000000000000000000000000000000000000000000000}
+        OnClickBtn = edtClaveClickBtn
       end
       object cbAlmacenable: TCheckBox
         Left = 254
@@ -231,7 +235,8 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 90
         Height = 16
         Caption = 'Almacenable'
-        TabOrder = 3
+        Enabled = False
+        TabOrder = 4
         OnKeyPress = edtClaveKeyPress
       end
       object cbJuego: TCheckBox
@@ -240,7 +245,8 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 89
         Height = 16
         Caption = 'Juego (Kit)'
-        TabOrder = 4
+        Enabled = False
+        TabOrder = 5
         OnKeyPress = edtClaveKeyPress
       end
       object cbPesarEnBascula: TCheckBox
@@ -249,7 +255,8 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 104
         Height = 16
         Caption = 'Pesar en bascula'
-        TabOrder = 5
+        Enabled = False
+        TabOrder = 6
         OnKeyPress = edtClaveKeyPress
       end
       object edtPesoUnit: TAdvEdit
@@ -275,13 +282,14 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Lookup.Separator = ';'
         BorderStyle = bsNone
         Color = clBtnHighlight
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -9
         Font.Name = 'Arial Unicode MS'
         Font.Style = []
         ParentFont = False
-        TabOrder = 6
+        TabOrder = 7
         Text = '0.000'
         Visible = True
         OnKeyPress = edtClaveKeyPress

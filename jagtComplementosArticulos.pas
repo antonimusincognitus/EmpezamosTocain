@@ -62,6 +62,7 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure PGCArticulosChange(Sender: TObject);
     procedure edtClaveKeyPress(Sender: TObject; var Key: Char);
+    procedure edtClaveClickBtn(Sender: TObject);
   private
     { Private declarations }
   public
@@ -146,7 +147,7 @@ begin
   Application.CreateForm(TfrmBuscarCliente, frmBuscarCliente);
   frmBuscarCliente.tipoBusqueda := 'Clave';
   frmBuscarCliente.origenBusqueda := 'Artículo';
-  frmBuscarCliente.edtClave := edtclave;
+  frmBuscarCliente.edt_Clave := edtclave;
 //  frmBuscarCliente.dbConectar := dbConectar;
 //  frmBuscarCliente.buscar_y_cerrar := true;
   frmBuscarCliente.dbNombre   :=dbNombre   ;
@@ -168,10 +169,23 @@ begin
 end;
 
 procedure Tjagt_frmArticulosComplementarios.edtClaveExit(Sender: TObject);
+var
+  text_consulta : string;
 begin
   if edtClave.Text <> 'Buscar' then
   begin
     jagt_frmArticulosComplementarios.Text := edtClave.Text;
+    text_consulta := 'select articulo_id from claves_articulos where clave_articulo = ' + quotedstr(edtClave.Text);
+    InputBox('','',text_consulta);
+    ejecuta_consulta_lectura(dbConectar,dmQuerys,text_consulta);
+    if dmQuerys.figQuery.RecordCount = 0 then
+    begin
+      MessageDlg('La clave del artículo '+ edtClave.Text + ' no se encuentra registrada.'
+        + #13#10 + 'Puede localizar el artículo por medio de la clave o del nombre.'
+        + #13#10 + 'Para buscarlo oprima la tecla F4.', mtError, [mbOK],0);
+      edtClave.SetFocus;
+      exit;
+    end
   end;
 end;
 
@@ -198,6 +212,16 @@ procedure Tjagt_frmArticulosComplementarios.edtClaveKeyPress(
   Sender: TObject; var Key: Char);
 begin
   if Key=#13 then jagt_frmArticulosComplementarios.Perform(WM_NEXTDLGCTL, 0, 0);
+
+end;
+
+procedure Tjagt_frmArticulosComplementarios.edtClaveClickBtn(
+  Sender: TObject);
+begin
+  frmBuscarCliente.edt_Clave.Text := '';
+  if edtClave.Text <> 'Buscar' then
+  frmBuscarCliente.edt_Clave.text := edtClave.text;
+  frmBuscarCliente.ShowModal;
 
 end;
 

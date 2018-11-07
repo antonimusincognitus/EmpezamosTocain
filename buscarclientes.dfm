@@ -69,12 +69,14 @@ object frmBuscarCliente: TfrmBuscarCliente
     State = cbChecked
     TabOrder = 3
   end
-  object edtClave: TAdvEdit
+  object edt_Clave: TAdvEdit
     Left = 42
     Top = 8
     Width = 128
     Height = 23
-    EmptyTextStyle = []
+    OnValueValidate = edt_ClaveValueValidate
+    EmptyText = 'Buscar'
+    EmptyTextStyle = [fsUnderline]
     FocusColor = clBtnHighlight
     LabelCaption = 'Clave:'
     LabelPosition = lpLeftCenter
@@ -92,7 +94,7 @@ object frmBuscarCliente: TfrmBuscarCliente
     Color = clBtnHighlight
     TabOrder = 0
     Visible = True
-    OnChange = edtClaveChange
+    OnChange = edt_ClaveChange
     Version = '3.3.2.8'
   end
   object sgBusqueda: TAdvStringGrid
