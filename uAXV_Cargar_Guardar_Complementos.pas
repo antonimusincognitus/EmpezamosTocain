@@ -112,6 +112,7 @@ uses Database, Query, FIBQuery, pFIBQuery, DateUtils, buscarclientes, db_operaci
 var
   dbConectar:TdmDataBase;
   fqDummy:TdmQuerys;
+  articulo_anterior : string;
 
 const
   cClave=0;

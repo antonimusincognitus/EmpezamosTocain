@@ -29,6 +29,7 @@ type
     procedure edt_ClaveValueValidate(Sender: TObject; Value: String;
       var IsValid: Boolean);
     procedure edt_ClaveChange(Sender: TObject);
+    procedure edt_ClaveKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -209,7 +210,8 @@ end;
 
 procedure TfrmBuscarCliente.btnBuscarClick(Sender: TObject);
 begin
-  if ConectarADB then GetClientes;
+  if ConectarADB then
+    GetClientes;
 end;
 
 procedure TfrmBuscarCliente.FormClose(Sender: TObject;
@@ -231,6 +233,12 @@ begin
   else
     btnBuscar.Enabled:=true;
 
+end;
+
+procedure TfrmBuscarCliente.edt_ClaveKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+//  
 end;
 
 end.

@@ -33,8 +33,6 @@ object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
     TabMargin.RightMargin = 0
     TabOverlap = 0
     Version = '2.0.0.4'
-    PersistPagesState.Location = plRegistry
-    PersistPagesState.Enabled = False
     TabOrder = 0
     object tabGeneral: TAdvTabSheet
       Caption = 'General'
@@ -51,7 +49,6 @@ object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
         Version = '1.5.1.1'
         Visible = True
         Flat = True
-        EmptyTextStyle = []
         Ctl3D = False
         DropWidth = 0
         Enabled = True
@@ -77,7 +74,6 @@ object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
         Version = '1.5.1.1'
         Visible = True
         Flat = True
-        EmptyTextStyle = []
         Ctl3D = False
         DropWidth = 0
         Enabled = True
@@ -103,7 +99,6 @@ object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
         Version = '1.5.1.1'
         Visible = True
         Flat = True
-        EmptyTextStyle = []
         Ctl3D = False
         DropWidth = 0
         Enabled = True
@@ -125,7 +120,6 @@ object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
         Top = 42
         Width = 135
         Height = 21
-        EmptyTextStyle = []
         Flat = True
         FocusColor = clBtnHighlight
         LabelCaption = 'Nombre:  '
@@ -184,7 +178,6 @@ object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
         Top = 12
         Width = 135
         Height = 21
-        EmptyTextStyle = []
         Flat = True
         FocusColor = clBtnHighlight
         LabelCaption = 'Clave:     '
@@ -246,7 +239,6 @@ object axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios
         Top = 73
         Width = 113
         Height = 21
-        EmptyTextStyle = []
         Flat = True
         FocusColor = clBtnHighlight
         LabelCaption = 'Peso unit:   '

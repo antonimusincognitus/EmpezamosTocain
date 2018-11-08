@@ -30,8 +30,6 @@ object frmLocalizar: TfrmLocalizar
     TabMargin.RightMargin = 0
     TabOverlap = 0
     Version = '2.0.0.4'
-    PersistPagesState.Location = plRegistry
-    PersistPagesState.Enabled = False
     TabOrder = 0
     OnChange = pgControlLocalizarChange
     OnResize = pgControlLocalizarResize
@@ -46,7 +44,6 @@ object frmLocalizar: TfrmLocalizar
         Top = 8
         Width = 65
         Height = 19
-        EmptyTextStyle = []
         FocusBorder = True
         FocusBorderColor = clMenuHighlight
         LabelCaption = '&Folio:'
@@ -95,7 +92,6 @@ object frmLocalizar: TfrmLocalizar
         Top = 7
         Width = 121
         Height = 21
-        EmptyTextStyle = []
         Flat = False
         SoftBorder = True
         LabelCaption = '&Clave:     '
@@ -166,7 +162,6 @@ object frmLocalizar: TfrmLocalizar
         Top = 36
         Width = 365
         Height = 21
-        EmptyTextStyle = []
         Flat = False
         SoftBorder = True
         LabelCaption = '&Nombre: '
@@ -242,7 +237,6 @@ object frmLocalizar: TfrmLocalizar
         Visible = True
         BevelKind = bkSoft
         BevelInner = bvNone
-        EmptyTextStyle = []
         Ctl3D = False
         DropWidth = 0
         Enabled = True

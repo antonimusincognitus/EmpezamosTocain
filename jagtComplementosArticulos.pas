@@ -51,26 +51,33 @@ type
     ATBBModificar: TAdvToolBarButton;
     ATBBEliminar: TAdvToolBarButton;
     ATBS2: TAdvToolBarSeparator;
-    AdvToolBarButton1: TAdvToolBarButton;
     AdvStickyPopupMenu1: TAdvStickyPopupMenu;
     AdvPopupMenu1: TAdvPopupMenu;
     Nuevaalternativa1: TMenuItem;
     Nuevocomplemento1: TMenuItem;
+    axv_PopMenuAlternativas: TAdvPopupMenu;
+    Nuevaalternativa2: TMenuItem;
+    Eliminaralternativa1: TMenuItem;
+    axv_PopMenuComplementos: TAdvPopupMenu;
+    EliminarComplemento1: TMenuItem;
+    EliminarComplemento2: TMenuItem;
+    AdvToolBarOfficeStyler2: TAdvToolBarOfficeStyler;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-//    procedure axv_BorrarRelacion(TipoRel,Rel_Id:string);
+    procedure axv_BorrarRelacion(TipoRel,Rel_Id:string);
     procedure axv_CargarComplementos(articulo_id_ori:string);
     procedure axv_CargarAlternativas(articulo_id_ori:string);
     procedure axv_GuardarComplementos(articulo_id_ori:string);
     procedure axv_GuardarAlternativas(articulo_id_ori:string);
 //    procedure axv_getArticulo(grd:TAdvStringGrid; columna,fila:integer; nombre,clave,art_id:string);
-//    procedure NuevaAlternativaExecute(Sender: TObject);
-//    procedure NuevoComplementoExecute(Sender: TObject);
+    procedure NuevaAlternativaExecute(Sender: TObject);
+    procedure NuevoComplementoExecute(Sender: TObject);
     procedure edtClaveExit(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure PGCArticulosChange(Sender: TObject);
     procedure edtClaveKeyPress(Sender: TObject; var Key: Char);
     procedure edtClaveClickBtn(Sender: TObject);
+    procedure ModificarExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -97,7 +104,8 @@ uses Database, Query, FIBQuery, pFIBQuery, DateUtils, buscarclientes, db_operaci
 var
   dbConectar:TdmDataBase;
   fqDummy:TdmQuerys;
-
+  articulo_anterior : string;
+  
 const
   cClave=0;
   cNombre=1;
@@ -276,6 +284,7 @@ end;
 procedure Tjagt_frmArticulosComplementarios.FormCreate(Sender: TObject);
 begin
   es_nuevo:= true;
+  articulo_anterior := '';
   PGCArticulos.ActivePageIndex := 0;
   dbNombre    :=ParamStr(1);//  'Prueba_Diagonal';
   dbUsuario   :=ParamStr(2);//  '16ANTONIOG';
@@ -302,9 +311,6 @@ end;
 procedure Tjagt_frmArticulosComplementarios.FormShow(Sender: TObject);
 begin
   Application.CreateForm(TfrmBuscarCliente, frmBuscarCliente);
-  frmBuscarCliente.tipoBusqueda := 'Clave';
-  frmBuscarCliente.origenBusqueda := 'Artículo';
-  frmBuscarCliente.edt_Clave := edtclave;
 //  frmBuscarCliente.dbConectar := dbConectar;
 //  frmBuscarCliente.buscar_y_cerrar := true;
   frmBuscarCliente.dbNombre   :=dbNombre   ;
@@ -321,8 +327,44 @@ begin
     edtclave.setfocus;
     exit;
   end;
+  if not es_nuevo then
+  begin
+    ATBBModificar.Enabled := true;
+    ATBBEliminar.Enabled := false;
+//    articulo_anterior := edtClave.Text;
+    edtClaveExit(self);
+  end;
   if edtClave.Text <> '' then
   edtClave.SetFocus;
+end;
+procedure Tjagt_frmArticulosComplementarios.NuevaAlternativaExecute(Sender: TObject);
+begin
+  sstrgAlternativas.AddRow;
+end;
+
+procedure Tjagt_frmArticulosComplementarios.NuevoComplementoExecute(Sender: TObject);
+begin
+  strgComplementos.AddRow;
+end;
+
+procedure Tjagt_frmArticulosComplementarios.axv_BorrarRelacion(TipoRel,Rel_Id:string);
+var
+  fqGuardar:TdmQuerys;
+begin
+  fqGuardar:=TdmQuerys.Create(nil);
+  fqGuardar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
+  fqGuardar.dbtTransaccion.Active:=true;
+  fqGuardar.figQuery.Database:=dbConectar.idbDatabase;
+  with fqGuardar.figQuery do begin
+    Close;
+    SQL.Clear;
+    SQL.Add('delete from lm_Articulos_Rel '
+      + ' where articulo_rel_id = ' + Rel_Id
+      + ' and tipo_relacion =' + QuotedStr(TipoRel));
+    ExecQuery;
+  end;//with
+  if fqGuardar.dbtTransaccion.Active then fqGuardar.dbtTransaccion.Commit;
+  FreeAndNil(fqGuardar);
 end;
 
 procedure Tjagt_frmArticulosComplementarios.edtClaveExit(Sender: TObject);
@@ -333,7 +375,10 @@ begin
   begin
     jagt_frmArticulosComplementarios.Text := edtClave.Text;
     text_consulta := 'select articulo_id from claves_articulos where clave_articulo = ' + quotedstr(edtClave.Text);
-    InputBox('','',text_consulta);
+//    InputBox('','',text_consulta);
+    if articulo_anterior = edtClave.Text then
+      exit;
+    articulo_anterior := edtClave.Text;
     ejecuta_consulta_lectura(dbConectar,dmQuerys,text_consulta);
     if dmQuerys.figQuery.RecordCount = 0 then
     begin
@@ -386,8 +431,19 @@ begin
   frmBuscarCliente.edt_Clave.Text := '';
   if edtClave.Text <> '' then
   frmBuscarCliente.edt_Clave.text := edtClave.text;
+
+  frmBuscarCliente.tipoBusqueda := 'Clave';
+  frmBuscarCliente.origenBusqueda := 'Artículo';
+  frmBuscarCliente.edt_Clave.Text := edtclave.text;
+
   frmBuscarCliente.ShowModal;
 
+end;
+
+procedure Tjagt_frmArticulosComplementarios.ModificarExecute(
+  Sender: TObject);
+begin
+//
 end;
 
 end.

@@ -232,7 +232,7 @@ object frmAXV: TfrmAXV
     Top = 55
     Width = 441
     Height = 252
-    ActivePage = tabGeneral
+    ActivePage = tabAlternativas
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -244,8 +244,6 @@ object frmAXV: TfrmAXV
     TabMargin.RightMargin = 0
     TabOverlap = 0
     Version = '2.0.0.4'
-    PersistPagesState.Location = plRegistry
-    PersistPagesState.Enabled = False
     TabOrder = 2
     object tabGeneral: TAdvTabSheet
       Caption = '       General   '
@@ -262,7 +260,6 @@ object frmAXV: TfrmAXV
         Version = '1.5.1.1'
         Visible = True
         Flat = True
-        EmptyTextStyle = []
         Ctl3D = False
         DropWidth = 0
         Enabled = True
@@ -288,7 +285,6 @@ object frmAXV: TfrmAXV
         Version = '1.5.1.1'
         Visible = True
         Flat = True
-        EmptyTextStyle = []
         Ctl3D = False
         DropWidth = 0
         Enabled = True
@@ -314,7 +310,6 @@ object frmAXV: TfrmAXV
         Version = '1.5.1.1'
         Visible = True
         Flat = True
-        EmptyTextStyle = []
         Ctl3D = False
         DropWidth = 0
         Enabled = True
@@ -336,7 +331,6 @@ object frmAXV: TfrmAXV
         Top = 42
         Width = 135
         Height = 21
-        EmptyTextStyle = []
         Flat = True
         FocusColor = clBtnHighlight
         LabelCaption = 'Nombre:  '
@@ -395,7 +389,6 @@ object frmAXV: TfrmAXV
         Top = 12
         Width = 135
         Height = 21
-        EmptyTextStyle = []
         Flat = True
         FocusColor = clBtnHighlight
         LabelCaption = 'Clave:     '
@@ -457,7 +450,6 @@ object frmAXV: TfrmAXV
         Top = 73
         Width = 113
         Height = 21
-        EmptyTextStyle = []
         Flat = True
         FocusColor = clBtnHighlight
         LabelCaption = 'Peso unit:   '

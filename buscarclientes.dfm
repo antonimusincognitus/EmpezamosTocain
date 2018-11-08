@@ -95,6 +95,7 @@ object frmBuscarCliente: TfrmBuscarCliente
     TabOrder = 0
     Visible = True
     OnChange = edt_ClaveChange
+    OnKeyPress = edt_ClaveKeyPress
     Version = '3.3.2.8'
   end
   object sgBusqueda: TAdvStringGrid

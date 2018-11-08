@@ -1,6 +1,6 @@
 object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
-  Left = 734
-  Top = 133
+  Left = -878
+  Top = 148
   BorderStyle = bsSingle
   Caption = 'Articulos complementarios'
   ClientHeight = 311
@@ -18,559 +18,6 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
-  object PGCArticulos: TAdvPageControl
-    Left = 7
-    Top = 55
-    Width = 441
-    Height = 252
-    ActivePage = tabAlternativas
-    ActiveFont.Charset = DEFAULT_CHARSET
-    ActiveFont.Color = clWindowText
-    ActiveFont.Height = -11
-    ActiveFont.Name = 'Tahoma'
-    ActiveFont.Style = []
-    ActiveColor = clBtnHighlight
-    TabBackGroundColor = clBtnHighlight
-    TabMargin.RightMargin = 0
-    TabOverlap = 0
-    Version = '2.0.0.4'
-    PersistPagesState.Location = plRegistry
-    PersistPagesState.Enabled = False
-    TabOrder = 0
-    OnChange = PGCArticulosChange
-    object tabGeneral: TAdvTabSheet
-      Caption = 'General'
-      Color = clBtnHighlight
-      ColorTo = clNone
-      TabColor = clBtnFace
-      TabColorTo = clNone
-      object cbxLineas: TAdvComboBox
-        Left = 60
-        Top = 73
-        Width = 135
-        Height = 22
-        Color = clBtnHighlight
-        Version = '1.5.1.1'
-        Visible = True
-        Flat = True
-        EmptyTextStyle = []
-        Ctl3D = False
-        DropWidth = 0
-        Enabled = False
-        ItemIndex = -1
-        ItemHeight = 14
-        LabelCaption = 'Linea:      '
-        LabelPosition = lpLeftCenter
-        LabelFont.Charset = DEFAULT_CHARSET
-        LabelFont.Color = clWindowText
-        LabelFont.Height = -11
-        LabelFont.Name = 'MS Sans Serif'
-        LabelFont.Style = []
-        ParentColor = True
-        ParentCtl3D = False
-        TabOrder = 2
-        Text = 'Lineas'
-        OnKeyPress = edtClaveKeyPress
-      end
-      object cbxUnidadMedida: TAdvComboBox
-        Left = 60
-        Top = 104
-        Width = 135
-        Height = 22
-        Color = clBtnHighlight
-        Version = '1.5.1.1'
-        Visible = True
-        Flat = True
-        EmptyTextStyle = []
-        Ctl3D = False
-        DropWidth = 0
-        Enabled = False
-        ItemIndex = -1
-        ItemHeight = 14
-        LabelCaption = 'Unidades:'
-        LabelPosition = lpLeftCenter
-        LabelFont.Charset = DEFAULT_CHARSET
-        LabelFont.Color = clWindowText
-        LabelFont.Height = -11
-        LabelFont.Name = 'MS Sans Serif'
-        LabelFont.Style = []
-        ParentColor = True
-        ParentCtl3D = False
-        TabOrder = 3
-        Text = 'Unidades de medida'
-        OnKeyPress = edtClaveKeyPress
-      end
-      object cbxEstatus: TAdvComboBox
-        Left = 296
-        Top = 104
-        Width = 126
-        Height = 22
-        Color = clBtnHighlight
-        Version = '1.5.1.1'
-        Visible = True
-        Flat = True
-        EmptyTextStyle = []
-        Ctl3D = False
-        DropWidth = 0
-        Enabled = False
-        ItemIndex = -1
-        ItemHeight = 14
-        LabelCaption = 'Estatus:  '
-        LabelPosition = lpLeftCenter
-        LabelFont.Charset = DEFAULT_CHARSET
-        LabelFont.Color = clWindowText
-        LabelFont.Height = -11
-        LabelFont.Name = 'MS Sans Serif'
-        LabelFont.Style = []
-        ParentColor = True
-        ParentCtl3D = False
-        TabOrder = 8
-        Text = 'Estatus'
-        OnKeyPress = edtClaveKeyPress
-      end
-      object edtNombre: TAdvEditBtn
-        Left = 60
-        Top = 42
-        Width = 135
-        Height = 21
-        EmptyText = 'Buscar'
-        EmptyTextStyle = []
-        Flat = True
-        FocusColor = clBtnHighlight
-        LabelCaption = 'Nombre:  '
-        LabelPosition = lpLeftCenter
-        LabelFont.Charset = DEFAULT_CHARSET
-        LabelFont.Color = clWindowText
-        LabelFont.Height = -11
-        LabelFont.Name = 'MS Sans Serif'
-        LabelFont.Style = []
-        Lookup.Font.Charset = DEFAULT_CHARSET
-        Lookup.Font.Color = clWindowText
-        Lookup.Font.Height = -11
-        Lookup.Font.Name = 'Arial'
-        Lookup.Font.Style = []
-        Lookup.Separator = ';'
-        BorderStyle = bsNone
-        Color = clBtnHighlight
-        ReadOnly = False
-        TabOrder = 1
-        Visible = True
-        OnKeyPress = edtClaveKeyPress
-        Version = '1.3.5.0'
-        ButtonStyle = bsButton
-        ButtonWidth = 16
-        Etched = False
-        Glyph.Data = {
-          2E030000424D2E0300000000000036000000280000000D000000130000000100
-          180000000000F802000000000000000000000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1F1F1F1F1F1FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1F1F15C5C5C5C
-          5C5CF1F1F1FFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFF1F1
-          F15C5C5CADADADADADAD5C5C5CF1F1F1FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
-          FFFFFFF1F1F15C5C5CADADADFFFFFFFFFFFFADADAD5C5C5CF1F1F1FFFFFFFFFF
-          FF00FFFFFFFFFFFFF1F1F15C5C5CADADADFFFFFFFFFFFFFFFFFFFFFFFFADADAD
-          5C5C5CF1F1F1FFFFFF00FFFFFFFFFFFFFFFFFFC9C9C9FFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFC9C9C9FFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00}
-      end
-      object edtClave: TAdvEditBtn
-        Left = 60
-        Top = 12
-        Width = 135
-        Height = 21
-        EmptyText = 'Buscar'
-        EmptyTextStyle = []
-        Flat = True
-        FocusColor = clBtnHighlight
-        LabelCaption = 'Clave:     '
-        LabelPosition = lpLeftCenter
-        LabelFont.Charset = DEFAULT_CHARSET
-        LabelFont.Color = clWindowText
-        LabelFont.Height = -11
-        LabelFont.Name = 'MS Sans Serif'
-        LabelFont.Style = []
-        Lookup.Font.Charset = DEFAULT_CHARSET
-        Lookup.Font.Color = clWindowText
-        Lookup.Font.Height = -11
-        Lookup.Font.Name = 'Arial'
-        Lookup.Font.Style = []
-        Lookup.Separator = ';'
-        BorderStyle = bsNone
-        Color = clBtnHighlight
-        ReadOnly = False
-        TabOrder = 0
-        Visible = True
-        OnExit = edtClaveExit
-        OnKeyPress = edtClaveKeyPress
-        Version = '1.3.5.0'
-        ButtonStyle = bsButton
-        ButtonWidth = 16
-        Etched = False
-        Glyph.Data = {
-          96000000424D9600000000000000360000002800000007000000040000000100
-          1800000000006000000000000000000000000000000000000000E1E1E1E1E1E1
-          E1E1E1000000E1E1E1E1E1E1E1E1E1000000E1E1E1E1E1E10000000000000000
-          00E1E1E1E1E1E1000000E1E1E1000000000000000000000000000000E1E1E100
-          0000000000000000000000000000000000000000000000000000}
-        OnClickBtn = edtClaveClickBtn
-      end
-      object cbAlmacenable: TCheckBox
-        Left = 254
-        Top = 15
-        Width = 90
-        Height = 16
-        Caption = 'Almacenable'
-        Enabled = False
-        TabOrder = 4
-        OnKeyPress = edtClaveKeyPress
-      end
-      object cbJuego: TCheckBox
-        Left = 254
-        Top = 33
-        Width = 89
-        Height = 16
-        Caption = 'Juego (Kit)'
-        Enabled = False
-        TabOrder = 5
-        OnKeyPress = edtClaveKeyPress
-      end
-      object cbPesarEnBascula: TCheckBox
-        Left = 255
-        Top = 51
-        Width = 104
-        Height = 16
-        Caption = 'Pesar en bascula'
-        Enabled = False
-        TabOrder = 6
-        OnKeyPress = edtClaveKeyPress
-      end
-      object edtPesoUnit: TAdvEdit
-        Left = 305
-        Top = 73
-        Width = 113
-        Height = 21
-        EmptyTextStyle = []
-        Flat = True
-        FocusColor = clBtnHighlight
-        LabelCaption = 'Peso unit:   '
-        LabelPosition = lpLeftCenter
-        LabelFont.Charset = DEFAULT_CHARSET
-        LabelFont.Color = clWindowText
-        LabelFont.Height = -11
-        LabelFont.Name = 'Arial Unicode MS'
-        LabelFont.Style = []
-        Lookup.Font.Charset = DEFAULT_CHARSET
-        Lookup.Font.Color = clWindowText
-        Lookup.Font.Height = -11
-        Lookup.Font.Name = 'Arial'
-        Lookup.Font.Style = []
-        Lookup.Separator = ';'
-        BorderStyle = bsNone
-        Color = clBtnHighlight
-        Enabled = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -9
-        Font.Name = 'Arial Unicode MS'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 7
-        Text = '0.000'
-        Visible = True
-        OnKeyPress = edtClaveKeyPress
-        Version = '3.3.2.8'
-      end
-    end
-    object tabAlternativas: TAdvTabSheet
-      Caption = 'Alternativas'
-      Color = clBtnHighlight
-      ColorTo = clNone
-      TabColor = clBtnFace
-      TabColorTo = clNone
-      object sstrgAlternativas: TAdvStringGrid
-        Left = 5
-        Top = 2
-        Width = 419
-        Height = 219
-        Cursor = crDefault
-        ColCount = 3
-        FixedCols = 0
-        RowCount = 2
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -9
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        ScrollBars = ssBoth
-        TabOrder = 0
-        GridLineColor = 15527152
-        GridFixedLineColor = 13947601
-        HoverRowCells = [hcNormal, hcSelected]
-        ActiveCellFont.Charset = DEFAULT_CHARSET
-        ActiveCellFont.Color = clWindowText
-        ActiveCellFont.Height = -11
-        ActiveCellFont.Name = 'Tahoma'
-        ActiveCellFont.Style = [fsBold]
-        ActiveCellColor = 16644337
-        ActiveCellColorTo = 16576469
-        ColumnHeaders.Strings = (
-          'Clave'
-          'Descripci'#243'n'
-          'Comentarios')
-        ControlLook.FixedGradientMirrorFrom = 16447735
-        ControlLook.FixedGradientMirrorTo = 16052977
-        ControlLook.FixedGradientHoverFrom = 16775139
-        ControlLook.FixedGradientHoverTo = 16775139
-        ControlLook.FixedGradientHoverMirrorFrom = 16772541
-        ControlLook.FixedGradientHoverMirrorTo = 16508855
-        ControlLook.FixedGradientDownFrom = 16377020
-        ControlLook.FixedGradientDownTo = 16377020
-        ControlLook.FixedGradientDownMirrorFrom = 16242317
-        ControlLook.FixedGradientDownMirrorTo = 16109962
-        ControlLook.FixedGradientDownBorder = 11440207
-        ControlLook.DropDownHeader.Font.Charset = DEFAULT_CHARSET
-        ControlLook.DropDownHeader.Font.Color = clWindowText
-        ControlLook.DropDownHeader.Font.Height = -11
-        ControlLook.DropDownHeader.Font.Name = 'Tahoma'
-        ControlLook.DropDownHeader.Font.Style = []
-        ControlLook.DropDownHeader.Visible = True
-        ControlLook.DropDownHeader.Buttons = <>
-        ControlLook.DropDownFooter.Font.Charset = DEFAULT_CHARSET
-        ControlLook.DropDownFooter.Font.Color = clWindowText
-        ControlLook.DropDownFooter.Font.Height = -11
-        ControlLook.DropDownFooter.Font.Name = 'MS Sans Serif'
-        ControlLook.DropDownFooter.Font.Style = []
-        ControlLook.DropDownFooter.Visible = True
-        ControlLook.DropDownFooter.Buttons = <>
-        Filter = <>
-        FilterDropDown.Font.Charset = DEFAULT_CHARSET
-        FilterDropDown.Font.Color = clWindowText
-        FilterDropDown.Font.Height = -11
-        FilterDropDown.Font.Name = 'MS Sans Serif'
-        FilterDropDown.Font.Style = []
-        FilterDropDownClear = '(All)'
-        FilterEdit.TypeNames.Strings = (
-          'Starts with'
-          'Ends with'
-          'Contains'
-          'Not contains'
-          'Equal'
-          'Not equal'
-          'Clear')
-        FixedColWidth = 78
-        FixedRowHeight = 22
-        FixedFont.Charset = DEFAULT_CHARSET
-        FixedFont.Color = clWindowText
-        FixedFont.Height = -11
-        FixedFont.Name = 'Tahoma'
-        FixedFont.Style = [fsBold]
-        FloatFormat = '%.2f'
-        HoverButtons.Buttons = <>
-        HoverButtons.Position = hbLeftFromColumnLeft
-        Look = glVista
-        PrintSettings.DateFormat = 'dd/mm/yyyy'
-        PrintSettings.Font.Charset = DEFAULT_CHARSET
-        PrintSettings.Font.Color = clWindowText
-        PrintSettings.Font.Height = -11
-        PrintSettings.Font.Name = 'MS Sans Serif'
-        PrintSettings.Font.Style = []
-        PrintSettings.FixedFont.Charset = DEFAULT_CHARSET
-        PrintSettings.FixedFont.Color = clWindowText
-        PrintSettings.FixedFont.Height = -11
-        PrintSettings.FixedFont.Name = 'MS Sans Serif'
-        PrintSettings.FixedFont.Style = []
-        PrintSettings.HeaderFont.Charset = DEFAULT_CHARSET
-        PrintSettings.HeaderFont.Color = clWindowText
-        PrintSettings.HeaderFont.Height = -11
-        PrintSettings.HeaderFont.Name = 'MS Sans Serif'
-        PrintSettings.HeaderFont.Style = []
-        PrintSettings.FooterFont.Charset = DEFAULT_CHARSET
-        PrintSettings.FooterFont.Color = clWindowText
-        PrintSettings.FooterFont.Height = -11
-        PrintSettings.FooterFont.Name = 'MS Sans Serif'
-        PrintSettings.FooterFont.Style = []
-        PrintSettings.PageNumSep = '/'
-        SearchFooter.ColorTo = 16052977
-        SearchFooter.FindNextCaption = 'Find &next'
-        SearchFooter.FindPrevCaption = 'Find &previous'
-        SearchFooter.Font.Charset = DEFAULT_CHARSET
-        SearchFooter.Font.Color = clWindowText
-        SearchFooter.Font.Height = -11
-        SearchFooter.Font.Name = 'MS Sans Serif'
-        SearchFooter.Font.Style = []
-        SearchFooter.HighLightCaption = 'Highlight'
-        SearchFooter.HintClose = 'Close'
-        SearchFooter.HintFindNext = 'Find next occurrence'
-        SearchFooter.HintFindPrev = 'Find previous occurrence'
-        SearchFooter.HintHighlight = 'Highlight occurrences'
-        SearchFooter.MatchCaseCaption = 'Match case'
-        SortSettings.DefaultFormat = ssAutomatic
-        SortSettings.HeaderColor = 16579058
-        SortSettings.HeaderColorTo = 16579058
-        SortSettings.HeaderMirrorColor = 16380385
-        SortSettings.HeaderMirrorColorTo = 16182488
-        Version = '7.4.6.3'
-        ColWidths = (
-          78
-          233
-          131)
-      end
-    end
-    object tabComplementos: TAdvTabSheet
-      Caption = 'Complementos'
-      Color = clBtnHighlight
-      ColorTo = clNone
-      TabColor = clBtnFace
-      TabColorTo = clNone
-      object strgComplementos: TAdvStringGrid
-        Left = 3
-        Top = 2
-        Width = 430
-        Height = 222
-        Cursor = crDefault
-        ColCount = 4
-        FixedCols = 0
-        RowCount = 2
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -9
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        ScrollBars = ssBoth
-        TabOrder = 0
-        GridLineColor = 15527152
-        GridFixedLineColor = 13947601
-        HoverRowCells = [hcNormal, hcSelected]
-        ActiveCellFont.Charset = DEFAULT_CHARSET
-        ActiveCellFont.Color = clWindowText
-        ActiveCellFont.Height = -11
-        ActiveCellFont.Name = 'Tahoma'
-        ActiveCellFont.Style = [fsBold]
-        ActiveCellColor = 16644337
-        ActiveCellColorTo = 16576469
-        ColumnHeaders.Strings = (
-          'Clave'
-          'Descripci'#243'n'
-          'Pzs. Rel.'
-          'Comentarios')
-        ControlLook.FixedGradientMirrorFrom = 16447735
-        ControlLook.FixedGradientMirrorTo = 16052977
-        ControlLook.FixedGradientHoverFrom = 16775139
-        ControlLook.FixedGradientHoverTo = 16775139
-        ControlLook.FixedGradientHoverMirrorFrom = 16772541
-        ControlLook.FixedGradientHoverMirrorTo = 16508855
-        ControlLook.FixedGradientDownFrom = 16377020
-        ControlLook.FixedGradientDownTo = 16377020
-        ControlLook.FixedGradientDownMirrorFrom = 16242317
-        ControlLook.FixedGradientDownMirrorTo = 16109962
-        ControlLook.FixedGradientDownBorder = 11440207
-        ControlLook.DropDownHeader.Font.Charset = DEFAULT_CHARSET
-        ControlLook.DropDownHeader.Font.Color = clWindowText
-        ControlLook.DropDownHeader.Font.Height = -11
-        ControlLook.DropDownHeader.Font.Name = 'Tahoma'
-        ControlLook.DropDownHeader.Font.Style = []
-        ControlLook.DropDownHeader.Visible = True
-        ControlLook.DropDownHeader.Buttons = <>
-        ControlLook.DropDownFooter.Font.Charset = DEFAULT_CHARSET
-        ControlLook.DropDownFooter.Font.Color = clWindowText
-        ControlLook.DropDownFooter.Font.Height = -11
-        ControlLook.DropDownFooter.Font.Name = 'MS Sans Serif'
-        ControlLook.DropDownFooter.Font.Style = []
-        ControlLook.DropDownFooter.Visible = True
-        ControlLook.DropDownFooter.Buttons = <>
-        Filter = <>
-        FilterDropDown.Font.Charset = DEFAULT_CHARSET
-        FilterDropDown.Font.Color = clWindowText
-        FilterDropDown.Font.Height = -11
-        FilterDropDown.Font.Name = 'MS Sans Serif'
-        FilterDropDown.Font.Style = []
-        FilterDropDownClear = '(All)'
-        FilterEdit.TypeNames.Strings = (
-          'Starts with'
-          'Ends with'
-          'Contains'
-          'Not contains'
-          'Equal'
-          'Not equal'
-          'Clear')
-        FixedColWidth = 78
-        FixedRowHeight = 22
-        FixedFont.Charset = DEFAULT_CHARSET
-        FixedFont.Color = clWindowText
-        FixedFont.Height = -11
-        FixedFont.Name = 'Tahoma'
-        FixedFont.Style = [fsBold]
-        FloatFormat = '%.2f'
-        HoverButtons.Buttons = <>
-        HoverButtons.Position = hbLeftFromColumnLeft
-        Look = glVista
-        PrintSettings.DateFormat = 'dd/mm/yyyy'
-        PrintSettings.Font.Charset = DEFAULT_CHARSET
-        PrintSettings.Font.Color = clWindowText
-        PrintSettings.Font.Height = -11
-        PrintSettings.Font.Name = 'MS Sans Serif'
-        PrintSettings.Font.Style = []
-        PrintSettings.FixedFont.Charset = DEFAULT_CHARSET
-        PrintSettings.FixedFont.Color = clWindowText
-        PrintSettings.FixedFont.Height = -11
-        PrintSettings.FixedFont.Name = 'MS Sans Serif'
-        PrintSettings.FixedFont.Style = []
-        PrintSettings.HeaderFont.Charset = DEFAULT_CHARSET
-        PrintSettings.HeaderFont.Color = clWindowText
-        PrintSettings.HeaderFont.Height = -11
-        PrintSettings.HeaderFont.Name = 'MS Sans Serif'
-        PrintSettings.HeaderFont.Style = []
-        PrintSettings.FooterFont.Charset = DEFAULT_CHARSET
-        PrintSettings.FooterFont.Color = clWindowText
-        PrintSettings.FooterFont.Height = -11
-        PrintSettings.FooterFont.Name = 'MS Sans Serif'
-        PrintSettings.FooterFont.Style = []
-        PrintSettings.PageNumSep = '/'
-        SearchFooter.ColorTo = 16052977
-        SearchFooter.FindNextCaption = 'Find &next'
-        SearchFooter.FindPrevCaption = 'Find &previous'
-        SearchFooter.Font.Charset = DEFAULT_CHARSET
-        SearchFooter.Font.Color = clWindowText
-        SearchFooter.Font.Height = -11
-        SearchFooter.Font.Name = 'MS Sans Serif'
-        SearchFooter.Font.Style = []
-        SearchFooter.HighLightCaption = 'Highlight'
-        SearchFooter.HintClose = 'Close'
-        SearchFooter.HintFindNext = 'Find next occurrence'
-        SearchFooter.HintFindPrev = 'Find previous occurrence'
-        SearchFooter.HintHighlight = 'Highlight occurrences'
-        SearchFooter.MatchCaseCaption = 'Match case'
-        SortSettings.DefaultFormat = ssAutomatic
-        SortSettings.HeaderColor = 16579058
-        SortSettings.HeaderColorTo = 16579058
-        SortSettings.HeaderMirrorColor = 16380385
-        SortSettings.HeaderMirrorColorTo = 16182488
-        Version = '7.4.6.3'
-        ColWidths = (
-          78
-          204
-          37
-          136)
-      end
-    end
-  end
   object AdvDPAcciones: TAdvDockPanel
     Left = 0
     Top = 0
@@ -667,7 +114,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     object ATBBotones: TAdvToolBar
       Left = 3
       Top = 28
-      Width = 409
+      Width = 365
       Height = 28
       AllowFloating = True
       Caption = 'Untitled'
@@ -683,7 +130,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       ParentOptionPicture = True
       ToolBarIndex = -1
       object ATBBGuardarCerrar: TAdvToolBarButton
-        Left = 106
+        Left = 9
         Top = 2
         Width = 110
         Height = 24
@@ -705,7 +152,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Version = '6.0.4.5'
       end
       object ATBBGuardarNuevo: TAdvToolBarButton
-        Left = 216
+        Left = 119
         Top = 2
         Width = 113
         Height = 24
@@ -727,16 +174,16 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Version = '6.0.4.5'
       end
       object ATBS1: TAdvToolBarSeparator
-        Left = 329
+        Left = 232
         Top = 2
         Width = 9
         Height = 21
         LineColor = clBtnShadow
       end
       object ATBBModificar: TAdvToolBarButton
-        Left = 338
+        Left = 241
         Top = 2
-        Width = 24
+        Width = 77
         Height = 24
         Action = Modificar
         Appearance.CaptionFont.Charset = DEFAULT_CHARSET
@@ -752,10 +199,11 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         ImageIndex = 5
         ParentFont = False
         Position = daTop
+        ShowCaption = True
         Version = '6.0.4.5'
       end
       object ATBBEliminar: TAdvToolBarButton
-        Left = 362
+        Left = 318
         Top = 2
         Width = 24
         Height = 24
@@ -776,45 +224,521 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Version = '6.0.4.5'
       end
       object ATBS2: TAdvToolBarSeparator
-        Left = 386
+        Left = 342
         Top = 2
         Width = 9
         Height = 21
         LineColor = clBtnShadow
       end
-      object AdvToolBarButton1: TAdvToolBarButton
-        Left = 9
-        Top = 2
-        Width = 97
-        Height = 24
-        Action = NuevaAlternativa
-        Appearance.CaptionFont.Charset = DEFAULT_CHARSET
-        Appearance.CaptionFont.Color = clWindowText
-        Appearance.CaptionFont.Height = -12
-        Appearance.CaptionFont.Name = 'Segoe UI'
-        Appearance.CaptionFont.Style = []
+    end
+  end
+  object PGCArticulos: TAdvPageControl
+    Left = 7
+    Top = 55
+    Width = 441
+    Height = 252
+    ActivePage = tabGeneral
+    ActiveFont.Charset = DEFAULT_CHARSET
+    ActiveFont.Color = clWindowText
+    ActiveFont.Height = -11
+    ActiveFont.Name = 'Tahoma'
+    ActiveFont.Style = []
+    ActiveColor = clBtnHighlight
+    TabBackGroundColor = clBtnHighlight
+    TabMargin.RightMargin = 0
+    TabOverlap = 0
+    Version = '2.0.0.4'
+    TabOrder = 0
+    OnChange = PGCArticulosChange
+    object tabGeneral: TAdvTabSheet
+      Caption = 'General'
+      Color = clBtnHighlight
+      ColorTo = clNone
+      TabColor = clBtnFace
+      TabColorTo = clNone
+      object cbxLineas: TAdvComboBox
+        Left = 60
+        Top = 73
+        Width = 135
+        Height = 22
+        Color = clBtnHighlight
+        Version = '1.5.1.1'
+        Visible = True
+        Flat = True
+        Ctl3D = False
+        DropWidth = 0
+        Enabled = False
+        ItemIndex = -1
+        ItemHeight = 14
+        LabelCaption = 'Linea:      '
+        LabelPosition = lpLeftCenter
+        LabelFont.Charset = DEFAULT_CHARSET
+        LabelFont.Color = clWindowText
+        LabelFont.Height = -11
+        LabelFont.Name = 'MS Sans Serif'
+        LabelFont.Style = []
+        ParentColor = True
+        ParentCtl3D = False
+        TabOrder = 2
+        Text = 'Lineas'
+        OnKeyPress = edtClaveKeyPress
+      end
+      object cbxUnidadMedida: TAdvComboBox
+        Left = 60
+        Top = 104
+        Width = 135
+        Height = 22
+        Color = clBtnHighlight
+        Version = '1.5.1.1'
+        Visible = True
+        Flat = True
+        Ctl3D = False
+        DropWidth = 0
+        Enabled = False
+        ItemIndex = -1
+        ItemHeight = 14
+        LabelCaption = 'Unidades:'
+        LabelPosition = lpLeftCenter
+        LabelFont.Charset = DEFAULT_CHARSET
+        LabelFont.Color = clWindowText
+        LabelFont.Height = -11
+        LabelFont.Name = 'MS Sans Serif'
+        LabelFont.Style = []
+        ParentColor = True
+        ParentCtl3D = False
+        TabOrder = 3
+        Text = 'Unidades de medida'
+        OnKeyPress = edtClaveKeyPress
+      end
+      object cbxEstatus: TAdvComboBox
+        Left = 296
+        Top = 104
+        Width = 126
+        Height = 22
+        Color = clBtnHighlight
+        Version = '1.5.1.1'
+        Visible = True
+        Flat = True
+        Ctl3D = False
+        DropWidth = 0
+        Enabled = False
+        ItemIndex = -1
+        ItemHeight = 14
+        LabelCaption = 'Estatus:  '
+        LabelPosition = lpLeftCenter
+        LabelFont.Charset = DEFAULT_CHARSET
+        LabelFont.Color = clWindowText
+        LabelFont.Height = -11
+        LabelFont.Name = 'MS Sans Serif'
+        LabelFont.Style = []
+        ParentColor = True
+        ParentCtl3D = False
+        TabOrder = 8
+        Text = 'Estatus'
+        OnKeyPress = edtClaveKeyPress
+      end
+      object edtNombre: TAdvEditBtn
+        Left = 60
+        Top = 42
+        Width = 135
+        Height = 21
+        EmptyText = 'Buscar'
+        Flat = True
+        FocusColor = clBtnHighlight
+        LabelCaption = 'Nombre:  '
+        LabelPosition = lpLeftCenter
+        LabelFont.Charset = DEFAULT_CHARSET
+        LabelFont.Color = clWindowText
+        LabelFont.Height = -11
+        LabelFont.Name = 'MS Sans Serif'
+        LabelFont.Style = []
+        Lookup.Separator = ';'
+        BorderStyle = bsNone
+        Color = clBtnHighlight
+        ReadOnly = False
+        TabOrder = 1
+        Visible = True
+        OnKeyPress = edtClaveKeyPress
+        Version = '1.3.5.0'
+        ButtonStyle = bsButton
+        ButtonWidth = 16
+        Etched = False
+        Glyph.Data = {
+          2E030000424D2E0300000000000036000000280000000D000000130000000100
+          180000000000F802000000000000000000000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1F1F1F1F1F1FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1F1F15C5C5C5C
+          5C5CF1F1F1FFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFF1F1
+          F15C5C5CADADADADADAD5C5C5CF1F1F1FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
+          FFFFFFF1F1F15C5C5CADADADFFFFFFFFFFFFADADAD5C5C5CF1F1F1FFFFFFFFFF
+          FF00FFFFFFFFFFFFF1F1F15C5C5CADADADFFFFFFFFFFFFFFFFFFFFFFFFADADAD
+          5C5C5CF1F1F1FFFFFF00FFFFFFFFFFFFFFFFFFC9C9C9FFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFC9C9C9FFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00}
+      end
+      object edtClave: TAdvEditBtn
+        Left = 60
+        Top = 12
+        Width = 135
+        Height = 21
+        EmptyText = 'Buscar'
+        Flat = True
+        FocusColor = clBtnHighlight
+        LabelCaption = 'Clave:     '
+        LabelPosition = lpLeftCenter
+        LabelFont.Charset = DEFAULT_CHARSET
+        LabelFont.Color = clWindowText
+        LabelFont.Height = -11
+        LabelFont.Name = 'MS Sans Serif'
+        LabelFont.Style = []
+        Lookup.Separator = ';'
+        BorderStyle = bsNone
+        Color = clBtnHighlight
+        ReadOnly = False
+        TabOrder = 0
+        Visible = True
+        OnExit = edtClaveExit
+        OnKeyPress = edtClaveKeyPress
+        Version = '1.3.5.0'
+        ButtonStyle = bsButton
+        ButtonWidth = 16
+        Etched = False
+        Glyph.Data = {
+          96000000424D9600000000000000360000002800000007000000040000000100
+          1800000000006000000000000000000000000000000000000000E1E1E1E1E1E1
+          E1E1E1000000E1E1E1E1E1E1E1E1E1000000E1E1E1E1E1E10000000000000000
+          00E1E1E1E1E1E1000000E1E1E1000000000000000000000000000000E1E1E100
+          0000000000000000000000000000000000000000000000000000}
+        OnClickBtn = edtClaveClickBtn
+      end
+      object cbAlmacenable: TCheckBox
+        Left = 254
+        Top = 15
+        Width = 90
+        Height = 16
+        Caption = 'Almacenable'
+        Enabled = False
+        TabOrder = 4
+        OnKeyPress = edtClaveKeyPress
+      end
+      object cbJuego: TCheckBox
+        Left = 254
+        Top = 33
+        Width = 89
+        Height = 16
+        Caption = 'Juego (Kit)'
+        Enabled = False
+        TabOrder = 5
+        OnKeyPress = edtClaveKeyPress
+      end
+      object cbPesarEnBascula: TCheckBox
+        Left = 255
+        Top = 51
+        Width = 104
+        Height = 16
+        Caption = 'Pesar en bascula'
+        Enabled = False
+        TabOrder = 6
+        OnKeyPress = edtClaveKeyPress
+      end
+      object edtPesoUnit: TAdvEdit
+        Left = 305
+        Top = 73
+        Width = 113
+        Height = 21
+        Flat = True
+        FocusColor = clBtnHighlight
+        LabelCaption = 'Peso unit:   '
+        LabelPosition = lpLeftCenter
+        LabelFont.Charset = DEFAULT_CHARSET
+        LabelFont.Color = clWindowText
+        LabelFont.Height = -11
+        LabelFont.Name = 'Arial Unicode MS'
+        LabelFont.Style = []
+        Lookup.Separator = ';'
+        BorderStyle = bsNone
+        Color = clBtnHighlight
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -11
+        Font.Height = -9
+        Font.Name = 'Arial Unicode MS'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 7
+        Text = '0.000'
+        Visible = True
+        OnKeyPress = edtClaveKeyPress
+        Version = '3.3.2.8'
+      end
+    end
+    object tabAlternativas: TAdvTabSheet
+      Caption = 'Alternativas'
+      Color = clBtnHighlight
+      ColorTo = clNone
+      TabColor = clBtnFace
+      TabColorTo = clNone
+      object sstrgAlternativas: TAdvStringGrid
+        Left = 5
+        Top = 2
+        Width = 419
+        Height = 219
+        Cursor = crDefault
+        ColCount = 3
+        FixedCols = 0
+        RowCount = 2
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -9
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Position = daTop
-        ShowCaption = True
-        Version = '6.0.4.5'
+        ScrollBars = ssBoth
+        TabOrder = 0
+        GridLineColor = 15527152
+        GridFixedLineColor = 13947601
+        ActiveCellFont.Charset = DEFAULT_CHARSET
+        ActiveCellFont.Color = clWindowText
+        ActiveCellFont.Height = -11
+        ActiveCellFont.Name = 'Tahoma'
+        ActiveCellFont.Style = [fsBold]
+        ActiveCellColor = 16644337
+        ActiveCellColorTo = 16576469
+        ColumnHeaders.Strings = (
+          'Clave'
+          'Descripci'#243'n'
+          'Comentarios')
+        ControlLook.FixedGradientMirrorFrom = 16447735
+        ControlLook.FixedGradientMirrorTo = 16052977
+        ControlLook.FixedGradientHoverFrom = 16775139
+        ControlLook.FixedGradientHoverTo = 16775139
+        ControlLook.FixedGradientHoverMirrorFrom = 16772541
+        ControlLook.FixedGradientHoverMirrorTo = 16508855
+        ControlLook.FixedGradientDownFrom = 16377020
+        ControlLook.FixedGradientDownTo = 16377020
+        ControlLook.FixedGradientDownMirrorFrom = 16242317
+        ControlLook.FixedGradientDownMirrorTo = 16109962
+        ControlLook.FixedGradientDownBorder = 11440207
+        ControlLook.DropDownHeader.Font.Charset = DEFAULT_CHARSET
+        ControlLook.DropDownHeader.Font.Color = clWindowText
+        ControlLook.DropDownHeader.Font.Height = -11
+        ControlLook.DropDownHeader.Font.Name = 'Tahoma'
+        ControlLook.DropDownHeader.Font.Style = []
+        ControlLook.DropDownHeader.Visible = True
+        ControlLook.DropDownHeader.Buttons = <>
+        ControlLook.DropDownFooter.Font.Charset = DEFAULT_CHARSET
+        ControlLook.DropDownFooter.Font.Color = clWindowText
+        ControlLook.DropDownFooter.Font.Height = -11
+        ControlLook.DropDownFooter.Font.Name = 'MS Sans Serif'
+        ControlLook.DropDownFooter.Font.Style = []
+        ControlLook.DropDownFooter.Visible = True
+        ControlLook.DropDownFooter.Buttons = <>
+        Filter = <>
+        FilterDropDown.Font.Charset = DEFAULT_CHARSET
+        FilterDropDown.Font.Color = clWindowText
+        FilterDropDown.Font.Height = -11
+        FilterDropDown.Font.Name = 'MS Sans Serif'
+        FilterDropDown.Font.Style = []
+        FilterDropDownClear = '(All)'
+        FixedColWidth = 78
+        FixedRowHeight = 22
+        FixedFont.Charset = DEFAULT_CHARSET
+        FixedFont.Color = clWindowText
+        FixedFont.Height = -11
+        FixedFont.Name = 'Tahoma'
+        FixedFont.Style = [fsBold]
+        FloatFormat = '%.2f'
+        Look = glVista
+        PrintSettings.DateFormat = 'dd/mm/yyyy'
+        PrintSettings.Font.Charset = DEFAULT_CHARSET
+        PrintSettings.Font.Color = clWindowText
+        PrintSettings.Font.Height = -11
+        PrintSettings.Font.Name = 'MS Sans Serif'
+        PrintSettings.Font.Style = []
+        PrintSettings.FixedFont.Charset = DEFAULT_CHARSET
+        PrintSettings.FixedFont.Color = clWindowText
+        PrintSettings.FixedFont.Height = -11
+        PrintSettings.FixedFont.Name = 'MS Sans Serif'
+        PrintSettings.FixedFont.Style = []
+        PrintSettings.HeaderFont.Charset = DEFAULT_CHARSET
+        PrintSettings.HeaderFont.Color = clWindowText
+        PrintSettings.HeaderFont.Height = -11
+        PrintSettings.HeaderFont.Name = 'MS Sans Serif'
+        PrintSettings.HeaderFont.Style = []
+        PrintSettings.FooterFont.Charset = DEFAULT_CHARSET
+        PrintSettings.FooterFont.Color = clWindowText
+        PrintSettings.FooterFont.Height = -11
+        PrintSettings.FooterFont.Name = 'MS Sans Serif'
+        PrintSettings.FooterFont.Style = []
+        PrintSettings.PageNumSep = '/'
+        SearchFooter.ColorTo = 16052977
+        SearchFooter.FindNextCaption = 'Find &next'
+        SearchFooter.FindPrevCaption = 'Find &previous'
+        SearchFooter.Font.Charset = DEFAULT_CHARSET
+        SearchFooter.Font.Color = clWindowText
+        SearchFooter.Font.Height = -11
+        SearchFooter.Font.Name = 'MS Sans Serif'
+        SearchFooter.Font.Style = []
+        SearchFooter.HighLightCaption = 'Highlight'
+        SearchFooter.HintClose = 'Close'
+        SearchFooter.HintFindNext = 'Find next occurrence'
+        SearchFooter.HintFindPrev = 'Find previous occurrence'
+        SearchFooter.HintHighlight = 'Highlight occurrences'
+        SearchFooter.MatchCaseCaption = 'Match case'
+        SortSettings.HeaderColor = 16579058
+        SortSettings.HeaderColorTo = 16579058
+        SortSettings.HeaderMirrorColor = 16380385
+        SortSettings.HeaderMirrorColorTo = 16182488
+        Version = '7.4.6.3'
+        ColWidths = (
+          78
+          233
+          131)
+      end
+    end
+    object tabComplementos: TAdvTabSheet
+      Caption = 'Complementos'
+      Color = clBtnHighlight
+      ColorTo = clNone
+      TabColor = clBtnFace
+      TabColorTo = clNone
+      object strgComplementos: TAdvStringGrid
+        Left = 3
+        Top = 2
+        Width = 430
+        Height = 222
+        Cursor = crDefault
+        ColCount = 4
+        FixedCols = 0
+        RowCount = 2
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -9
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        ScrollBars = ssBoth
+        TabOrder = 0
+        GridLineColor = 15527152
+        GridFixedLineColor = 13947601
+        ActiveCellFont.Charset = DEFAULT_CHARSET
+        ActiveCellFont.Color = clWindowText
+        ActiveCellFont.Height = -11
+        ActiveCellFont.Name = 'Tahoma'
+        ActiveCellFont.Style = [fsBold]
+        ActiveCellColor = 16644337
+        ActiveCellColorTo = 16576469
+        ColumnHeaders.Strings = (
+          'Clave'
+          'Descripci'#243'n'
+          'Pzs. Rel.'
+          'Comentarios')
+        ControlLook.FixedGradientMirrorFrom = 16447735
+        ControlLook.FixedGradientMirrorTo = 16052977
+        ControlLook.FixedGradientHoverFrom = 16775139
+        ControlLook.FixedGradientHoverTo = 16775139
+        ControlLook.FixedGradientHoverMirrorFrom = 16772541
+        ControlLook.FixedGradientHoverMirrorTo = 16508855
+        ControlLook.FixedGradientDownFrom = 16377020
+        ControlLook.FixedGradientDownTo = 16377020
+        ControlLook.FixedGradientDownMirrorFrom = 16242317
+        ControlLook.FixedGradientDownMirrorTo = 16109962
+        ControlLook.FixedGradientDownBorder = 11440207
+        ControlLook.DropDownHeader.Font.Charset = DEFAULT_CHARSET
+        ControlLook.DropDownHeader.Font.Color = clWindowText
+        ControlLook.DropDownHeader.Font.Height = -11
+        ControlLook.DropDownHeader.Font.Name = 'Tahoma'
+        ControlLook.DropDownHeader.Font.Style = []
+        ControlLook.DropDownHeader.Visible = True
+        ControlLook.DropDownHeader.Buttons = <>
+        ControlLook.DropDownFooter.Font.Charset = DEFAULT_CHARSET
+        ControlLook.DropDownFooter.Font.Color = clWindowText
+        ControlLook.DropDownFooter.Font.Height = -11
+        ControlLook.DropDownFooter.Font.Name = 'MS Sans Serif'
+        ControlLook.DropDownFooter.Font.Style = []
+        ControlLook.DropDownFooter.Visible = True
+        ControlLook.DropDownFooter.Buttons = <>
+        Filter = <>
+        FilterDropDown.Font.Charset = DEFAULT_CHARSET
+        FilterDropDown.Font.Color = clWindowText
+        FilterDropDown.Font.Height = -11
+        FilterDropDown.Font.Name = 'MS Sans Serif'
+        FilterDropDown.Font.Style = []
+        FilterDropDownClear = '(All)'
+        FixedColWidth = 78
+        FixedRowHeight = 22
+        FixedFont.Charset = DEFAULT_CHARSET
+        FixedFont.Color = clWindowText
+        FixedFont.Height = -11
+        FixedFont.Name = 'Tahoma'
+        FixedFont.Style = [fsBold]
+        FloatFormat = '%.2f'
+        Look = glVista
+        PrintSettings.DateFormat = 'dd/mm/yyyy'
+        PrintSettings.Font.Charset = DEFAULT_CHARSET
+        PrintSettings.Font.Color = clWindowText
+        PrintSettings.Font.Height = -11
+        PrintSettings.Font.Name = 'MS Sans Serif'
+        PrintSettings.Font.Style = []
+        PrintSettings.FixedFont.Charset = DEFAULT_CHARSET
+        PrintSettings.FixedFont.Color = clWindowText
+        PrintSettings.FixedFont.Height = -11
+        PrintSettings.FixedFont.Name = 'MS Sans Serif'
+        PrintSettings.FixedFont.Style = []
+        PrintSettings.HeaderFont.Charset = DEFAULT_CHARSET
+        PrintSettings.HeaderFont.Color = clWindowText
+        PrintSettings.HeaderFont.Height = -11
+        PrintSettings.HeaderFont.Name = 'MS Sans Serif'
+        PrintSettings.HeaderFont.Style = []
+        PrintSettings.FooterFont.Charset = DEFAULT_CHARSET
+        PrintSettings.FooterFont.Color = clWindowText
+        PrintSettings.FooterFont.Height = -11
+        PrintSettings.FooterFont.Name = 'MS Sans Serif'
+        PrintSettings.FooterFont.Style = []
+        PrintSettings.PageNumSep = '/'
+        SearchFooter.ColorTo = 16052977
+        SearchFooter.FindNextCaption = 'Find &next'
+        SearchFooter.FindPrevCaption = 'Find &previous'
+        SearchFooter.Font.Charset = DEFAULT_CHARSET
+        SearchFooter.Font.Color = clWindowText
+        SearchFooter.Font.Height = -11
+        SearchFooter.Font.Name = 'MS Sans Serif'
+        SearchFooter.Font.Style = []
+        SearchFooter.HighLightCaption = 'Highlight'
+        SearchFooter.HintClose = 'Close'
+        SearchFooter.HintFindNext = 'Find next occurrence'
+        SearchFooter.HintFindPrev = 'Find previous occurrence'
+        SearchFooter.HintHighlight = 'Highlight occurrences'
+        SearchFooter.MatchCaseCaption = 'Match case'
+        SortSettings.HeaderColor = 16579058
+        SortSettings.HeaderColorTo = 16579058
+        SortSettings.HeaderMirrorColor = 16380385
+        SortSettings.HeaderMirrorColorTo = 16182488
+        Version = '7.4.6.3'
+        ColWidths = (
+          78
+          204
+          37
+          136)
       end
     end
   end
   object AdvToolBarOfficeStyler1: TAdvToolBarOfficeStyler
-    AppColor.AppButtonColor = 13005312
-    AppColor.AppButtonHoverColor = 16755772
-    AppColor.TextColor = clWhite
-    AppColor.HoverColor = 16246477
-    AppColor.HoverTextColor = clBlack
-    AppColor.HoverBorderColor = 15187578
-    AppColor.SelectedColor = 15187578
-    AppColor.SelectedTextColor = clBlack
-    AppColor.SelectedBorderColor = 15187578
     Style = bsCustom
     BorderColor = 14731181
     BorderColorHot = 14731181
@@ -929,7 +853,6 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     GlowButtonAppearance.GradientDown = ggVertical
     GlowButtonAppearance.GradientMirrorDown = ggVertical
     GlowButtonAppearance.GradientChecked = ggVertical
-    GroupAppearance.Background = clInfoBk
     GroupAppearance.BorderColor = 12763842
     GroupAppearance.Color = 16640730
     GroupAppearance.ColorTo = 15851212
@@ -1098,7 +1021,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
   end
   object ActionList1: TActionList
     Images = imgMenus
-    Left = 427
+    Left = 387
     Top = 1
     object Guardar: TAction
       Caption = 'Guardar'
@@ -1119,6 +1042,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       Caption = 'Modificar'
       ImageIndex = 5
       ShortCut = 16461
+      OnExecute = ModificarExecute
     end
     object Eliminar: TAction
       Caption = 'Eliminar'
@@ -1127,9 +1051,11 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     end
     object NuevaAlternativa: TAction
       Caption = 'Nueva alternativa'
+      OnExecute = NuevaAlternativaExecute
     end
     object NuevoComplemento: TAction
       Caption = 'Nuevo complemento'
+      OnExecute = NuevoComplementoExecute
     end
     object Nuevo: TAction
       Caption = 'Nuevo'
@@ -1145,7 +1071,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
   end
   object ImgLstgrdArticulos: TImageList
     ShareImages = True
-    Left = 399
+    Left = 359
     Top = 1
     Bitmap = {
       494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
@@ -1552,7 +1478,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       000000000000}
   end
   object imgMenus: TImageList
-    Left = 371
+    Left = 331
     Top = 1
     Bitmap = {
       494C01010B000E00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
@@ -2094,18 +2020,319 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     ButtonBar = <>
     MenuItems = <>
     Version = '1.6.0.0'
-    Left = 424
-    Top = 48
+    Left = 216
   end
   object AdvPopupMenu1: TAdvPopupMenu
     Version = '2.5.5.1'
-    Left = 168
-    Top = 8
+    Left = 176
     object Nuevaalternativa1: TMenuItem
       Action = NuevaAlternativa
     end
     object Nuevocomplemento1: TMenuItem
       Action = NuevoComplemento
     end
+  end
+  object axv_PopMenuAlternativas: TAdvPopupMenu
+    Version = '2.5.5.1'
+    Left = 392
+    Top = 40
+    object Nuevaalternativa2: TMenuItem
+      Action = NuevaAlternativa
+    end
+    object Eliminaralternativa1: TMenuItem
+      Action = EliminarAlternativa
+    end
+  end
+  object axv_PopMenuComplementos: TAdvPopupMenu
+    Version = '2.5.5.1'
+    Left = 416
+    Top = 40
+    object EliminarComplemento1: TMenuItem
+      Action = NuevoComplemento
+    end
+    object EliminarComplemento2: TMenuItem
+      Action = EliminarComplemento
+    end
+  end
+  object AdvToolBarOfficeStyler2: TAdvToolBarOfficeStyler
+    Style = bsCustom
+    BorderColor = 14731181
+    BorderColorHot = 14731181
+    ButtonAppearance.Color = 16640730
+    ButtonAppearance.ColorTo = 14986888
+    ButtonAppearance.ColorChecked = 9229823
+    ButtonAppearance.ColorCheckedTo = 5812223
+    ButtonAppearance.ColorDown = 5149182
+    ButtonAppearance.ColorDownTo = 9556991
+    ButtonAppearance.ColorHot = 13432063
+    ButtonAppearance.ColorHotTo = 9556223
+    ButtonAppearance.BorderDownColor = clNavy
+    ButtonAppearance.BorderHotColor = clNavy
+    ButtonAppearance.BorderCheckedColor = clNavy
+    ButtonAppearance.CaptionFont.Charset = DEFAULT_CHARSET
+    ButtonAppearance.CaptionFont.Color = clWindowText
+    ButtonAppearance.CaptionFont.Height = -11
+    ButtonAppearance.CaptionFont.Name = 'Segoe UI'
+    ButtonAppearance.CaptionFont.Style = []
+    CaptionAppearance.CaptionColor = clHighlight
+    CaptionAppearance.CaptionColorTo = clHighlight
+    CaptionAppearance.CaptionBorderColor = clHighlight
+    CaptionAppearance.CaptionColorHot = 13432063
+    CaptionAppearance.CaptionColorHotTo = 9556223
+    CaptionAppearance.CaptionTextColorHot = clBlack
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWindowText
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Segoe UI'
+    CaptionFont.Style = []
+    ContainerAppearance.LineColor = clBtnShadow
+    ContainerAppearance.Line3D = True
+    Color.Color = 16640730
+    Color.ColorTo = 14986888
+    Color.Direction = gdVertical
+    Color.Mirror.Color = 16440004
+    Color.Mirror.ColorTo = 16440004
+    Color.Mirror.ColorMirror = 16372409
+    Color.Mirror.ColorMirrorTo = 16572878
+    ColorHot.Color = 16773606
+    ColorHot.ColorTo = 16444126
+    ColorHot.Direction = gdVertical
+    ColorHot.Mirror.Color = 16507602
+    ColorHot.Mirror.ColorTo = 16507602
+    ColorHot.Mirror.ColorMirror = 16506056
+    ColorHot.Mirror.ColorMirrorTo = 16639959
+    CompactGlowButtonAppearance.BorderColor = 14727579
+    CompactGlowButtonAppearance.BorderColorHot = 10079963
+    CompactGlowButtonAppearance.BorderColorDown = 4548219
+    CompactGlowButtonAppearance.BorderColorChecked = clBlack
+    CompactGlowButtonAppearance.Color = 15653832
+    CompactGlowButtonAppearance.ColorTo = 16178633
+    CompactGlowButtonAppearance.ColorChecked = 11918331
+    CompactGlowButtonAppearance.ColorCheckedTo = 7915518
+    CompactGlowButtonAppearance.ColorDisabled = 15921906
+    CompactGlowButtonAppearance.ColorDisabledTo = 15921906
+    CompactGlowButtonAppearance.ColorDown = 7778289
+    CompactGlowButtonAppearance.ColorDownTo = 4296947
+    CompactGlowButtonAppearance.ColorHot = 15465983
+    CompactGlowButtonAppearance.ColorHotTo = 11332863
+    CompactGlowButtonAppearance.ColorMirror = 15586496
+    CompactGlowButtonAppearance.ColorMirrorTo = 16245200
+    CompactGlowButtonAppearance.ColorMirrorHot = 5888767
+    CompactGlowButtonAppearance.ColorMirrorHotTo = 10807807
+    CompactGlowButtonAppearance.ColorMirrorDown = 946929
+    CompactGlowButtonAppearance.ColorMirrorDownTo = 5021693
+    CompactGlowButtonAppearance.ColorMirrorChecked = 10480637
+    CompactGlowButtonAppearance.ColorMirrorCheckedTo = 5682430
+    CompactGlowButtonAppearance.ColorMirrorDisabled = 11974326
+    CompactGlowButtonAppearance.ColorMirrorDisabledTo = 15921906
+    CompactGlowButtonAppearance.GradientHot = ggVertical
+    CompactGlowButtonAppearance.GradientMirrorHot = ggVertical
+    CompactGlowButtonAppearance.GradientDown = ggVertical
+    CompactGlowButtonAppearance.GradientMirrorDown = ggVertical
+    CompactGlowButtonAppearance.GradientChecked = ggVertical
+    DockColor.Color = 16105376
+    DockColor.ColorTo = 16440004
+    DockColor.Direction = gdHorizontal
+    DockColor.Steps = 128
+    FloatingWindowBorderColor = 9516288
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    GlowButtonAppearance.BorderColor = 14727579
+    GlowButtonAppearance.BorderColorHot = 10079963
+    GlowButtonAppearance.BorderColorDown = 4548219
+    GlowButtonAppearance.BorderColorChecked = clBlack
+    GlowButtonAppearance.Color = 15653832
+    GlowButtonAppearance.ColorTo = 16178633
+    GlowButtonAppearance.ColorChecked = 11918331
+    GlowButtonAppearance.ColorCheckedTo = 7915518
+    GlowButtonAppearance.ColorDisabled = 15921906
+    GlowButtonAppearance.ColorDisabledTo = 15921906
+    GlowButtonAppearance.ColorDown = 7778289
+    GlowButtonAppearance.ColorDownTo = 4296947
+    GlowButtonAppearance.ColorHot = 15465983
+    GlowButtonAppearance.ColorHotTo = 11332863
+    GlowButtonAppearance.ColorMirror = 15586496
+    GlowButtonAppearance.ColorMirrorTo = 16245200
+    GlowButtonAppearance.ColorMirrorHot = 5888767
+    GlowButtonAppearance.ColorMirrorHotTo = 10807807
+    GlowButtonAppearance.ColorMirrorDown = 946929
+    GlowButtonAppearance.ColorMirrorDownTo = 5021693
+    GlowButtonAppearance.ColorMirrorChecked = 10480637
+    GlowButtonAppearance.ColorMirrorCheckedTo = 5682430
+    GlowButtonAppearance.ColorMirrorDisabled = 11974326
+    GlowButtonAppearance.ColorMirrorDisabledTo = 15921906
+    GlowButtonAppearance.GradientHot = ggVertical
+    GlowButtonAppearance.GradientMirrorHot = ggVertical
+    GlowButtonAppearance.GradientDown = ggVertical
+    GlowButtonAppearance.GradientMirrorDown = ggVertical
+    GlowButtonAppearance.GradientChecked = ggVertical
+    GroupAppearance.BorderColor = 12763842
+    GroupAppearance.Color = 16640730
+    GroupAppearance.ColorTo = 15851212
+    GroupAppearance.ColorMirror = 15851212
+    GroupAppearance.ColorMirrorTo = 16640730
+    GroupAppearance.Font.Charset = DEFAULT_CHARSET
+    GroupAppearance.Font.Color = clWindowText
+    GroupAppearance.Font.Height = -11
+    GroupAppearance.Font.Name = 'Segoe UI'
+    GroupAppearance.Font.Style = []
+    GroupAppearance.Gradient = ggVertical
+    GroupAppearance.GradientMirror = ggVertical
+    GroupAppearance.TextColor = clBlack
+    GroupAppearance.CaptionAppearance.CaptionColor = 15915714
+    GroupAppearance.CaptionAppearance.CaptionColorTo = 15784385
+    GroupAppearance.CaptionAppearance.CaptionTextColor = clBlack
+    GroupAppearance.CaptionAppearance.CaptionColorHot = 16769224
+    GroupAppearance.CaptionAppearance.CaptionColorHotTo = 16772566
+    GroupAppearance.CaptionAppearance.CaptionTextColorHot = clBlack
+    GroupAppearance.PageAppearance.BorderColor = 12763842
+    GroupAppearance.PageAppearance.Color = 14086910
+    GroupAppearance.PageAppearance.ColorTo = 16382457
+    GroupAppearance.PageAppearance.ColorMirror = 16382457
+    GroupAppearance.PageAppearance.ColorMirrorTo = 16382457
+    GroupAppearance.PageAppearance.Gradient = ggVertical
+    GroupAppearance.PageAppearance.GradientMirror = ggVertical
+    GroupAppearance.PageAppearance.ShadowColor = 12888726
+    GroupAppearance.PageAppearance.HighLightColor = 16644558
+    GroupAppearance.TabAppearance.BorderColor = clHighlight
+    GroupAppearance.TabAppearance.BorderColorHot = clHighlight
+    GroupAppearance.TabAppearance.BorderColorSelected = 10534860
+    GroupAppearance.TabAppearance.BorderColorSelectedHot = 10534860
+    GroupAppearance.TabAppearance.BorderColorDisabled = clNone
+    GroupAppearance.TabAppearance.BorderColorDown = clNone
+    GroupAppearance.TabAppearance.Color = clBtnFace
+    GroupAppearance.TabAppearance.ColorTo = clWhite
+    GroupAppearance.TabAppearance.ColorSelected = 10412027
+    GroupAppearance.TabAppearance.ColorSelectedTo = 12249340
+    GroupAppearance.TabAppearance.ColorDisabled = clNone
+    GroupAppearance.TabAppearance.ColorDisabledTo = clNone
+    GroupAppearance.TabAppearance.ColorHot = 13432063
+    GroupAppearance.TabAppearance.ColorHotTo = 13432063
+    GroupAppearance.TabAppearance.ColorMirror = clWhite
+    GroupAppearance.TabAppearance.ColorMirrorTo = clWhite
+    GroupAppearance.TabAppearance.ColorMirrorHot = 13432063
+    GroupAppearance.TabAppearance.ColorMirrorHotTo = 9556223
+    GroupAppearance.TabAppearance.ColorMirrorSelected = 12249340
+    GroupAppearance.TabAppearance.ColorMirrorSelectedTo = 13955581
+    GroupAppearance.TabAppearance.ColorMirrorDisabled = clNone
+    GroupAppearance.TabAppearance.ColorMirrorDisabledTo = clNone
+    GroupAppearance.TabAppearance.Font.Charset = DEFAULT_CHARSET
+    GroupAppearance.TabAppearance.Font.Color = clWindowText
+    GroupAppearance.TabAppearance.Font.Height = -11
+    GroupAppearance.TabAppearance.Font.Name = 'Segoe UI'
+    GroupAppearance.TabAppearance.Font.Style = []
+    GroupAppearance.TabAppearance.Gradient = ggVertical
+    GroupAppearance.TabAppearance.GradientMirror = ggVertical
+    GroupAppearance.TabAppearance.GradientHot = ggVertical
+    GroupAppearance.TabAppearance.GradientMirrorHot = ggVertical
+    GroupAppearance.TabAppearance.GradientSelected = ggVertical
+    GroupAppearance.TabAppearance.GradientMirrorSelected = ggVertical
+    GroupAppearance.TabAppearance.GradientDisabled = ggVertical
+    GroupAppearance.TabAppearance.GradientMirrorDisabled = ggVertical
+    GroupAppearance.TabAppearance.TextColor = clBlack
+    GroupAppearance.TabAppearance.TextColorHot = clBlack
+    GroupAppearance.TabAppearance.TextColorSelected = clBlack
+    GroupAppearance.TabAppearance.TextColorDisabled = clWhite
+    GroupAppearance.TabAppearance.ShadowColor = 10796223
+    GroupAppearance.TabAppearance.HighLightColor = 16775871
+    GroupAppearance.TabAppearance.HighLightColorHot = 16643309
+    GroupAppearance.TabAppearance.HighLightColorSelected = 6540536
+    GroupAppearance.TabAppearance.HighLightColorSelectedHot = 12451839
+    GroupAppearance.TabAppearance.HighLightColorDown = 16776144
+    GroupAppearance.ToolBarAppearance.BorderColor = 13423059
+    GroupAppearance.ToolBarAppearance.BorderColorHot = 13092807
+    GroupAppearance.ToolBarAppearance.Color.Color = 15530237
+    GroupAppearance.ToolBarAppearance.Color.ColorTo = 16382457
+    GroupAppearance.ToolBarAppearance.Color.Direction = gdHorizontal
+    GroupAppearance.ToolBarAppearance.ColorHot.Color = 15660277
+    GroupAppearance.ToolBarAppearance.ColorHot.ColorTo = 16645114
+    GroupAppearance.ToolBarAppearance.ColorHot.Direction = gdHorizontal
+    PageAppearance.BorderColor = 14922381
+    PageAppearance.Color = 16440004
+    PageAppearance.ColorTo = 16440004
+    PageAppearance.ColorMirror = 16372409
+    PageAppearance.ColorMirrorTo = 16640215
+    PageAppearance.Gradient = ggVertical
+    PageAppearance.GradientMirror = ggVertical
+    PageAppearance.ShadowColor = 13475194
+    PageAppearance.HighLightColor = 16644558
+    PagerCaption.BorderColor = 15780526
+    PagerCaption.Color = 14986888
+    PagerCaption.ColorTo = 14986888
+    PagerCaption.ColorMirror = 14986888
+    PagerCaption.ColorMirrorTo = 14986888
+    PagerCaption.Gradient = ggVertical
+    PagerCaption.GradientMirror = ggVertical
+    PagerCaption.TextColor = clGray
+    PagerCaption.TextColorExtended = clBlue
+    PagerCaption.Font.Charset = DEFAULT_CHARSET
+    PagerCaption.Font.Color = clWindowText
+    PagerCaption.Font.Height = -13
+    PagerCaption.Font.Name = 'Segoe UI'
+    PagerCaption.Font.Style = []
+    QATAppearance.BorderColor = 9516288
+    QATAppearance.Color = 16640730
+    QATAppearance.ColorTo = 14986888
+    QATAppearance.FullSizeBorderColor = 14986888
+    QATAppearance.FullSizeColor = 14986888
+    QATAppearance.FullSizeColorTo = 14986888
+    RightHandleColor = 15836789
+    RightHandleColorTo = 9516288
+    RightHandleColorHot = 13891839
+    RightHandleColorHotTo = 7782911
+    RightHandleColorDown = 557032
+    RightHandleColorDownTo = 8182519
+    TabAppearance.BorderColor = clNone
+    TabAppearance.BorderColorHot = clHighlight
+    TabAppearance.BorderColorSelected = clBlack
+    TabAppearance.BorderColorSelectedHot = 6343929
+    TabAppearance.BorderColorDisabled = clNone
+    TabAppearance.BorderColorDown = clNone
+    TabAppearance.Color = clBtnFace
+    TabAppearance.ColorTo = clWhite
+    TabAppearance.ColorSelected = 16571588
+    TabAppearance.ColorSelectedTo = 16445929
+    TabAppearance.ColorDisabled = clWhite
+    TabAppearance.ColorDisabledTo = clSilver
+    TabAppearance.ColorHot = 13432063
+    TabAppearance.ColorHotTo = 13432063
+    TabAppearance.ColorMirror = clWhite
+    TabAppearance.ColorMirrorTo = clWhite
+    TabAppearance.ColorMirrorHot = 13432063
+    TabAppearance.ColorMirrorHotTo = 9556223
+    TabAppearance.ColorMirrorSelected = 16445929
+    TabAppearance.ColorMirrorSelectedTo = 16181984
+    TabAppearance.ColorMirrorDisabled = clWhite
+    TabAppearance.ColorMirrorDisabledTo = clSilver
+    TabAppearance.Font.Charset = DEFAULT_CHARSET
+    TabAppearance.Font.Color = clWindowText
+    TabAppearance.Font.Height = -11
+    TabAppearance.Font.Name = 'Segoe UI'
+    TabAppearance.Font.Style = []
+    TabAppearance.Gradient = ggVertical
+    TabAppearance.GradientMirror = ggVertical
+    TabAppearance.GradientHot = ggVertical
+    TabAppearance.GradientMirrorHot = ggVertical
+    TabAppearance.GradientSelected = ggVertical
+    TabAppearance.GradientMirrorSelected = ggVertical
+    TabAppearance.GradientDisabled = ggVertical
+    TabAppearance.GradientMirrorDisabled = ggVertical
+    TabAppearance.TextColor = clBlack
+    TabAppearance.TextColorHot = clBlack
+    TabAppearance.TextColorSelected = clBlack
+    TabAppearance.TextColorDisabled = clGray
+    TabAppearance.ShadowColor = 10708799
+    TabAppearance.HighLightColor = 16775871
+    TabAppearance.HighLightColorHot = 16643309
+    TabAppearance.HighLightColorSelected = 6540536
+    TabAppearance.HighLightColorSelectedHot = 12451839
+    TabAppearance.HighLightColorDown = 16776144
+    TabAppearance.BackGround.Color = 14986888
+    TabAppearance.BackGround.ColorTo = 16440004
+    TabAppearance.BackGround.Direction = gdHorizontal
+    Left = 421
   end
 end
