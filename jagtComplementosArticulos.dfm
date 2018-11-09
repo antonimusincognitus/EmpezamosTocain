@@ -114,7 +114,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     object ATBBotones: TAdvToolBar
       Left = 3
       Top = 28
-      Width = 319
+      Width = 312
       Height = 28
       AllowFloating = True
       Caption = 'Untitled'
@@ -183,7 +183,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       object ATBBModificar: TAdvToolBarButton
         Left = 241
         Top = 2
-        Width = 31
+        Width = 24
         Height = 24
         Action = Modificar
         Appearance.CaptionFont.Charset = DEFAULT_CHARSET
@@ -191,7 +191,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Appearance.CaptionFont.Height = -11
         Appearance.CaptionFont.Name = 'Segoe UI'
         Appearance.CaptionFont.Style = []
-        Caption = '.'
+        Caption = 'Modificar'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -9
@@ -200,11 +200,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         ImageIndex = 5
         ParentFont = False
         Position = daTop
-        ShowCaption = True
         Version = '5.2.2.0'
       end
       object ATBBEliminar: TAdvToolBarButton
-        Left = 272
+        Left = 265
         Top = 2
         Width = 24
         Height = 24
@@ -225,7 +224,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Version = '5.2.2.0'
       end
       object ATBS2: TAdvToolBarSeparator
-        Left = 296
+        Left = 289
         Top = 2
         Width = 9
         Height = 21
@@ -238,7 +237,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     Top = 55
     Width = 441
     Height = 252
-    ActivePage = tabGeneral
+    ActivePage = tabAlternativas
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -1044,6 +1043,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       Caption = 'Nuevo'
       ImageIndex = 10
       ShortCut = 16462
+      OnExecute = NuevoExecute
     end
     object EliminarAlternativa: TAction
       Caption = 'Eliminar alternativa'
@@ -1461,6 +1461,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       000000000000}
   end
   object imgMenus: TImageList
+    ShareImages = True
     Left = 331
     Top = 1
     Bitmap = {
@@ -2008,11 +2009,26 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
   object AdvPopupMenu1: TAdvPopupMenu
     Version = '2.5.3.4'
     Left = 176
+    object Nuevo1: TMenuItem
+      Action = Nuevo
+    end
     object Nuevaalternativa1: TMenuItem
       Action = NuevaAlternativa
     end
     object Nuevocomplemento1: TMenuItem
       Action = NuevoComplemento
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object Guardar1: TMenuItem
+      Action = Guardar
+    end
+    object Guardarycerrar1: TMenuItem
+      Action = GuardarCerrar
+    end
+    object Guardarynuevo1: TMenuItem
+      Action = GuardarNuevo
     end
   end
   object axv_PopMenuAlternativas: TAdvPopupMenu

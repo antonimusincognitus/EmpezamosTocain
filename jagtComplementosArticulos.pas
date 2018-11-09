@@ -62,6 +62,11 @@ type
     EliminarComplemento1: TMenuItem;
     EliminarComplemento2: TMenuItem;
     AdvToolBarOfficeStyler2: TAdvToolBarOfficeStyler;
+    Nuevo1: TMenuItem;
+    N1: TMenuItem;
+    Guardar1: TMenuItem;
+    Guardarycerrar1: TMenuItem;
+    Guardarynuevo1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure axv_BorrarRelacion(TipoRel,Rel_Id:string);
@@ -80,6 +85,7 @@ type
     procedure ModificarExecute(Sender: TObject);
     procedure edtNombreClickBtn(Sender: TObject);
     procedure edtNombreExit(Sender: TObject);
+    procedure NuevoExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -282,6 +288,22 @@ begin
   if fqGuardar.dbtTransaccion.Active then fqGuardar.dbtTransaccion.Commit;
   FreeAndNil(fqGuardar);
 end;
+procedure manipula_formulario (ct: TDMQuerys);
+begin
+  with ct do
+  begin
+    jagt_frmArticulosComplementarios.edtNombre.text := dmQuerys.figQuery.FldByName['ar_nom'].AsString;
+    jagt_frmArticulosComplementarios.Text := jagt_frmArticulosComplementarios.edtNombre.text; //edtClave.Text;
+    jagt_frmArticulosComplementarios.cbxLineas.Text := dmQuerys.figQuery.FldByName['la_nom'].AsString;
+    jagt_frmArticulosComplementarios.cbxUnidadMedida.Text := dmQuerys.figQuery.FldByName['unidad_venta'].AsString;
+    jagt_frmArticulosComplementarios.cbAlmacenable.Checked := dmQuerys.figQuery.FldByName['es_almacenable'].AsString = 'S';
+    jagt_frmArticulosComplementarios.cbJuego.Checked := dmQuerys.figQuery.FldByName['es_juego'].AsString = 'S';
+    jagt_frmArticulosComplementarios.cbPesarEnBascula.Checked := dmQuerys.figQuery.FldByName['es_peso_variable'].AsString = 'S';
+    jagt_frmArticulosComplementarios.edtPesoUnit.Text := dmQuerys.figQuery.FldByName['peso_unitario'].AsString;
+    jagt_frmArticulosComplementarios.cbxEstatus.Text := dmQuerys.figQuery.FldByName['ar_st'].AsString;
+  end;
+end;
+
 
 procedure Tjagt_frmArticulosComplementarios.FormCreate(Sender: TObject);
 begin
@@ -393,15 +415,7 @@ begin
     text_consulta := 'select ar.nombre ar_nom, la.nombre la_nom, unidad_venta, es_almacenable, es_juego,es_peso_variable,peso_unitario,ar.estatus ar_st from articulos ar inner join lineas_articulos la    on (la.linea_articulo_id = ar.linea_articulo_id) where articulo_id = ' + articulo;
     InputBox('','',text_consulta);
     ejecuta_consulta_lectura(dbConectar,dmQuerys,text_consulta);
-    edtNombre.text := dmQuerys.figQuery.FldByName['ar_nom'].AsString;
-    jagt_frmArticulosComplementarios.Text := edtNombre.text; //edtClave.Text;
-    cbxLineas.Text := dmQuerys.figQuery.FldByName['la_nom'].AsString;
-    cbxUnidadMedida.Text := dmQuerys.figQuery.FldByName['unidad_venta'].AsString;
-    cbAlmacenable.Checked := dmQuerys.figQuery.FldByName['es_almacenable'].AsString = 'S';
-    cbJuego.Checked := dmQuerys.figQuery.FldByName['es_juego'].AsString = 'S';
-    cbPesarEnBascula.Checked := dmQuerys.figQuery.FldByName['es_peso_variable'].AsString = 'S';
-    edtPesoUnit.Text := dmQuerys.figQuery.FldByName['peso_unitario'].AsString;
-    cbxEstatus.Text := dmQuerys.figQuery.FldByName['ar_st'].AsString;
+    manipula_formulario(dmQuerys);
 
     axv_CargarComplementos(articulo);
     axv_CargarAlternativas(articulo);
@@ -495,20 +509,17 @@ begin
     text_consulta := 'select ar.nombre ar_nom, la.nombre la_nom, unidad_venta, es_almacenable, es_juego,es_peso_variable,peso_unitario,ar.estatus ar_st from articulos ar inner join lineas_articulos la    on (la.linea_articulo_id = ar.linea_articulo_id) where articulo_id = ' + articulo;
     InputBox('','',text_consulta);
     ejecuta_consulta_lectura(dbConectar,dmQuerys,text_consulta);
-    edtNombre.text := dmQuerys.figQuery.FldByName['ar_nom'].AsString;
-    jagt_frmArticulosComplementarios.Text := edtNombre.text; //edtClave.Text;
-    cbxLineas.Text := dmQuerys.figQuery.FldByName['la_nom'].AsString;
-    cbxUnidadMedida.Text := dmQuerys.figQuery.FldByName['unidad_venta'].AsString;
-    cbAlmacenable.Checked := dmQuerys.figQuery.FldByName['es_almacenable'].AsString = 'S';
-    cbJuego.Checked := dmQuerys.figQuery.FldByName['es_juego'].AsString = 'S';
-    cbPesarEnBascula.Checked := dmQuerys.figQuery.FldByName['es_peso_variable'].AsString = 'S';
-    edtPesoUnit.Text := dmQuerys.figQuery.FldByName['peso_unitario'].AsString;
-    cbxEstatus.Text := dmQuerys.figQuery.FldByName['ar_st'].AsString;
+    manipula_formulario (dmQuerys);
 
     axv_CargarComplementos(articulo);
     axv_CargarAlternativas(articulo);
   end;
 
+end;
+
+procedure Tjagt_frmArticulosComplementarios.NuevoExecute(Sender: TObject);
+begin
+  ATBBModificar.Enabled := false;
 end;
 
 end.
