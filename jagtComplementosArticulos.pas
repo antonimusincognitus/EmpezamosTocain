@@ -86,6 +86,12 @@ type
     procedure edtNombreClickBtn(Sender: TObject);
     procedure edtNombreExit(Sender: TObject);
     procedure NuevoExecute(Sender: TObject);
+    procedure GuardarExecute(Sender: TObject);
+    procedure GuardarCerrarExecute(Sender: TObject);
+    procedure GuardarNuevoExecute(Sender: TObject);
+    procedure EliminarExecute(Sender: TObject);
+    procedure EliminarAlternativaExecute(Sender: TObject);
+    procedure EliminarComplementoExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -520,6 +526,42 @@ end;
 procedure Tjagt_frmArticulosComplementarios.NuevoExecute(Sender: TObject);
 begin
   ATBBModificar.Enabled := false;
+end;
+
+procedure Tjagt_frmArticulosComplementarios.GuardarExecute(
+  Sender: TObject);
+begin
+//
+end;
+
+procedure Tjagt_frmArticulosComplementarios.GuardarCerrarExecute(
+  Sender: TObject);
+begin
+//
+end;
+
+procedure Tjagt_frmArticulosComplementarios.GuardarNuevoExecute(
+  Sender: TObject);
+begin
+//
+end;
+
+procedure Tjagt_frmArticulosComplementarios.EliminarExecute(
+  Sender: TObject);
+begin
+//
+end;
+
+procedure Tjagt_frmArticulosComplementarios.EliminarAlternativaExecute(
+  Sender: TObject);
+begin
+//
+end;
+
+procedure Tjagt_frmArticulosComplementarios.EliminarComplementoExecute(
+  Sender: TObject);
+begin
+//
 end;
 
 end.

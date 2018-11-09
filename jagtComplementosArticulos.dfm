@@ -1010,16 +1010,19 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       Caption = 'Guardar'
       ImageIndex = 6
       ShortCut = 16455
+      OnExecute = GuardarExecute
     end
     object GuardarCerrar: TAction
       Caption = 'Guardar y cerrar'
       ImageIndex = 6
       ShortCut = 122
+      OnExecute = GuardarCerrarExecute
     end
     object GuardarNuevo: TAction
       Caption = 'Guardar y nuevo'
       ImageIndex = 7
       ShortCut = 123
+      OnExecute = GuardarNuevoExecute
     end
     object Modificar: TAction
       ImageIndex = 5
@@ -1030,6 +1033,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       Caption = 'Eliminar'
       ImageIndex = 4
       ShortCut = 16453
+      OnExecute = EliminarExecute
     end
     object NuevaAlternativa: TAction
       Caption = 'Nueva alternativa'
@@ -1047,9 +1051,11 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     end
     object EliminarAlternativa: TAction
       Caption = 'Eliminar alternativa'
+      OnExecute = EliminarAlternativaExecute
     end
     object EliminarComplemento: TAction
       Caption = 'Eliminar Complemento'
+      OnExecute = EliminarComplementoExecute
     end
   end
   object ImgLstgrdArticulos: TImageList
