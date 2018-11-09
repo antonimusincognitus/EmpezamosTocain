@@ -1,6 +1,6 @@
 object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
-  Left = -878
-  Top = 148
+  Left = 685
+  Top = 153
   BorderStyle = bsSingle
   Caption = 'Articulos complementarios'
   ClientHeight = 311
@@ -29,7 +29,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     Persistence.Enabled = False
     ToolBarStyler = AdvToolBarOfficeStyler1
     UseRunTimeHeight = False
-    Version = '6.0.4.5'
+    Version = '5.2.2.0'
     object ATBMenues: TAdvToolBar
       Left = 3
       Top = 1
@@ -68,7 +68,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Font.Style = []
         Position = daTop
         ShowCaption = True
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object AdvToolBarMenuButton2: TAdvToolBarMenuButton
         Left = 58
@@ -88,7 +88,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Font.Style = []
         Position = daTop
         ShowCaption = True
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object AdvToolBarMenuButton3: TAdvToolBarMenuButton
         Left = 105
@@ -108,13 +108,13 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Font.Style = []
         Position = daTop
         ShowCaption = True
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
     end
     object ATBBotones: TAdvToolBar
       Left = 3
       Top = 28
-      Width = 365
+      Width = 319
       Height = 28
       AllowFloating = True
       Caption = 'Untitled'
@@ -149,7 +149,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         ParentFont = False
         Position = daTop
         ShowCaption = True
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object ATBBGuardarNuevo: TAdvToolBarButton
         Left = 119
@@ -171,7 +171,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         ParentFont = False
         Position = daTop
         ShowCaption = True
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object ATBS1: TAdvToolBarSeparator
         Left = 232
@@ -183,7 +183,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       object ATBBModificar: TAdvToolBarButton
         Left = 241
         Top = 2
-        Width = 77
+        Width = 31
         Height = 24
         Action = Modificar
         Appearance.CaptionFont.Charset = DEFAULT_CHARSET
@@ -191,6 +191,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Appearance.CaptionFont.Height = -11
         Appearance.CaptionFont.Name = 'Segoe UI'
         Appearance.CaptionFont.Style = []
+        Caption = '.'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -9
@@ -200,10 +201,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         ParentFont = False
         Position = daTop
         ShowCaption = True
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object ATBBEliminar: TAdvToolBarButton
-        Left = 318
+        Left = 272
         Top = 2
         Width = 24
         Height = 24
@@ -221,10 +222,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         ImageIndex = 4
         ParentFont = False
         Position = daTop
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object ATBS2: TAdvToolBarSeparator
-        Left = 342
+        Left = 296
         Top = 2
         Width = 9
         Height = 21
@@ -247,7 +248,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     TabBackGroundColor = clBtnHighlight
     TabMargin.RightMargin = 0
     TabOverlap = 0
-    Version = '2.0.0.4'
+    Version = '1.7.1.0'
     TabOrder = 0
     OnChange = PGCArticulosChange
     object tabGeneral: TAdvTabSheet
@@ -262,7 +263,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 135
         Height = 22
         Color = clBtnHighlight
-        Version = '1.5.1.1'
+        Version = '1.3.2.2'
         Visible = True
         Flat = True
         Ctl3D = False
@@ -289,7 +290,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 135
         Height = 22
         Color = clBtnHighlight
-        Version = '1.5.1.1'
+        Version = '1.3.2.2'
         Visible = True
         Flat = True
         Ctl3D = False
@@ -316,7 +317,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 126
         Height = 22
         Color = clBtnHighlight
-        Version = '1.5.1.1'
+        Version = '1.3.2.2'
         Visible = True
         Flat = True
         Ctl3D = False
@@ -355,41 +356,23 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Lookup.Separator = ';'
         BorderStyle = bsNone
         Color = clBtnHighlight
+        Enabled = True
         ReadOnly = False
         TabOrder = 1
         Visible = True
+        OnExit = edtNombreExit
         OnKeyPress = edtClaveKeyPress
-        Version = '1.3.5.0'
+        Version = '1.3.2.8'
         ButtonStyle = bsButton
         ButtonWidth = 16
         Etched = False
         Glyph.Data = {
-          2E030000424D2E0300000000000036000000280000000D000000130000000100
-          180000000000F802000000000000000000000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1F1F1F1F1F1FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1F1F15C5C5C5C
-          5C5CF1F1F1FFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFF1F1
-          F15C5C5CADADADADADAD5C5C5CF1F1F1FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
-          FFFFFFF1F1F15C5C5CADADADFFFFFFFFFFFFADADAD5C5C5CF1F1F1FFFFFFFFFF
-          FF00FFFFFFFFFFFFF1F1F15C5C5CADADADFFFFFFFFFFFFFFFFFFFFFFFFADADAD
-          5C5C5CF1F1F1FFFFFF00FFFFFFFFFFFFFFFFFFC9C9C9FFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFC9C9C9FFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00}
+          96000000424D9600000000000000360000002800000007000000040000000100
+          1800000000006000000000000000000000000000000000000000E1E1E1E1E1E1
+          E1E1E1000000E1E1E1E1E1E1E1E1E1000000E1E1E1E1E1E10000000000000000
+          00E1E1E1E1E1E1000000E1E1E1000000000000000000000000000000E1E1E100
+          0000000000000000000000000000000000000000000000000000}
+        OnClickBtn = edtNombreClickBtn
       end
       object edtClave: TAdvEditBtn
         Left = 60
@@ -409,12 +392,13 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Lookup.Separator = ';'
         BorderStyle = bsNone
         Color = clBtnHighlight
+        Enabled = True
         ReadOnly = False
         TabOrder = 0
         Visible = True
         OnExit = edtClaveExit
         OnKeyPress = edtClaveKeyPress
-        Version = '1.3.5.0'
+        Version = '1.3.2.8'
         ButtonStyle = bsButton
         ButtonWidth = 16
         Etched = False
@@ -484,7 +468,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Text = '0.000'
         Visible = True
         OnKeyPress = edtClaveKeyPress
-        Version = '3.3.2.8'
+        Version = '2.9.0.0'
       end
     end
     object tabAlternativas: TAdvTabSheet
@@ -604,7 +588,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         SortSettings.HeaderColorTo = 16579058
         SortSettings.HeaderMirrorColor = 16380385
         SortSettings.HeaderMirrorColorTo = 16182488
-        Version = '7.4.6.3'
+        Version = '5.8.0.2'
         ColWidths = (
           78
           233
@@ -729,7 +713,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         SortSettings.HeaderColorTo = 16579058
         SortSettings.HeaderMirrorColor = 16380385
         SortSettings.HeaderMirrorColorTo = 16182488
-        Version = '7.4.6.3'
+        Version = '5.8.0.2'
         ColWidths = (
           78
           204
@@ -1039,7 +1023,6 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
       ShortCut = 123
     end
     object Modificar: TAction
-      Caption = 'Modificar'
       ImageIndex = 5
       ShortCut = 16461
       OnExecute = ModificarExecute
@@ -2019,11 +2002,11 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
   object AdvStickyPopupMenu1: TAdvStickyPopupMenu
     ButtonBar = <>
     MenuItems = <>
-    Version = '1.6.0.0'
+    Version = '1.3.1.1'
     Left = 216
   end
   object AdvPopupMenu1: TAdvPopupMenu
-    Version = '2.5.5.1'
+    Version = '2.5.3.4'
     Left = 176
     object Nuevaalternativa1: TMenuItem
       Action = NuevaAlternativa
@@ -2033,7 +2016,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     end
   end
   object axv_PopMenuAlternativas: TAdvPopupMenu
-    Version = '2.5.5.1'
+    Version = '2.5.3.4'
     Left = 392
     Top = 40
     object Nuevaalternativa2: TMenuItem
@@ -2044,7 +2027,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     end
   end
   object axv_PopMenuComplementos: TAdvPopupMenu
-    Version = '2.5.5.1'
+    Version = '2.5.3.4'
     Left = 416
     Top = 40
     object EliminarComplemento1: TMenuItem
