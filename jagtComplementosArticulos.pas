@@ -285,13 +285,14 @@ begin
         + ' ,' + articulo_id_ori //id_ori
         + ' ,' + strgComplementos.Cells[cArticulo_id,i] //id_dest
         + ' ,' + strgComplementos.Cells[cPiezas,i] //unidades_relacionadas
-        + ' ,' + strgComplementos.Cells[cNotas,i] //notas
-        + ' ,''C''') //tipo_relacion
+        + ' ,' + quotedstr(strgComplementos.Cells[cNotas,i]) //notas
+        + ' ,''C'')') //tipo_relacion
       else SQL.Add('update lm_Articulos_rel set'
         + 'articulo_id_dest = ' + strgComplementos.Cells[cArticulo_id,i] //id_dest
         + ', unidades_relacionadas = ' + strgComplementos.Cells[cPiezas,i] //unidades_relacionadas
         + ', notas = ' + QuotedStr(strgComplementos.cells[cNotas,i]) //notas
         + 'where articulo_rel_id = ' + strgComplementos.Cells[cRelacion_id,i]);
+inputbox ('','',sql.Text);
       ExecQuery;
     end;//with
   end;//for
@@ -602,7 +603,9 @@ end;
 procedure Tjagt_frmArticulosComplementarios.GuardarCerrarExecute(
   Sender: TObject);
 begin
-//
+  axv_GuardarComplementos(articulo);
+  axv_GuardarAlternativas(articulo);
+  Self.Close;
 end;
 
 procedure Tjagt_frmArticulosComplementarios.GuardarNuevoExecute(

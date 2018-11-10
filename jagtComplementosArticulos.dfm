@@ -237,7 +237,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     Top = 55
     Width = 441
     Height = 252
-    ActivePage = tabAlternativas
+    ActivePage = tabComplementos
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -615,7 +615,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 430
         Height = 222
         Cursor = crDefault
-        ColCount = 4
+        ColCount = 6
         FixedCols = 0
         RowCount = 2
         Font.Charset = DEFAULT_CHARSET
@@ -623,10 +623,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Font.Height = -9
         Font.Name = 'Tahoma'
         Font.Style = []
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
         ParentFont = False
-        ParentShowHint = False
+        PopupMenu = axv_PopMenuComplementos
         ScrollBars = ssVertical
-        ShowHint = True
         TabOrder = 0
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
@@ -642,7 +642,9 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
           'Clave'
           'Descripci'#243'n'
           'Pzs. Rel.'
-          'Comentarios')
+          'Comentarios'
+          'Articulo_id_dest'
+          'Relacion_id')
         ControlLook.FixedGradientMirrorFrom = 16447735
         ControlLook.FixedGradientMirrorTo = 16052977
         ControlLook.FixedGradientHoverFrom = 16775139
@@ -730,7 +732,9 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
           78
           204
           37
-          136)
+          136
+          64
+          64)
       end
     end
   end
