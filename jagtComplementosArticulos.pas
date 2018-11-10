@@ -413,12 +413,14 @@ begin
   begin
     edtclave.text := '';
     edtclave.setfocus;
+    ATBBModificar.Enabled := false;
+    ATBBEliminar.Enabled := false;
     exit;
   end;
   if not es_nuevo then
   begin
     ATBBModificar.Enabled := true;
-    ATBBEliminar.Enabled := false;
+    ATBBEliminar.Enabled := true;
 //    articulo_anterior := edtClave.Text;
     edtClaveExit(self);
   end;
@@ -611,8 +613,20 @@ end;
 
 procedure Tjagt_frmArticulosComplementarios.EliminarExecute(
   Sender: TObject);
+var
+  i:integer;
 begin
-//
+  case MessageDlg('¿Desea eliminar permanentemente las alternativas'
+      + #13#10 + 'y artículos complementarios de este artículo?',mtConfirmation,[mbYes,mbNo],0)
+  of mrYes: begin
+    for i:=1 to sstrgAlternativas.RowCount-1 do axv_BorrarRelacion('A',sstrgAlternativas.Cells[cRelacion_id,i]);
+    sstrgAlternativas.ClearRows(1,sstrgAlternativas.RowCount-1);
+    sstrgAlternativas.RowCount:=2;
+    for i:=1 to strgComplementos.RowCount-1 do axv_BorrarRelacion('C',strgComplementos.Cells[cRelacion_id,i]);
+    strgComplementos.ClearRows(1,strgComplementos.RowCount-1);
+    strgComplementos.RowCount:=2;
+  end;
+  end;
 end;
 
 procedure Tjagt_frmArticulosComplementarios.EliminarAlternativaExecute(

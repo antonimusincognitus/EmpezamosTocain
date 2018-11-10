@@ -237,7 +237,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     Top = 55
     Width = 441
     Height = 252
-    ActivePage = tabComplementos
+    ActivePage = tabAlternativas
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -491,11 +491,16 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ScrollBars = ssBoth
+        ParentShowHint = False
+        ScrollBars = ssVertical
+        ShowHint = True
         TabOrder = 0
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
         OnCellValidate = sstrgAlternativasCellValidate
+        HintShowCells = True
+        HintShowLargeText = True
+        HintShowSizing = True
         ActiveCellFont.Charset = DEFAULT_CHARSET
         ActiveCellFont.Color = clWindowText
         ActiveCellFont.Height = -11
@@ -548,6 +553,8 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         FixedFont.Style = [fsBold]
         FloatFormat = '%.2f'
         Look = glVista
+        Navigation.AdvanceOnEnter = True
+        Navigation.AdvanceInsert = True
         PrintSettings.DateFormat = 'dd/mm/yyyy'
         PrintSettings.Font.Charset = DEFAULT_CHARSET
         PrintSettings.Font.Color = clWindowText
@@ -570,6 +577,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         PrintSettings.FooterFont.Name = 'MS Sans Serif'
         PrintSettings.FooterFont.Style = []
         PrintSettings.PageNumSep = '/'
+        ScrollBarAlways = saVert
         SearchFooter.ColorTo = 16052977
         SearchFooter.FindNextCaption = 'Find &next'
         SearchFooter.FindPrevCaption = 'Find &previous'
@@ -616,7 +624,9 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ScrollBars = ssBoth
+        ParentShowHint = False
+        ScrollBars = ssVertical
+        ShowHint = True
         TabOrder = 0
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
@@ -696,6 +706,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         PrintSettings.FooterFont.Name = 'MS Sans Serif'
         PrintSettings.FooterFont.Style = []
         PrintSettings.PageNumSep = '/'
+        ScrollBarAlways = saVert
         SearchFooter.ColorTo = 16052977
         SearchFooter.FindNextCaption = 'Find &next'
         SearchFooter.FindPrevCaption = 'Find &previous'

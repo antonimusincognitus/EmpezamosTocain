@@ -232,7 +232,7 @@ object frmAXV: TfrmAXV
     Top = 55
     Width = 441
     Height = 252
-    ActivePage = tabComplementos
+    ActivePage = tabAlternativas
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
