@@ -4,3 +4,7 @@
 *.~pas
 *.~dpr
 *.exe
+uAXV_Cargar_Guardar_Complementos.pas
+uAXV_Cargar_Guardar_Complementos.ddp
+uAXV_Cargar_Guardar_Complementos.dcu
+uAXV_Cargar_Guardar_Complementos.dfm
