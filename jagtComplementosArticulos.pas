@@ -74,7 +74,7 @@ type
     procedure axv_CargarAlternativas(articulo_id_ori:string);
     procedure axv_GuardarComplementos(articulo_id_ori:string);
     procedure axv_GuardarAlternativas(articulo_id_ori:string);
-//    procedure axv_getArticulo(grd:TAdvStringGrid; columna,fila:integer; nombre,clave,art_id:string);
+    procedure axv_getArticulo(grd:TAdvStringGrid; columna,fila:integer; nombre,clave,art_id:string);
     procedure NuevaAlternativaExecute(Sender: TObject);
     procedure NuevoComplementoExecute(Sender: TObject);
     procedure edtClaveExit(Sender: TObject);
@@ -92,6 +92,10 @@ type
     procedure EliminarExecute(Sender: TObject);
     procedure EliminarAlternativaExecute(Sender: TObject);
     procedure EliminarComplementoExecute(Sender: TObject);
+    procedure sstrgAlternativasCellValidate(Sender: TObject; ACol,
+      ARow: Integer; var Value: String; var Valid: Boolean);
+    procedure strgComplementosCellValidate(Sender: TObject; ACol,
+      ARow: Integer; var Value: String; var Valid: Boolean);
   private
     { Private declarations }
   public
@@ -294,6 +298,23 @@ begin
   if fqGuardar.dbtTransaccion.Active then fqGuardar.dbtTransaccion.Commit;
   FreeAndNil(fqGuardar);
 end;
+
+procedure limpia_formulario ();
+begin
+    jagt_frmArticulosComplementarios.edtclave.text := '';
+    jagt_frmArticulosComplementarios.edtNombre.text := '';
+    jagt_frmArticulosComplementarios.text := '';
+    jagt_frmArticulosComplementarios.cbxLineas.text := '';
+    jagt_frmArticulosComplementarios.cbxUnidadMedida.text := '';
+    jagt_frmArticulosComplementarios.cbAlmacenable.Checked := false;
+    jagt_frmArticulosComplementarios.cbJuego.Checked := false;
+    jagt_frmArticulosComplementarios.cbPesarEnBascula.Checked := false;
+    jagt_frmArticulosComplementarios.edtPesoUnit.text := '';
+    jagt_frmArticulosComplementarios.cbxEstatus.text := '';
+    articulo_anterior := '';
+    nombre_anterior := '';
+end;
+
 procedure manipula_formulario (ct: TDMQuerys);
 begin
   with ct do
@@ -310,6 +331,43 @@ begin
   end;
 end;
 
+Procedure Tjagt_frmArticulosComplementarios.axv_getArticulo(grd:TAdvStringGrid;columna,fila:integer; nombre,clave,art_id:string);
+var
+  fqCargar:TdmQuerys;
+begin
+  fqCargar:=TdmQuerys.Create(nil);
+  fqCargar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
+  fqCargar.figQuery.Database:=dbConectar.idbDatabase;
+  fqCargar.dbtTransaccion.Active:=true;
+  with fqCargar.figQuery do begin
+    Close;
+    SQL.Clear;
+    if columna=cNombre then
+      SQL.Add('select a.nombre, a.articulo_id, ca.clave_articulo'
+          + ' from articulos as a'
+          + ' left join claves_articulos as ca on a.articulo_id = ca.articulo_id'
+          + ' where a.nombre = ' + QuotedStr(nombre))
+    else if columna=cClave then
+      SQL.Add('select a.nombre, a.articulo_id, ca.clave_articulo'
+          + ' from articulos as a'
+          + ' left join claves_articulos as ca on a.articulo_id = ca.articulo_id'
+          + ' where ca.clave_articulo = ' + QuotedStr(clave))
+    else if columna=cArticulo_id then
+      SQL.Add('select a.nombre, a.articulo_id, ca.clave_articulo'
+          + ' from articulos as a'
+          + ' left join claves_articulos as ca on a.articulo_id = ca.articulo_id'
+          + ' where a.articulo_id = ' + QuotedStr(art_id));
+    ExecQuery;
+    IF fn('nombre').AsString<>'' then begin
+      grd.Cells[cClave,fila]:=(fn('clave_articulo').AsString);
+      grd.Cells[cNombre,fila]:=(fn('nombre').AsString);
+      grd.Cells[cArticulo_id,fila]:=fn('articulo_id').AsString;
+      grd.Ints[cPiezas,fila]:=1;
+    end;
+  end;//with
+  fqCargar.dbtTransaccion.Commit;
+  FreeAndNil(fqCargar);
+end;
 
 procedure Tjagt_frmArticulosComplementarios.FormCreate(Sender: TObject);
 begin
@@ -526,6 +584,11 @@ end;
 procedure Tjagt_frmArticulosComplementarios.NuevoExecute(Sender: TObject);
 begin
   ATBBModificar.Enabled := false;
+  ATBBEliminar.Enabled := false;
+  PGCArticulos.ActivePageIndex := 0;
+  limpia_formulario;
+  edtClave.SetFocus;
+
 end;
 
 procedure Tjagt_frmArticulosComplementarios.GuardarExecute(
@@ -563,5 +626,38 @@ procedure Tjagt_frmArticulosComplementarios.EliminarComplementoExecute(
 begin
 //
 end;
+
+procedure Tjagt_frmArticulosComplementarios.sstrgAlternativasCellValidate(
+  Sender: TObject; ACol, ARow: Integer; var Value: String;
+  var Valid: Boolean);
+var
+  nombre,clave,art_id:string;
+begin
+  if ((aCol=cNombre) or (acol=cClave)) and (strgComplementos.Cells[cArticulo_id,aRow]='') then begin
+    case ACol of
+      cNombre: nombre:=Value;
+      cClave: clave:=Value;
+      cArticulo_id:art_id:=Value;
+    end;
+    axv_getArticulo(sstrgAlternativas,ACol,Arow,nombre,clave,art_id);
+  end;
+end;
+
+procedure Tjagt_frmArticulosComplementarios.strgComplementosCellValidate(
+  Sender: TObject; ACol, ARow: Integer; var Value: String;
+  var Valid: Boolean);
+var
+  nombre,clave,art_id:string;
+begin
+  if ((aCol=cNombre) or (acol=cClave)) and (strgComplementos.Cells[cArticulo_id,aRow]='') then begin
+    case ACol of
+      cNombre: nombre:=Value;
+      cClave: clave:=Value;
+      cArticulo_id:art_id:=Value;
+    end;
+    axv_getArticulo(strgComplementos,ACol,Arow,nombre,clave,art_id);
+  end;
+end;
+
 
 end.

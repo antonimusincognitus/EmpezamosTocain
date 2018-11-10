@@ -237,7 +237,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     Top = 55
     Width = 441
     Height = 252
-    ActivePage = tabAlternativas
+    ActivePage = tabComplementos
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -495,6 +495,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         TabOrder = 0
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
+        OnCellValidate = sstrgAlternativasCellValidate
         ActiveCellFont.Charset = DEFAULT_CHARSET
         ActiveCellFont.Color = clWindowText
         ActiveCellFont.Height = -11
@@ -619,6 +620,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         TabOrder = 0
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
+        OnCellValidate = strgComplementosCellValidate
         ActiveCellFont.Charset = DEFAULT_CHARSET
         ActiveCellFont.Color = clWindowText
         ActiveCellFont.Height = -11

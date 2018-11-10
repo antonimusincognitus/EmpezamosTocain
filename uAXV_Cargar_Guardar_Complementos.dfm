@@ -25,7 +25,7 @@ object frmAXV: TfrmAXV
     Persistence.Enabled = False
     ToolBarStyler = AdvToolBarOfficeStyler1
     UseRunTimeHeight = False
-    Version = '6.0.4.5'
+    Version = '5.2.2.0'
     object ATBMenues: TAdvToolBar
       Left = 3
       Top = 1
@@ -64,7 +64,7 @@ object frmAXV: TfrmAXV
         Font.Style = []
         Position = daTop
         ShowCaption = True
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object AdvToolBarMenuButton2: TAdvToolBarMenuButton
         Left = 58
@@ -84,7 +84,7 @@ object frmAXV: TfrmAXV
         Font.Style = []
         Position = daTop
         ShowCaption = True
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object AdvToolBarMenuButton3: TAdvToolBarMenuButton
         Left = 105
@@ -104,7 +104,7 @@ object frmAXV: TfrmAXV
         Font.Style = []
         Position = daTop
         ShowCaption = True
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
     end
     object ATBBotones: TAdvToolBar
@@ -145,7 +145,7 @@ object frmAXV: TfrmAXV
         ParentFont = False
         Position = daTop
         ShowCaption = True
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object ATBBGuardarNuevo: TAdvToolBarButton
         Left = 119
@@ -167,7 +167,7 @@ object frmAXV: TfrmAXV
         ParentFont = False
         Position = daTop
         ShowCaption = True
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object ATBS1: TAdvToolBarSeparator
         Left = 232
@@ -195,7 +195,7 @@ object frmAXV: TfrmAXV
         ImageIndex = 5
         ParentFont = False
         Position = daTop
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object ATBBEliminar: TAdvToolBarButton
         Left = 264
@@ -216,7 +216,7 @@ object frmAXV: TfrmAXV
         ImageIndex = 4
         ParentFont = False
         Position = daTop
-        Version = '6.0.4.5'
+        Version = '5.2.2.0'
       end
       object ATBS2: TAdvToolBarSeparator
         Left = 288
@@ -232,7 +232,7 @@ object frmAXV: TfrmAXV
     Top = 55
     Width = 441
     Height = 252
-    ActivePage = tabAlternativas
+    ActivePage = tabComplementos
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -243,7 +243,7 @@ object frmAXV: TfrmAXV
     TabBackGroundColor = clBtnHighlight
     TabMargin.RightMargin = 0
     TabOverlap = 0
-    Version = '2.0.0.4'
+    Version = '1.7.1.0'
     TabOrder = 2
     object tabGeneral: TAdvTabSheet
       Caption = '       General   '
@@ -257,7 +257,7 @@ object frmAXV: TfrmAXV
         Width = 135
         Height = 22
         Color = clBtnHighlight
-        Version = '1.5.1.1'
+        Version = '1.3.2.2'
         Visible = True
         Flat = True
         Ctl3D = False
@@ -282,7 +282,7 @@ object frmAXV: TfrmAXV
         Width = 135
         Height = 22
         Color = clBtnHighlight
-        Version = '1.5.1.1'
+        Version = '1.3.2.2'
         Visible = True
         Flat = True
         Ctl3D = False
@@ -307,7 +307,7 @@ object frmAXV: TfrmAXV
         Width = 126
         Height = 22
         Color = clBtnHighlight
-        Version = '1.5.1.1'
+        Version = '1.3.2.2'
         Visible = True
         Flat = True
         Ctl3D = False
@@ -340,19 +340,15 @@ object frmAXV: TfrmAXV
         LabelFont.Height = -11
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
-        Lookup.Font.Charset = DEFAULT_CHARSET
-        Lookup.Font.Color = clWindowText
-        Lookup.Font.Height = -11
-        Lookup.Font.Name = 'Arial'
-        Lookup.Font.Style = []
         Lookup.Separator = ';'
         BorderStyle = bsNone
         Color = clBtnHighlight
+        Enabled = True
         ReadOnly = False
         TabOrder = 3
         Text = 'Nombre'
         Visible = True
-        Version = '1.3.5.0'
+        Version = '1.3.2.8'
         ButtonStyle = bsButton
         ButtonWidth = 16
         Etched = False
@@ -398,19 +394,15 @@ object frmAXV: TfrmAXV
         LabelFont.Height = -11
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
-        Lookup.Font.Charset = DEFAULT_CHARSET
-        Lookup.Font.Color = clWindowText
-        Lookup.Font.Height = -11
-        Lookup.Font.Name = 'Arial'
-        Lookup.Font.Style = []
         Lookup.Separator = ';'
         BorderStyle = bsNone
         Color = clBtnHighlight
+        Enabled = True
         ReadOnly = False
         TabOrder = 4
         Text = 'Clave Principal'
         Visible = True
-        Version = '1.3.5.0'
+        Version = '1.3.2.8'
         ButtonStyle = bsButton
         ButtonWidth = 16
         Etched = False
@@ -459,14 +451,10 @@ object frmAXV: TfrmAXV
         LabelFont.Height = -11
         LabelFont.Name = 'Arial Unicode MS'
         LabelFont.Style = []
-        Lookup.Font.Charset = DEFAULT_CHARSET
-        Lookup.Font.Color = clWindowText
-        Lookup.Font.Height = -11
-        Lookup.Font.Name = 'Arial'
-        Lookup.Font.Style = []
         Lookup.Separator = ';'
         BorderStyle = bsNone
         Color = clBtnHighlight
+        Enabled = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -9
@@ -476,7 +464,7 @@ object frmAXV: TfrmAXV
         TabOrder = 8
         Text = '0.000'
         Visible = True
-        Version = '3.3.2.8'
+        Version = '2.9.0.0'
       end
     end
     object tabAlternativas: TAdvTabSheet
@@ -507,7 +495,6 @@ object frmAXV: TfrmAXV
         OnKeyDown = sstrgAlternativasKeyDown
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
-        HoverRowCells = [hcNormal, hcSelected]
         OnCanAddRow = sstrgAlternativasCanAddRow
         OnCellValidate = sstrgAlternativasCellValidate
         HintShowCells = True
@@ -559,14 +546,6 @@ object frmAXV: TfrmAXV
         FilterDropDown.Font.Name = 'MS Sans Serif'
         FilterDropDown.Font.Style = []
         FilterDropDownClear = '(All)'
-        FilterEdit.TypeNames.Strings = (
-          'Starts with'
-          'Ends with'
-          'Contains'
-          'Not contains'
-          'Equal'
-          'Not equal'
-          'Clear')
         FixedColWidth = 78
         FixedRowHeight = 22
         FixedFont.Charset = DEFAULT_CHARSET
@@ -575,8 +554,6 @@ object frmAXV: TfrmAXV
         FixedFont.Name = 'Tahoma'
         FixedFont.Style = [fsBold]
         FloatFormat = '%.2f'
-        HoverButtons.Buttons = <>
-        HoverButtons.Position = hbLeftFromColumnLeft
         Look = glVista
         Navigation.AdvanceOnEnter = True
         Navigation.AdvanceInsert = True
@@ -617,12 +594,11 @@ object frmAXV: TfrmAXV
         SearchFooter.HintFindPrev = 'Find previous occurrence'
         SearchFooter.HintHighlight = 'Highlight occurrences'
         SearchFooter.MatchCaseCaption = 'Match case'
-        SortSettings.DefaultFormat = ssAutomatic
         SortSettings.HeaderColor = 16579058
         SortSettings.HeaderColorTo = 16579058
         SortSettings.HeaderMirrorColor = 16380385
         SortSettings.HeaderMirrorColorTo = 16182488
-        Version = '7.4.6.3'
+        Version = '5.8.0.2'
         ColWidths = (
           78
           215
@@ -660,7 +636,6 @@ object frmAXV: TfrmAXV
         OnKeyDown = strgComplementosKeyDown
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
-        HoverRowCells = [hcNormal, hcSelected]
         OnCanAddRow = strgComplementosCanAddRow
         OnCellValidate = strgComplementosCellValidate
         ActiveCellFont.Charset = DEFAULT_CHARSET
@@ -709,14 +684,6 @@ object frmAXV: TfrmAXV
         FilterDropDown.Font.Name = 'MS Sans Serif'
         FilterDropDown.Font.Style = []
         FilterDropDownClear = '(All)'
-        FilterEdit.TypeNames.Strings = (
-          'Starts with'
-          'Ends with'
-          'Contains'
-          'Not contains'
-          'Equal'
-          'Not equal'
-          'Clear')
         FixedColWidth = 78
         FixedRowHeight = 22
         FixedFont.Charset = DEFAULT_CHARSET
@@ -725,8 +692,6 @@ object frmAXV: TfrmAXV
         FixedFont.Name = 'Tahoma'
         FixedFont.Style = [fsBold]
         FloatFormat = '%.2f'
-        HoverButtons.Buttons = <>
-        HoverButtons.Position = hbLeftFromColumnLeft
         Look = glVista
         PrintSettings.DateFormat = 'dd/mm/yyyy'
         PrintSettings.Font.Charset = DEFAULT_CHARSET
@@ -765,12 +730,11 @@ object frmAXV: TfrmAXV
         SearchFooter.HintFindPrev = 'Find previous occurrence'
         SearchFooter.HintHighlight = 'Highlight occurrences'
         SearchFooter.MatchCaseCaption = 'Match case'
-        SortSettings.DefaultFormat = ssAutomatic
         SortSettings.HeaderColor = 16579058
         SortSettings.HeaderColorTo = 16579058
         SortSettings.HeaderMirrorColor = 16380385
         SortSettings.HeaderMirrorColorTo = 16182488
-        Version = '7.4.6.3'
+        Version = '5.8.0.2'
         ColWidths = (
           78
           204
@@ -782,15 +746,6 @@ object frmAXV: TfrmAXV
     end
   end
   object AdvToolBarOfficeStyler1: TAdvToolBarOfficeStyler
-    AppColor.AppButtonColor = 13005312
-    AppColor.AppButtonHoverColor = 16755772
-    AppColor.TextColor = clWhite
-    AppColor.HoverColor = 16246477
-    AppColor.HoverTextColor = clBlack
-    AppColor.HoverBorderColor = 15187578
-    AppColor.SelectedColor = 15187578
-    AppColor.SelectedTextColor = clBlack
-    AppColor.SelectedBorderColor = 15187578
     Style = bsCustom
     BorderColor = 14731181
     BorderColorHot = 14731181
@@ -905,7 +860,6 @@ object frmAXV: TfrmAXV
     GlowButtonAppearance.GradientDown = ggVertical
     GlowButtonAppearance.GradientMirrorDown = ggVertical
     GlowButtonAppearance.GradientChecked = ggVertical
-    GroupAppearance.Background = clInfoBk
     GroupAppearance.BorderColor = 12763842
     GroupAppearance.Color = 16640730
     GroupAppearance.ColorTo = 15851212
@@ -2076,11 +2030,11 @@ object frmAXV: TfrmAXV
   object AdvStickyPopupMenu1: TAdvStickyPopupMenu
     ButtonBar = <>
     MenuItems = <>
-    Version = '1.6.0.0'
+    Version = '1.3.1.1'
     Left = 344
   end
   object AdvPopupMenu1: TAdvPopupMenu
-    Version = '2.5.5.1'
+    Version = '2.5.3.4'
     Left = 320
     object Nuevaalternativa1: TMenuItem
       Action = NuevaAlternativa
@@ -2090,7 +2044,7 @@ object frmAXV: TfrmAXV
     end
   end
   object axv_PopMenuAlternativas: TAdvPopupMenu
-    Version = '2.5.5.1'
+    Version = '2.5.3.4'
     Left = 424
     Top = 40
     object Nuevaalternativa2: TMenuItem
@@ -2101,7 +2055,7 @@ object frmAXV: TfrmAXV
     end
   end
   object axv_PopMenuComplementos: TAdvPopupMenu
-    Version = '2.5.5.1'
+    Version = '2.5.3.4'
     Left = 448
     Top = 40
     object EliminarComplemento1: TMenuItem
