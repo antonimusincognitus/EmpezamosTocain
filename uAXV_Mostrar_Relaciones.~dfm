@@ -4,7 +4,7 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
   Width = 736
   Height = 425
   Caption = 'Relaciones del articulo'
-  Color = clBtnHighlight
+  Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -20,7 +20,7 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     Width = 77
     Height = 19
     Caption = 'lblArticulo'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -35,7 +35,7 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     Width = 116
     Height = 19
     Caption = 'Precio p'#250'blico:'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -50,7 +50,7 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     Width = 94
     Height = 19
     Caption = 'Existencias:'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -65,7 +65,7 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     Width = 76
     Height = 19
     Caption = 'lblPrecio1'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -80,7 +80,7 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     Width = 114
     Height = 19
     Caption = 'Precio M'#237'nimo:'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -95,7 +95,7 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     Width = 76
     Height = 19
     Caption = 'lblPrecio2'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -110,7 +110,7 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     Width = 115
     Height = 19
     Caption = 'lblExistencias1'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -125,7 +125,7 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     Width = 67
     Height = 19
     Caption = 'lblClave:'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -167,8 +167,6 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
       'Precio Min'
       'Existencias'
       'Articulo_id')
-    ControlLook.FixedGradientFrom = clWhite
-    ControlLook.FixedGradientTo = clBtnFace
     ControlLook.FixedGradientHoverFrom = 13619409
     ControlLook.FixedGradientHoverTo = 12502728
     ControlLook.FixedGradientHoverMirrorFrom = 12502728
@@ -209,8 +207,7 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     FixedFont.Name = 'Tahoma'
     FixedFont.Style = [fsBold]
     FloatFormat = '%.2f'
-    Look = glListView
-    Navigation.EditSelectAll = False
+    Look = glStandard
     PrintSettings.DateFormat = 'dd/mm/yyyy'
     PrintSettings.Font.Charset = DEFAULT_CHARSET
     PrintSettings.Font.Color = clWindowText

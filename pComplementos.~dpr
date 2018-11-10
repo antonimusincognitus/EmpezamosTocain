@@ -14,5 +14,6 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(TfrmAXV, frmAXV);
+  Application.CreateForm(TFrmMostrarRelaciones, FrmMostrarRelaciones);
   Application.Run;
 end.
