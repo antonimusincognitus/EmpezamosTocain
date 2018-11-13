@@ -1,6 +1,6 @@
 object frmAXV: TfrmAXV
-  Left = 182
-  Top = 107
+  Left = 204
+  Top = 133
   Width = 505
   Height = 376
   Caption = 'frmAXV'
@@ -11,6 +11,7 @@ object frmAXV: TfrmAXV
   Font.Name = 'Arial Unicode MS'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
@@ -55,7 +56,6 @@ object frmAXV: TfrmAXV
         Appearance.CaptionFont.Height = -11
         Appearance.CaptionFont.Name = 'Segoe UI'
         Appearance.CaptionFont.Style = []
-        DropDownMenu = AdvPopupMenu1
         Caption = '&Archivo'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -232,7 +232,7 @@ object frmAXV: TfrmAXV
     Top = 55
     Width = 441
     Height = 252
-    ActivePage = tabComplementos
+    ActivePage = tabGeneral
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -480,6 +480,7 @@ object frmAXV: TfrmAXV
         Height = 222
         Cursor = crDefault
         ColCount = 6
+        Enabled = False
         FixedCols = 0
         RowCount = 2
         Font.Charset = DEFAULT_CHARSET
@@ -487,8 +488,10 @@ object frmAXV: TfrmAXV
         Font.Height = -9
         Font.Name = 'Tahoma'
         Font.Style = []
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
         ParentFont = False
         ParentShowHint = False
+        PopupMenu = axv_PopMenuAlternativas
         ScrollBars = ssVertical
         ShowHint = True
         TabOrder = 0
@@ -621,6 +624,7 @@ object frmAXV: TfrmAXV
         Height = 222
         Cursor = crDefault
         ColCount = 6
+        Enabled = False
         FixedCols = 0
         RowCount = 2
         Font.Charset = DEFAULT_CHARSET
@@ -738,7 +742,7 @@ object frmAXV: TfrmAXV
         ColWidths = (
           78
           204
-          37
+          28
           136
           107
           84)
@@ -1034,6 +1038,7 @@ object frmAXV: TfrmAXV
       Caption = 'Guardar'
       ImageIndex = 6
       ShortCut = 16455
+      OnExecute = GuardarExecute
     end
     object GuardarCerrar: TAction
       Caption = 'Guardar y cerrar'
@@ -1060,10 +1065,12 @@ object frmAXV: TfrmAXV
     end
     object NuevaAlternativa: TAction
       Caption = 'Nueva alternativa'
+      Enabled = False
       OnExecute = NuevaAlternativaExecute
     end
     object NuevoComplemento: TAction
       Caption = 'Nuevo complemento'
+      Enabled = False
       OnExecute = NuevoComplementoExecute
     end
     object Nuevo: TAction
@@ -1073,11 +1080,23 @@ object frmAXV: TfrmAXV
     end
     object EliminarAlternativa: TAction
       Caption = 'Eliminar alternativa'
+      Enabled = False
       OnExecute = EliminarAlternativaExecute
     end
     object EliminarComplemento: TAction
       Caption = 'Eliminar Complemento'
+      Enabled = False
       OnExecute = EliminarComplementoExecute
+    end
+    object MostrarAlternativas: TAction
+      Caption = 'Mostrar alternativas'
+      ShortCut = 24641
+      OnExecute = MostrarAlternativasExecute
+    end
+    object MostrarComplementos: TAction
+      Caption = 'Mostrar complementos'
+      ShortCut = 24643
+      OnExecute = MostrarComplementosExecute
     end
   end
   object ImgLstgrdArticulos: TImageList
@@ -2032,16 +2051,6 @@ object frmAXV: TfrmAXV
     MenuItems = <>
     Version = '1.3.1.1'
     Left = 344
-  end
-  object AdvPopupMenu1: TAdvPopupMenu
-    Version = '2.5.3.4'
-    Left = 320
-    object Nuevaalternativa1: TMenuItem
-      Action = NuevaAlternativa
-    end
-    object Nuevocomplemento1: TMenuItem
-      Action = NuevoComplemento
-    end
   end
   object axv_PopMenuAlternativas: TAdvPopupMenu
     Version = '2.5.3.4'

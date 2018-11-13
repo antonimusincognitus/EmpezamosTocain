@@ -1,6 +1,6 @@
-object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
-  Left = 685
-  Top = 153
+object frmjagt: Tfrmjagt
+  Left = 704
+  Top = 130
   BorderStyle = bsSingle
   Caption = 'Articulos complementarios'
   ClientHeight = 311
@@ -237,7 +237,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     Top = 55
     Width = 441
     Height = 252
-    ActivePage = tabComplementos
+    ActivePage = tabGeneral
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -482,7 +482,8 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Width = 419
         Height = 219
         Cursor = crDefault
-        ColCount = 3
+        ColCount = 6
+        Enabled = False
         FixedCols = 0
         RowCount = 2
         Font.Charset = DEFAULT_CHARSET
@@ -490,8 +491,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Font.Height = -9
         Font.Name = 'Tahoma'
         Font.Style = []
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
         ParentFont = False
         ParentShowHint = False
+        PopupMenu = axv_PopMenuAlternativas
         ScrollBars = ssVertical
         ShowHint = True
         TabOrder = 0
@@ -511,7 +514,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         ColumnHeaders.Strings = (
           'Clave'
           'Descripci'#243'n'
-          'Comentarios')
+          'Pzs. Rel.'
+          'Comentarios'
+          'Articulo_id_dest'
+          'Relacion_id')
         ControlLook.FixedGradientMirrorFrom = 16447735
         ControlLook.FixedGradientMirrorTo = 16052977
         ControlLook.FixedGradientHoverFrom = 16775139
@@ -600,7 +606,10 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         ColWidths = (
           78
           233
-          131)
+          131
+          64
+          64
+          64)
       end
     end
     object tabComplementos: TAdvTabSheet
@@ -616,6 +625,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
         Height = 222
         Cursor = crDefault
         ColCount = 6
+        Enabled = False
         FixedCols = 0
         RowCount = 2
         Font.Charset = DEFAULT_CHARSET
@@ -2027,7 +2037,7 @@ object jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios
     ButtonBar = <>
     MenuItems = <>
     Version = '1.3.1.1'
-    Left = 216
+    Left = 304
   end
   object AdvPopupMenu1: TAdvPopupMenu
     Version = '2.5.3.4'

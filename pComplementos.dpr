@@ -5,7 +5,7 @@ uses
   axvComplementosArticulos in 'axvComplementosArticulos.pas' {axv_frmArticulosComplementarios},
   Database in 'Database.pas' {dmDataBase: TDataModule},
   Query in 'Query.pas' {dmQuerys: TDataModule},
-  jagtComplementosArticulos in 'jagtComplementosArticulos.pas' {jagt_frmArticulosComplementarios},
+  jagtComplementosArticulos in 'jagtComplementosArticulos.pas' {frmjagt},
   buscarclientes in 'buscarclientes.pas' {frmBuscarCliente},
   localizar in 'localizar.pas' {frmLocalizar},
   uAXV_Cargar_Guardar_Complementos in 'uAXV_Cargar_Guardar_Complementos.pas' {frmAXV},
@@ -15,6 +15,6 @@ uses
 
 begin
   Application.Initialize;
-  Application.CreateForm(Tjagt_frmArticulosComplementarios, jagt_frmArticulosComplementarios);
+  Application.CreateForm(Tfrmjagt, frmjagt);
   Application.Run;
 end.

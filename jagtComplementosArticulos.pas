@@ -9,7 +9,7 @@ uses
   ActnList, ImgList, Menus, AdvMenus, AdvStickyPopupMenu;
 
 type
-  Tjagt_frmArticulosComplementarios = class(TForm)
+  Tfrmjagt = class(TForm)
     PGCArticulos: TAdvPageControl;
     tabGeneral: TAdvTabSheet;
     tabAlternativas: TAdvTabSheet;
@@ -109,12 +109,12 @@ type
     cxServidor, //  '192.168.3.6; cualquiera que sea el servidor microsip';
     cxProtocolo //  0: tcp/ip 1: net/bieu   2: spx
     : string;
-    articulo : string;
+    articulo_id : string;
     es_nuevo : boolean;
   end;
 
 var
-  jagt_frmArticulosComplementarios: Tjagt_frmArticulosComplementarios;
+  frmjagt: Tfrmjagt;
 
 implementation
 uses Database, Query, FIBQuery, pFIBQuery, DateUtils, buscarclientes, db_operaciones,
@@ -137,32 +137,34 @@ function ConectarADB: Boolean;
 begin
   Result := False;
   dbConectar:= TdmDataBase.Create(nil);
-  if jagt_frmArticulosComplementarios.cxTipo ='1' then//Es local
-        dbConectar.idbDatabase.DatabaseName := 'localhost:'+ jagt_frmArticulosComplementarios.cxCarpeta + jagt_frmArticulosComplementarios.dbNombre + '.fdb'
-  else if jagt_frmArticulosComplementarios.cxProtocolo ='0'
-    then dbConectar.idbDatabase.DatabaseName := jagt_frmArticulosComplementarios.cxServidor+':'+jagt_frmArticulosComplementarios.cxCarpeta+jagt_frmArticulosComplementarios.dbNombre + '.fdb'
-  else if jagt_frmArticulosComplementarios.cxProtocolo ='1'
-    then dbConectar.idbDatabase.DatabaseName := '\\'+jagt_frmArticulosComplementarios.cxServidor+'\'+jagt_frmArticulosComplementarios.cxCarpeta+jagt_frmArticulosComplementarios.dbNombre + '.fdb'
-  else if jagt_frmArticulosComplementarios.cxProtocolo ='2'
-    then dbConectar.idbDatabase.DatabaseName := jagt_frmArticulosComplementarios.cxServidor+'@'+jagt_frmArticulosComplementarios.cxCarpeta+jagt_frmArticulosComplementarios.dbNombre + '.fdb';
+  if frmjagt.cxTipo ='1' then//Es local
+        dbConectar.idbDatabase.DatabaseName := 'localhost:'+ frmjagt.cxCarpeta + frmjagt.dbNombre + '.fdb'
+  else if frmjagt.cxProtocolo ='0'
+    then dbConectar.idbDatabase.DatabaseName := frmjagt.cxServidor+':'+frmjagt.cxCarpeta+frmjagt.dbNombre + '.fdb'
+  else if frmjagt.cxProtocolo ='1'
+    then dbConectar.idbDatabase.DatabaseName := '\\'+frmjagt.cxServidor+'\'+frmjagt.cxCarpeta+frmjagt.dbNombre + '.fdb'
+  else if frmjagt.cxProtocolo ='2'
+    then dbConectar.idbDatabase.DatabaseName := frmjagt.cxServidor+'@'+frmjagt.cxCarpeta+frmjagt.dbNombre + '.fdb';
   dbConectar.idbDatabase.DBParams.Clear;
-  dbConectar.idbDatabase.DBParams.Add('user_name=' + jagt_frmArticulosComplementarios.dbUsuario);
-  dbConectar.idbDatabase.DBParams.Add('password=' + jagt_frmArticulosComplementarios.dbPass);
+  dbConectar.idbDatabase.DBParams.Add('user_name=' + frmjagt.dbUsuario);
+  dbConectar.idbDatabase.DBParams.Add('password=' + frmjagt.dbPass);
   dbConectar.idbDatabase.DBParams.Add('sql_role_name=USUARIO_MICROSIP');
      try dbConectar.idbDatabase.Connected := True;
         Result := True;
      except
-        MessageDlg('El nombre de usuario o la contraseña no son válidos para el Servidor de la conexión "' + jagt_frmArticulosComplementarios.cxNombre +
+        MessageDlg('El nombre de usuario o la contraseña no son válidos para el Servidor de la conexión "' + frmjagt.cxNombre +
            '".' + #13#10 + 'Escriba los datos correctamente o consulte al Administrador del sistema.',mtError,[mbOK],0);
         result:=false;
      end;//try
 end;
 
 //RECUPERAR LOS COMPLEMENTOS DEL ARTICULO ELEGIDO
-procedure Tjagt_frmArticulosComplementarios.axv_CargarComplementos(articulo_id_ori:string);
+procedure Tfrmjagt.axv_CargarComplementos(articulo_id_ori:string);
 var
   fqCargar:TdmQuerys;
 begin
+  if strgComplementos.RowCount>1 then strgComplementos.ClearRows(1,strgComplementos.RowCount-1);
+  strgComplementos.RowCount:=1;
   fqCargar:=TdmQuerys.Create(nil);
   fqCargar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
   fqCargar.dbtTransaccion.Active:=true;
@@ -181,13 +183,13 @@ begin
     ExecQuery;
     if fn('articulo').AsString <> '' then begin
       while not eof do begin
-        strgComplementos.Cells[cClave,sstrgAlternativas.RowCount-1]:=fn('clave').AsString;
-        strgComplementos.Cells[cNombre,sstrgAlternativas.RowCount-1]:=fn('articulo').AsString;
-        strgComplementos.Cells[cArticulo_id,sstrgAlternativas.RowCount-1]:=fn('articulo_id_dest').AsString;
-        strgComplementos.Cells[cRelacion_id,sstrgAlternativas.RowCount-1]:=fn('articulo_rel_id').AsString;
-        strgComplementos.Cells[cNotas,sstrgAlternativas.RowCount-1]:=fn('notas').AsWideString;
-        strgComplementos.Cells[cPiezas,sstrgAlternativas.RowCount-1]:=fn('unidades_relacionadas').AsString;
-        sstrgAlternativas.AddRow;
+        strgComplementos.AddRow;
+        strgComplementos.Cells[cClave,strgComplementos.RowCount-1] :=fn('clave').AsString;
+        strgComplementos.Cells[cNombre,strgComplementos.RowCount-1]:=fn('articulo').AsString;
+        strgComplementos.Cells[cArticulo_id,strgComplementos.RowCount-1]:=fn('articulo_id_dest').AsString;
+        strgComplementos.Cells[cRelacion_id,strgComplementos.RowCount-1]:=fn('articulo_rel_id').AsString;
+        strgComplementos.Cells[cNotas,strgComplementos.RowCount-1]:=fn('notas').AsWideString;
+        strgComplementos.Cells[cPiezas,strgComplementos.RowCount-1]:=fn('unidades_relacionadas').AsString;
         Next;
       end;//while
     end;//if
@@ -197,10 +199,12 @@ begin
 end;
 
 //RECUPERA LAS ALTERNATIVAS DEL ARTICULO ELEGIDO
-procedure Tjagt_frmArticulosComplementarios.axv_cargarAlternativas(articulo_id_ori:string);
+procedure Tfrmjagt.axv_cargarAlternativas(articulo_id_ori:string);
 var
   fqCargar:TdmQuerys;
 begin
+  if sstrgAlternativas.RowCount>1 then sstrgAlternativas.ClearRows(1,sstrgAlternativas.RowCount);
+  sstrgAlternativas.RowCount:=1;
   fqCargar:=TdmQuerys.Create(nil);
   fqCargar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
   fqCargar.dbtTransaccion.Active:=true;
@@ -219,13 +223,13 @@ begin
     ExecQuery;
     if fn('articulo').AsString <> '' then begin
       while not eof do begin
+        sstrgAlternativas.AddRow;
         sstrgAlternativas.Cells[cClave,sstrgAlternativas.RowCount-1]:=fn('clave').AsString;
         sstrgAlternativas.Cells[cNombre,sstrgAlternativas.RowCount-1]:=fn('articulo').AsString;
         sstrgAlternativas.Cells[cArticulo_id,sstrgAlternativas.RowCount-1]:=fn('articulo_id_dest').AsString;
         sstrgAlternativas.Cells[cRelacion_id,sstrgAlternativas.RowCount-1]:=fn('articulo_rel_id').AsString;
         sstrgAlternativas.Cells[cNotas,sstrgAlternativas.RowCount-1]:=fn('notas').AsWideString;
         sstrgAlternativas.Cells[cPiezas,sstrgAlternativas.RowCount-1]:=fn('unidades_relacionadas').AsString;
-        sstrgAlternativas.AddRow;
         Next;
       end;//while
     end;//if
@@ -235,83 +239,107 @@ begin
 end;
 
 //INSERTA LAS ALTERNATIVAS EN LA BASE DE DATOS
-procedure Tjagt_frmArticulosComplementarios.axv_GuardarAlternativas(articulo_id_ori:string);
+procedure Tfrmjagt.axv_GuardarAlternativas(articulo_id_ori:string);
 var
-  fqGuardar:TdmQuerys;
   i:integer;
 begin
-  fqGuardar:=TdmQuerys.Create(nil);
-  fqGuardar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
-  fqGuardar.dbtTransaccion.Active:=true;
-  fqGuardar.figQuery.Database:=dbConectar.idbDatabase;
-  for i:=1 to jagt_frmArticulosComplementarios.strgComplementos.RowCount-1 do begin
-    with fqGuardar.figQuery do begin
+  if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
+  fqDummy.dbtTransaccion.Active:=true;
+  for i:=1 to frmjagt.sstrgAlternativas.RowCount-1 do begin
+    with fqDummy.figQuery do begin
       Close;
       SQL.Clear;
+      SQL.Add('update or insert into lm_articulos_rel (articulo_rel_id, articulo_id_ori, articulo_id_dest,unidades_relacionadas, notas,tipo_relacion)');
       if sstrgAlternativas.Cells[cRelacion_id,i] = ''
-      then SQL.Add('insert into lm_Articulos_Rel values (gen_id(id_articulos_rel,1)'
-        + ' ,' + articulo_id_ori //id_ori
+      then SQL.Add('values  ((gen_id(id_articulos_rel,1))')
+      else SQL.Add('values  ('+sstrgAlternativas.Cells[cRelacion_id,i]);
+      SQL.Add(' ,' + articulo_id_ori //id_ori
         + ' ,' + sstrgAlternativas.Cells[cArticulo_id,i] //id_dest
-        + ' , 1' //unidades_relacionadas
-        + ' ,' + sstrgAlternativas.Cells[cNotas,i] //notas
-        + ' ,''C''') //tipo_relacion
-      else SQL.Add('update lm_Articulos_rel set'
-        + 'articulo_id_dest = ' + sstrgAlternativas.Cells[cArticulo_id,i] //id_dest
-        + ', notas = ' + QuotedStr(sstrgAlternativas.cells[cNotas,i]) //notas
-        + 'where articulo_rel_id = ' + sstrgAlternativas.Cells[cRelacion_id,i]);
+        + ' ,' + sstrgAlternativas.Cells[cPiezas,i] //unidades_relacionadas
+        + ' ,' + QuotedStr(sstrgAlternativas.Cells[cNotas,i]) //notas
+        + ' ,''A'')' //tipo_relacion
+        + ' matching (articulo_rel_id)');
       ExecQuery;
     end;//with
   end;//for
-  if fqGuardar.dbtTransaccion.Active then fqGuardar.dbtTransaccion.Commit;
-  FreeAndNil(fqGuardar);
+  if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
 end;
 
 //INSERTA COMPLEMENTOS EN LA BASE DE DATOS
-procedure Tjagt_frmArticulosComplementarios.axv_GuardarComplementos(articulo_id_ori:string);
+procedure Tfrmjagt.axv_GuardarComplementos(articulo_id_ori:string);
 var
-  fqGuardar:TdmQuerys;
   i:integer;
 begin
-  fqGuardar:=TdmQuerys.Create(nil);
-  fqGuardar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
-  fqGuardar.dbtTransaccion.Active:=true;
-  fqGuardar.figQuery.Database:=dbConectar.idbDatabase;
-  for i:=1 to jagt_frmArticulosComplementarios.strgComplementos.RowCount-1 do begin
-    with fqGuardar.figQuery do begin
+  for i:=1 to frmjagt.strgComplementos.RowCount-1 do begin
+    with fqDummy.figQuery do begin
       Close;
       SQL.Clear;
+      SQL.Add('update or insert into lm_articulos_rel (articulo_rel_id, articulo_id_ori, articulo_id_dest,unidades_relacionadas, notas,tipo_relacion)');
       if strgComplementos.Cells[cRelacion_id,i] = ''
-      then SQL.Add('insert into lm_Articulos_Rel values (gen_id(id_articulos_rel,1)'
-        + ' ,' + articulo_id_ori //id_ori
+      then SQL.Add('values  ((gen_id(id_articulos_rel,1))')
+      else SQL.Add('values ('+strgComplementos.Cells[cRelacion_id,i]);
+      SQL.Add(' ,' + articulo_id_ori //id_ori
         + ' ,' + strgComplementos.Cells[cArticulo_id,i] //id_dest
         + ' ,' + strgComplementos.Cells[cPiezas,i] //unidades_relacionadas
-        + ' ,' + quotedstr(strgComplementos.Cells[cNotas,i]) //notas
-        + ' ,''C'')') //tipo_relacion
-      else SQL.Add('update lm_Articulos_rel set'
-        + 'articulo_id_dest = ' + strgComplementos.Cells[cArticulo_id,i] //id_dest
-        + ', unidades_relacionadas = ' + strgComplementos.Cells[cPiezas,i] //unidades_relacionadas
-        + ', notas = ' + QuotedStr(strgComplementos.cells[cNotas,i]) //notas
-        + 'where articulo_rel_id = ' + strgComplementos.Cells[cRelacion_id,i]);
+        + ' ,' + QuotedStr(strgComplementos.Cells[cNotas,i]) //notas
+        + ' ,''C'')' //tipo_relacion
+        + ' matching (articulo_rel_id)');
 inputbox ('','',sql.Text);
       ExecQuery;
     end;//with
   end;//for
-  if fqGuardar.dbtTransaccion.Active then fqGuardar.dbtTransaccion.Commit;
-  FreeAndNil(fqGuardar);
+  if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
+end;
+
+//CONSULTA EL DOCUMENTO ORIGEN PARA EVITAR QUE LO MODIFIQUEN
+Function DummyUpdate(articulo_id_ori:string):boolean;
+var
+  intentar:Boolean;
+begin
+  Result:=false;
+  intentar:=true;
+  fqDummy:=TdmQuerys.Create(nil);
+  fqDummy.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
+  fqDummy.dbtTransaccion.Active:=true;
+  fqDummy.figQuery.Database:=dbConectar.idbDatabase;
+  with fqDummy.figQuery do
+    Repeat try
+      close;
+      SQL.Clear;
+      SQL.Add('update lm_articulos_rel set articulo_rel_id = articulo_rel_id'
+        + ' where articulo_id_ori = ' +  articulo_id_ori);
+      ExecQuery;
+      intentar:=false;
+      Result:=true;
+    Except
+      case Application.MessageBox('Esta relación esta siendo modificado por otro usuario' + #13#10
+          + '¿Desea volver a intentar conectarse?','Error',Mb_YesNo+Mb_IconInformation) of
+          id_Yes: intentar:=true;
+          id_No: intentar:=false;
+      end;//case
+    end;//try
+  until intentar=false;
+end;
+
+//TERMINA LA CONSULTA "Dummy"
+procedure LiberarDummy;
+begin
+  if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
+  FreeAndNil(fqDummy);
 end;
 
 procedure limpia_formulario ();
 begin
-    jagt_frmArticulosComplementarios.edtclave.text := '';
-    jagt_frmArticulosComplementarios.edtNombre.text := '';
-    jagt_frmArticulosComplementarios.text := '';
-    jagt_frmArticulosComplementarios.cbxLineas.text := '';
-    jagt_frmArticulosComplementarios.cbxUnidadMedida.text := '';
-    jagt_frmArticulosComplementarios.cbAlmacenable.Checked := false;
-    jagt_frmArticulosComplementarios.cbJuego.Checked := false;
-    jagt_frmArticulosComplementarios.cbPesarEnBascula.Checked := false;
-    jagt_frmArticulosComplementarios.edtPesoUnit.text := '';
-    jagt_frmArticulosComplementarios.cbxEstatus.text := '';
+    frmjagt.edtclave.text := '';
+    frmjagt.edtNombre.text := '';
+    frmjagt.text := '';
+    frmjagt.cbxLineas.text := '';
+    frmjagt.cbxUnidadMedida.text := '';
+    frmjagt.cbAlmacenable.Checked := false;
+    frmjagt.cbJuego.Checked := false;
+    frmjagt.cbPesarEnBascula.Checked := false;
+    frmjagt.edtPesoUnit.text := '';
+    frmjagt.cbxEstatus.text := '';
     articulo_anterior := '';
     nombre_anterior := '';
 end;
@@ -320,19 +348,19 @@ procedure manipula_formulario (ct: TDMQuerys);
 begin
   with ct do
   begin
-    jagt_frmArticulosComplementarios.edtNombre.text := dmQuerys.figQuery.FldByName['ar_nom'].AsString;
-    jagt_frmArticulosComplementarios.Text := jagt_frmArticulosComplementarios.edtNombre.text; //edtClave.Text;
-    jagt_frmArticulosComplementarios.cbxLineas.Text := dmQuerys.figQuery.FldByName['la_nom'].AsString;
-    jagt_frmArticulosComplementarios.cbxUnidadMedida.Text := dmQuerys.figQuery.FldByName['unidad_venta'].AsString;
-    jagt_frmArticulosComplementarios.cbAlmacenable.Checked := dmQuerys.figQuery.FldByName['es_almacenable'].AsString = 'S';
-    jagt_frmArticulosComplementarios.cbJuego.Checked := dmQuerys.figQuery.FldByName['es_juego'].AsString = 'S';
-    jagt_frmArticulosComplementarios.cbPesarEnBascula.Checked := dmQuerys.figQuery.FldByName['es_peso_variable'].AsString = 'S';
-    jagt_frmArticulosComplementarios.edtPesoUnit.Text := dmQuerys.figQuery.FldByName['peso_unitario'].AsString;
-    jagt_frmArticulosComplementarios.cbxEstatus.Text := dmQuerys.figQuery.FldByName['ar_st'].AsString;
+    frmjagt.edtNombre.text := dmQuerys.figQuery.FldByName['ar_nom'].AsString;
+    frmjagt.Text := frmjagt.edtNombre.text; //edtClave.Text;
+    frmjagt.cbxLineas.Text := dmQuerys.figQuery.FldByName['la_nom'].AsString;
+    frmjagt.cbxUnidadMedida.Text := dmQuerys.figQuery.FldByName['unidad_venta'].AsString;
+    frmjagt.cbAlmacenable.Checked := dmQuerys.figQuery.FldByName['es_almacenable'].AsString = 'S';
+    frmjagt.cbJuego.Checked := dmQuerys.figQuery.FldByName['es_juego'].AsString = 'S';
+    frmjagt.cbPesarEnBascula.Checked := dmQuerys.figQuery.FldByName['es_peso_variable'].AsString = 'S';
+    frmjagt.edtPesoUnit.Text := dmQuerys.figQuery.FldByName['peso_unitario'].AsString;
+    frmjagt.cbxEstatus.Text := dmQuerys.figQuery.FldByName['ar_st'].AsString;
   end;
 end;
 
-Procedure Tjagt_frmArticulosComplementarios.axv_getArticulo(grd:TAdvStringGrid;columna,fila:integer; nombre,clave,art_id:string);
+Procedure Tfrmjagt.axv_getArticulo(grd:TAdvStringGrid;columna,fila:integer; nombre,clave,art_id:string);
 var
   fqCargar:TdmQuerys;
 begin
@@ -370,7 +398,7 @@ begin
   FreeAndNil(fqCargar);
 end;
 
-procedure Tjagt_frmArticulosComplementarios.FormCreate(Sender: TObject);
+procedure Tfrmjagt.FormCreate(Sender: TObject);
 begin
   es_nuevo:= true;
   articulo_anterior := '';
@@ -397,7 +425,7 @@ begin
 
 end;
 
-procedure Tjagt_frmArticulosComplementarios.FormShow(Sender: TObject);
+procedure Tfrmjagt.FormShow(Sender: TObject);
 begin
   Application.CreateForm(TfrmBuscarCliente, frmBuscarCliente);
 //  frmBuscarCliente.dbConectar := dbConectar;
@@ -424,21 +452,26 @@ begin
     ATBBEliminar.Enabled := true;
 //    articulo_anterior := edtClave.Text;
     edtClaveExit(self);
+  strgComplementos.HideColumn(cArticulo_id);
+  strgComplementos.HideColumn(cRelacion_id);
+  sstrgAlternativas.HideColumn(cArticulo_id);
+  sstrgAlternativas.HideColumn(cRelacion_id);
+  sstrgAlternativas.HideColumn(cPiezas);
   end;
   if edtClave.Text <> '' then
   edtClave.SetFocus;
 end;
-procedure Tjagt_frmArticulosComplementarios.NuevaAlternativaExecute(Sender: TObject);
+procedure Tfrmjagt.NuevaAlternativaExecute(Sender: TObject);
 begin
   sstrgAlternativas.AddRow;
 end;
 
-procedure Tjagt_frmArticulosComplementarios.NuevoComplementoExecute(Sender: TObject);
+procedure Tfrmjagt.NuevoComplementoExecute(Sender: TObject);
 begin
   strgComplementos.AddRow;
 end;
 
-procedure Tjagt_frmArticulosComplementarios.axv_BorrarRelacion(TipoRel,Rel_Id:string);
+procedure Tfrmjagt.axv_BorrarRelacion(TipoRel,Rel_Id:string);
 var
   fqGuardar:TdmQuerys;
 begin
@@ -458,7 +491,7 @@ begin
   FreeAndNil(fqGuardar);
 end;
 
-procedure Tjagt_frmArticulosComplementarios.edtClaveExit(Sender: TObject);
+procedure Tfrmjagt.edtClaveExit(Sender: TObject);
 var
   text_consulta : string;
 begin
@@ -478,26 +511,26 @@ begin
       edtClave.SetFocus;
       exit;
     end;
-    articulo := dmQuerys.figQuery.FldByName['articulo_id'].AsString;
-    text_consulta := 'select ar.nombre ar_nom, la.nombre la_nom, unidad_venta, es_almacenable, es_juego,es_peso_variable,peso_unitario,ar.estatus ar_st from articulos ar inner join lineas_articulos la    on (la.linea_articulo_id = ar.linea_articulo_id) where articulo_id = ' + articulo;
+    articulo_id := dmQuerys.figQuery.FldByName['articulo_id'].AsString;
+    text_consulta := 'select ar.nombre ar_nom, la.nombre la_nom, unidad_venta, es_almacenable, es_juego,es_peso_variable,peso_unitario,ar.estatus ar_st from articulos ar inner join lineas_articulos la    on (la.linea_articulo_id = ar.linea_articulo_id) where articulo_id = ' + articulo_id;
     InputBox('','',text_consulta);
     ejecuta_consulta_lectura(dbConectar,dmQuerys,text_consulta);
     manipula_formulario(dmQuerys);
 
-    axv_CargarComplementos(articulo);
-    axv_CargarAlternativas(articulo);
+    axv_CargarComplementos(articulo_id);
+    axv_CargarAlternativas(articulo_id);
   end;
 end;
 
-procedure Tjagt_frmArticulosComplementarios.FormKeyPress(Sender: TObject;
+procedure Tfrmjagt.FormKeyPress(Sender: TObject;
   var Key: Char);
 begin
-  if Key=#13 then jagt_frmArticulosComplementarios.Perform(WM_NEXTDLGCTL, 0, 0);
+  if Key=#13 then frmjagt.Perform(WM_NEXTDLGCTL, 0, 0);
   if key = #27 then
     Self.Close;
 end;
 
-procedure Tjagt_frmArticulosComplementarios.PGCArticulosChange(
+procedure Tfrmjagt.PGCArticulosChange(
   Sender: TObject);
 begin
   if (edtClave.Text='') or (edtNombre.Text='')
@@ -508,14 +541,14 @@ begin
   end;
 end;
 
-procedure Tjagt_frmArticulosComplementarios.edtClaveKeyPress(
+procedure Tfrmjagt.edtClaveKeyPress(
   Sender: TObject; var Key: Char);
 begin
-  if Key=#13 then jagt_frmArticulosComplementarios.Perform(WM_NEXTDLGCTL, 0, 0);
+  if Key=#13 then frmjagt.Perform(WM_NEXTDLGCTL, 0, 0);
 
 end;
 
-procedure Tjagt_frmArticulosComplementarios.edtClaveClickBtn(
+procedure Tfrmjagt.edtClaveClickBtn(
   Sender: TObject);
 begin
   frmBuscarCliente.edt_Clave.Text := '';
@@ -530,13 +563,13 @@ begin
 
 end;
 
-procedure Tjagt_frmArticulosComplementarios.ModificarExecute(
+procedure Tfrmjagt.ModificarExecute(
   Sender: TObject);
 begin
 //
 end;
 
-procedure Tjagt_frmArticulosComplementarios.edtNombreClickBtn(
+procedure Tfrmjagt.edtNombreClickBtn(
   Sender: TObject);
 begin
   frmBuscarCliente.edt_Clave.Text := '';
@@ -552,7 +585,7 @@ begin
 
 end;
 
-procedure Tjagt_frmArticulosComplementarios.edtNombreExit(Sender: TObject);
+procedure Tfrmjagt.edtNombreExit(Sender: TObject);
 var
   text_consulta : string;
 begin
@@ -572,19 +605,19 @@ begin
       edtnombre.SetFocus;
       exit;
     end;
-    articulo := dmQuerys.figQuery.FldByName['articulo_id'].AsString;
-    text_consulta := 'select ar.nombre ar_nom, la.nombre la_nom, unidad_venta, es_almacenable, es_juego,es_peso_variable,peso_unitario,ar.estatus ar_st from articulos ar inner join lineas_articulos la    on (la.linea_articulo_id = ar.linea_articulo_id) where articulo_id = ' + articulo;
+    articulo_id := dmQuerys.figQuery.FldByName['articulo_id'].AsString;
+    text_consulta := 'select ar.nombre ar_nom, la.nombre la_nom, unidad_venta, es_almacenable, es_juego,es_peso_variable,peso_unitario,ar.estatus ar_st from articulos ar inner join lineas_articulos la    on (la.linea_articulo_id = ar.linea_articulo_id) where articulo_id = ' + articulo_id;
     InputBox('','',text_consulta);
     ejecuta_consulta_lectura(dbConectar,dmQuerys,text_consulta);
     manipula_formulario (dmQuerys);
 
-    axv_CargarComplementos(articulo);
-    axv_CargarAlternativas(articulo);
+    axv_CargarComplementos(articulo_id);
+    axv_CargarAlternativas(articulo_id);
   end;
 
 end;
 
-procedure Tjagt_frmArticulosComplementarios.NuevoExecute(Sender: TObject);
+procedure Tfrmjagt.NuevoExecute(Sender: TObject);
 begin
   ATBBModificar.Enabled := false;
   ATBBEliminar.Enabled := false;
@@ -594,27 +627,27 @@ begin
 
 end;
 
-procedure Tjagt_frmArticulosComplementarios.GuardarExecute(
+procedure Tfrmjagt.GuardarExecute(
   Sender: TObject);
 begin
 //
 end;
 
-procedure Tjagt_frmArticulosComplementarios.GuardarCerrarExecute(
+procedure Tfrmjagt.GuardarCerrarExecute(
   Sender: TObject);
 begin
-  axv_GuardarComplementos(articulo);
-  axv_GuardarAlternativas(articulo);
+  axv_GuardarComplementos(articulo_id);
+  axv_GuardarAlternativas(articulo_id);
   Self.Close;
 end;
 
-procedure Tjagt_frmArticulosComplementarios.GuardarNuevoExecute(
+procedure Tfrmjagt.GuardarNuevoExecute(
   Sender: TObject);
 begin
 //
 end;
 
-procedure Tjagt_frmArticulosComplementarios.EliminarExecute(
+procedure Tfrmjagt.EliminarExecute(
   Sender: TObject);
 var
   i:integer;
@@ -632,19 +665,19 @@ begin
   end;
 end;
 
-procedure Tjagt_frmArticulosComplementarios.EliminarAlternativaExecute(
+procedure Tfrmjagt.EliminarAlternativaExecute(
   Sender: TObject);
 begin
 //
 end;
 
-procedure Tjagt_frmArticulosComplementarios.EliminarComplementoExecute(
+procedure Tfrmjagt.EliminarComplementoExecute(
   Sender: TObject);
 begin
 //
 end;
 
-procedure Tjagt_frmArticulosComplementarios.sstrgAlternativasCellValidate(
+procedure Tfrmjagt.sstrgAlternativasCellValidate(
   Sender: TObject; ACol, ARow: Integer; var Value: String;
   var Valid: Boolean);
 var
@@ -660,7 +693,7 @@ begin
   end;
 end;
 
-procedure Tjagt_frmArticulosComplementarios.strgComplementosCellValidate(
+procedure Tfrmjagt.strgComplementosCellValidate(
   Sender: TObject; ACol, ARow: Integer; var Value: String;
   var Valid: Boolean);
 var

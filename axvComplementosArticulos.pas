@@ -73,14 +73,13 @@ type
     cxServidor, //  '192.168.3.6; cualquiera que sea el servidor microsip';
     cxProtocolo //  0: tcp/ip 1: net/bieu   2: spx
     : string;
-  es_nuevo : boolean;
   end;
 
 var
   axv_frmArticulosComplementarios: Taxv_frmArticulosComplementarios;
 
 implementation
-uses Database, Query, FIBQuery, pFIBQuery, DateUtils, buscarclientes, db_operaciones,
+uses Database, Query, FIBQuery, pFIBQuery, DateUtils,
   Math;
 var
   dbConectar:TdmDataBase;
