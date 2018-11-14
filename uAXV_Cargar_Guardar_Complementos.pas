@@ -90,6 +90,10 @@ type
     procedure MostrarAlternativasExecute(Sender: TObject);
     procedure MostrarComplementosExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure sstrgAlternativasEllipsClick(Sender: TObject; ACol,
+      ARow: Integer; var S: String);
+    procedure sstrgAlternativasButtonClick(Sender: TObject; ACol,
+      ARow: Integer);
   private
     { Private declarations }
   public
@@ -330,7 +334,7 @@ begin
   cxProtocolo:='0';
   cxCarpeta  :='C:\Microsip datos\';
   ConectarADB;
-  articulo_id:='383277';
+  articulo_id:='263059';
   axv_CargarComplementos(articulo_id);
   axv_CargarAlternativas(articulo_id);
   strgComplementos.HideColumn(cArticulo_id);
@@ -358,6 +362,8 @@ begin
   fqGuardar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
   fqGuardar.dbtTransaccion.Active:=true;
   fqGuardar.figQuery.Database:=dbConectar.idbDatabase;}
+  if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
+  fqDummy.dbtTransaccion.Active:=true;
   with fqDummy.figQuery do begin
     Close;
     SQL.Clear;
@@ -374,30 +380,38 @@ procedure TfrmAXV.sstrgAlternativasKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   If (key=46) and (ssCtrl in shift)then
-    if sstrgAlternativas.RowCount=2 then begin
+    if (sstrgAlternativas.Row=2) then begin
+      if (sstrgAlternativas.Cells[cRelacion_id,sstrgAlternativas.Row]<>'') then axv_BorrarRelacion('C',sstrgAlternativas.Cells[cRelacion_id,sstrgAlternativas.Row]);
       sstrgAlternativas.ClearRows(sstrgAlternativas.Row,1);
     end else begin
       sstrgAlternativas.RemoveRows(sstrgAlternativas.Row,1);
     end;
-  If (key=38) and (sstrgAlternativas.RowCount>2) and (sstrgAlternativas.Cells[cArticulo_id,sstrgAlternativas.Row]='') then begin
+  If (key=38) and (sstrgAlternativas.RowCount>2) then begin
+    if (sstrgAlternativas.Cells[cArticulo_id,sstrgAlternativas.Row]<>'') then axv_BorrarRelacion('C',sstrgAlternativas.Cells[cRelacion_id,sstrgAlternativas.Row]);
     sstrgAlternativas.RowCount:=sstrgAlternativas.RowCount-1;
     Abort;
   end;
+  if (key=40) and (sstrgAlternativas.Cells[cArticulo_id,sstrgAlternativas.Row]<>'') and (sstrgAlternativas.Row=sstrgAlternativas.RowCount-1)
+  then sstrgAlternativas.AddRow;
 end;
 
 procedure TfrmAXV.strgComplementosKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   If (key=46) and (ssCtrl in shift)then
-    if strgComplementos.RowCount=2 then begin
+    if (strgComplementos.Row=2) then begin
+      if (strgComplementos.Cells[cRelacion_id,strgComplementos.Row]<>'') then axv_BorrarRelacion('C',strgComplementos.Cells[cRelacion_id,strgComplementos.Row]);
       strgComplementos.ClearRows(strgComplementos.Row,1);
     end else begin
+      if (strgComplementos.Cells[cRelacion_id,strgComplementos.Row]<>'') then axv_BorrarRelacion('C',strgComplementos.Cells[cRelacion_id,strgComplementos.Row]);
       strgComplementos.RemoveRows(strgComplementos.Row,1);
     end;
   If (key=38) and (strgComplementos.RowCount>2) and (strgComplementos.Cells[cArticulo_id,strgComplementos.Row]='') then begin
     strgComplementos.RowCount:=strgComplementos.RowCount-1;
     Abort;
   end;
+  if (key=40) and (strgComplementos.Cells[cArticulo_id,strgComplementos.Row]<>'') and (strgComplementos.Row=strgComplementos.RowCount-1)
+  then strgComplementos.AddRow;
 end;
 
 procedure TfrmAXV.sstrgAlternativasCanAddRow(Sender: TObject;
@@ -483,14 +497,14 @@ procedure TfrmAXV.EliminarAlternativaExecute(Sender: TObject);
 begin
   if (sstrgAlternativas.Cells[cRelacion_id,sstrgAlternativas.Row] = '') and (sstrgAlternativas.Row>0)
   then sstrgAlternativas.RemoveRows(sstrgAlternativas.Row,1)
-  else axv_BorrarRelacion('A',sstrgAlternativas.Cells[cRelacion_id,sstrgAlternativas.Row]);
+  else if (sstrgAlternativas.Row>0) then axv_BorrarRelacion('A',sstrgAlternativas.Cells[cRelacion_id,sstrgAlternativas.Row]);
 end;
 
 procedure TfrmAXV.EliminarComplementoExecute(Sender: TObject);
 begin
   if (strgComplementos.Cells[cRelacion_id,strgComplementos.Row] = '') and (strgComplementos.Row>0)
   then strgComplementos.RemoveRows(strgComplementos.Row,1)
-  else axv_BorrarRelacion('C',strgComplementos.Cells[cRelacion_id,strgComplementos.Row]);
+  else if (strgComplementos.Row>0) then axv_BorrarRelacion('C',strgComplementos.Cells[cRelacion_id,strgComplementos.Row]);
 end;
 
 procedure TfrmAXV.strgComplementosCellValidate(Sender: TObject; ACol,
@@ -514,7 +528,9 @@ begin
   Eliminar.Enabled:=False;
   Modificar.Enabled:=False;
   strgComplementos.Enabled:=True;
+  if strgComplementos.RowCount=1 then strgComplementos.AddRow;
   sstrgAlternativas.Enabled:=True;
+  if sstrgAlternativas.RowCount=1 then sstrgAlternativas.AddRow;
   NuevaAlternativa.Enabled:=True;
   NuevoComplemento.Enabled:=true;
   EliminarAlternativa.Enabled:=True;
@@ -593,6 +609,45 @@ procedure TfrmAXV.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FreeAndNil(dbConectar);
   FreeAndNil(fqDummy);
+end;
+
+procedure TfrmAXV.sstrgAlternativasEllipsClick(Sender: TObject; ACol,
+  ARow: Integer; var S: String);
+Var
+  filas, columnas:integer;
+begin
+ {   if((sstrgAlternativas.Col = cClave) or (sstrgAlternativas.Col = cNombre)) then begin
+    frmBuscarCliente:=TfrmBuscarCliente.Create(self);
+    frmBuscarCliente.dbNombre := dbNombre;
+    frmBuscarCliente.dbUsuario := dbUsuario;
+    frmBuscarCliente.dbPass:= dbPass;
+    frmBuscarCliente.cxTipo := cxTipo;
+    frmBuscarCliente.cxNombre := cxNombre;
+    frmBuscarCliente.cxServidor := cxServidor;
+    frmBuscarCliente.cxProtocolo := cxProtocolo;
+    frmBuscarCliente.cxCarpeta := cxCarpeta;
+    if grdArticulos.Col = cClave then begin
+      frmBuscarCliente.tipoBusqueda:='Clave';
+      frmBuscarCliente.edtClave.text:=sstrgAlternativas.Cells[cClave,grdArticulos.Row];
+    end else if grdArticulos.col = cNombre then begin
+      frmBuscarCliente.tipoBusqueda:='Nombre';
+      frmBuscarCliente.edtClave.text:=sstrgAlternativas.Cells[cNombre,grdArticulos.Row];
+    end;
+    frmBuscarCliente.origenBusqueda:='Artículo';
+    frmBuscarCliente.ShowModal;
+    if frmBuscarCliente.resultadoClave <> '' then begin
+      sstrgAlternativas.Cells[cClave,grdArticulos.Row]:=frmBuscarCliente.resultadoClave;
+      sstrgAlternativas.Cells[cNombre,grdArticulos.Row]:=frmBuscarCliente.resultadoNombre;
+      sstrgAlternativas.Cells[cArticulo_id_dest,grdArticulos.Row]:=frmBuscarCliente.resultadoID;
+    end;
+    FreeAndNil(frmBuscarCliente);
+  end;   }
+end;
+
+procedure TfrmAXV.sstrgAlternativasButtonClick(Sender: TObject; ACol,
+  ARow: Integer);
+begin
+  ShowMessage('');
 end;
 
 end.

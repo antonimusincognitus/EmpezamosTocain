@@ -232,7 +232,7 @@ object frmAXV: TfrmAXV
     Top = 59
     Width = 472
     Height = 270
-    ActivePage = tabComplementos
+    ActivePage = tabAlternativas
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -500,6 +500,8 @@ object frmAXV: TfrmAXV
         GridFixedLineColor = 13947601
         OnCanAddRow = sstrgAlternativasCanAddRow
         OnCellValidate = sstrgAlternativasCellValidate
+        OnEllipsClick = sstrgAlternativasEllipsClick
+        OnButtonClick = sstrgAlternativasButtonClick
         HintShowCells = True
         HintShowLargeText = True
         HintShowSizing = True
@@ -551,6 +553,7 @@ object frmAXV: TfrmAXV
         FilterDropDownClear = '(All)'
         FixedColWidth = 78
         FixedRowHeight = 22
+        FixedRowAlways = True
         FixedFont.Charset = DEFAULT_CHARSET
         FixedFont.Color = clWindowText
         FixedFont.Height = -11
@@ -690,6 +693,7 @@ object frmAXV: TfrmAXV
         FilterDropDownClear = '(All)'
         FixedColWidth = 78
         FixedRowHeight = 22
+        FixedRowAlways = True
         FixedFont.Charset = DEFAULT_CHARSET
         FixedFont.Color = clWindowText
         FixedFont.Height = -11
@@ -697,6 +701,7 @@ object frmAXV: TfrmAXV
         FixedFont.Style = [fsBold]
         FloatFormat = '%.2f'
         Look = glVista
+        Navigation.AdvanceOnEnter = True
         PrintSettings.DateFormat = 'dd/mm/yyyy'
         PrintSettings.Font.Charset = DEFAULT_CHARSET
         PrintSettings.Font.Color = clWindowText
