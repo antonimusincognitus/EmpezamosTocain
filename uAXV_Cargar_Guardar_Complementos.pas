@@ -90,10 +90,14 @@ type
     procedure MostrarAlternativasExecute(Sender: TObject);
     procedure MostrarComplementosExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure sstrgAlternativasGetEditorType(Sender: TObject; ACol,
+      ARow: Integer; var AEditor: TEditorType);
+    procedure strgComplementosGetEditorType(Sender: TObject; ACol,
+      ARow: Integer; var AEditor: TEditorType);
+    procedure strgComplementosEllipsClick(Sender: TObject; ACol,
+      ARow: Integer; var S: String);
     procedure sstrgAlternativasEllipsClick(Sender: TObject; ACol,
       ARow: Integer; var S: String);
-    procedure sstrgAlternativasButtonClick(Sender: TObject; ACol,
-      ARow: Integer);
   private
     { Private declarations }
   public
@@ -115,7 +119,7 @@ var
 
 implementation
 uses Database, Query, FIBQuery, pFIBQuery, DateUtils, uAXV_Mostrar_Relaciones,
-  Math, jagtComplementosArticulos;
+  Math, jagtComplementosArticulos, buscarclientes;
 var
   dbConectar:TdmDataBase;
   fqDummy:TdmQuerys;
@@ -239,12 +243,12 @@ var
 begin
   if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
   fqDummy.dbtTransaccion.Active:=true;
-  for i:=1 to frmAXV.strgComplementos.RowCount-1 do begin
-    with fqDummy.figQuery do begin
+  for i:=1 to frmAXV.sstrgAlternativas.RowCount-1 do begin
+    if frmAXV.sstrgAlternativas.Cells[cArticulo_id,i]<>'' then with fqDummy.figQuery do begin
       Close;
       SQL.Clear;
       SQL.Add('update or insert into lm_articulos_rel (articulo_rel_id, articulo_id_ori, articulo_id_dest,unidades_relacionadas, notas,tipo_relacion)');
-      if strgComplementos.Cells[cRelacion_id,i] = ''
+      if sstrgAlternativas.Cells[cRelacion_id,i] = ''
       then SQL.Add('values  ((gen_id(id_articulos_rel,1))')
       else SQL.Add('values  ('+sstrgAlternativas.Cells[cRelacion_id,i]);
       SQL.Add(' ,' + articulo_id_ori //id_ori
@@ -256,17 +260,17 @@ begin
       //ShowMessage(SQL.GetText);
       ExecQuery;
     end;//with
+    if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
   end;//for
-  if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
 end;
 
 //INSERTA COMPLEMENTOS EN LA BASE DE DATOS
 procedure TfrmAXV.axv_GuardarComplementos(articulo_id_ori:string);
 var
-  i:integer;
+  i,j:integer;
 begin
   for i:=1 to frmAXV.strgComplementos.RowCount-1 do begin
-    with fqDummy.figQuery do begin
+    if frmAXV.strgComplementos.Cells[cArticulo_id,i]<>'' then with fqDummy.figQuery do begin
       Close;
       SQL.Clear;
       SQL.Add('update or insert into lm_articulos_rel (articulo_rel_id, articulo_id_ori, articulo_id_dest,unidades_relacionadas, notas,tipo_relacion)');
@@ -282,8 +286,8 @@ begin
       //ShowMessage(SQL.GetText);
       ExecQuery;
     end;//with
+    if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
   end;//for
-  if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
 end;
 
 //CONSULTA EL DOCUMENTO ORIGEN PARA EVITAR QUE LO MODIFIQUEN
@@ -346,12 +350,12 @@ end;
 
 procedure TfrmAXV.NuevaAlternativaExecute(Sender: TObject);
 begin
-  sstrgAlternativas.AddRow;
+  if (sstrgAlternativas.Cells[cArticulo_id,sstrgAlternativas.RowCount-1]<>'') and (sstrgAlternativas.RowCount>1) then sstrgAlternativas.AddRow;
 end;
 
 procedure TfrmAXV.NuevoComplementoExecute(Sender: TObject);
 begin
-  strgComplementos.AddRow;
+  if (strgComplementos.Cells[cArticulo_id,strgComplementos.RowCount-1]<>'') and (strgComplementos.RowCount>1) then strgComplementos.AddRow;
 end;
 
 procedure TfrmAXV.axv_BorrarRelacion(TipoRel,Rel_Id:string);
@@ -611,13 +615,45 @@ begin
   FreeAndNil(fqDummy);
 end;
 
-procedure TfrmAXV.sstrgAlternativasEllipsClick(Sender: TObject; ACol,
-  ARow: Integer; var S: String);
-Var
-  filas, columnas:integer;
+procedure TfrmAXV.sstrgAlternativasGetEditorType(Sender: TObject; ACol,
+  ARow: Integer; var AEditor: TEditorType);
 begin
- {   if((sstrgAlternativas.Col = cClave) or (sstrgAlternativas.Col = cNombre)) then begin
-    frmBuscarCliente:=TfrmBuscarCliente.Create(self);
+  case ACol of
+    cClave: begin
+      AEditor:=edEditBtn;
+      sstrgAlternativas.BtnEdit.Glyph:=edtClave.Glyph;
+      sstrgAlternativas.BtnEdit.ButtonCaption:='';
+    end;
+    cNombre: begin
+      AEditor:=edEditBtn;
+      sstrgAlternativas.BtnEdit.Glyph:=edtClave.Glyph;
+      sstrgAlternativas.BtnEdit.ButtonCaption:='';
+    end;
+  end;
+end;
+
+procedure TfrmAXV.strgComplementosGetEditorType(Sender: TObject; ACol,
+  ARow: Integer; var AEditor: TEditorType);
+begin
+  case ACol of
+    cClave: begin
+      AEditor:=edEditBtn;
+      strgComplementos.BtnEdit.Glyph:=edtClave.Glyph;
+      strgComplementos.BtnEdit.ButtonCaption:='';
+    end;
+    cNombre: begin
+      AEditor:=edEditBtn;
+      strgComplementos.BtnEdit.Glyph:=edtClave.Glyph;
+      strgComplementos.BtnEdit.ButtonCaption:='';
+    end;
+    cPiezas: AEditor:=edNumeric;{evitar que se escriban letras en en lugar de canitidades}
+  end;
+end;
+
+function BuscarDesdeGrid(grd:TAdvStringGrid; C,R:integer;dbNombre,dbUsuario,dbPass,cxTipo,cxNombre,cxServidor,cxProtocolo,cxCarpeta:string):string;
+begin
+    if((C = cClave) or (C = cNombre)) then begin
+    frmBuscarCliente:=TfrmBuscarCliente.Create(nil);
     frmBuscarCliente.dbNombre := dbNombre;
     frmBuscarCliente.dbUsuario := dbUsuario;
     frmBuscarCliente.dbPass:= dbPass;
@@ -626,28 +662,39 @@ begin
     frmBuscarCliente.cxServidor := cxServidor;
     frmBuscarCliente.cxProtocolo := cxProtocolo;
     frmBuscarCliente.cxCarpeta := cxCarpeta;
-    if grdArticulos.Col = cClave then begin
+    if C = cClave then begin
       frmBuscarCliente.tipoBusqueda:='Clave';
-      frmBuscarCliente.edtClave.text:=sstrgAlternativas.Cells[cClave,grdArticulos.Row];
-    end else if grdArticulos.col = cNombre then begin
+      frmBuscarCliente.edtClave.text:=grd.Cells[cClave,R];
+    end else if C = cNombre then begin
       frmBuscarCliente.tipoBusqueda:='Nombre';
-      frmBuscarCliente.edtClave.text:=sstrgAlternativas.Cells[cNombre,grdArticulos.Row];
+      frmBuscarCliente.edtClave.text:=grd.Cells[cNombre,R];
     end;
     frmBuscarCliente.origenBusqueda:='Artículo';
     frmBuscarCliente.ShowModal;
     if frmBuscarCliente.resultadoClave <> '' then begin
-      sstrgAlternativas.Cells[cClave,grdArticulos.Row]:=frmBuscarCliente.resultadoClave;
-      sstrgAlternativas.Cells[cNombre,grdArticulos.Row]:=frmBuscarCliente.resultadoNombre;
-      sstrgAlternativas.Cells[cArticulo_id_dest,grdArticulos.Row]:=frmBuscarCliente.resultadoID;
+      grd.Cells[cClave,R]:=frmBuscarCliente.resultadoClave;
+      grd.Cells[cNombre,R]:=frmBuscarCliente.resultadoNombre;
+      grd.Cells[cArticulo_id,R]:=frmBuscarCliente.resultadoID;
+      grd.AllInts[cPiezas,R]:=1;
+    end;
+    case C of
+      cClave: Result:=frmBuscarCliente.resultadoClave;
+      cNombre: Result:=frmBuscarCliente.resultadoNombre;
     end;
     FreeAndNil(frmBuscarCliente);
-  end;   }
+  end;
 end;
 
-procedure TfrmAXV.sstrgAlternativasButtonClick(Sender: TObject; ACol,
-  ARow: Integer);
+procedure TfrmAXV.strgComplementosEllipsClick(Sender: TObject; ACol,
+  ARow: Integer; var S: String);
 begin
-  ShowMessage('');
+  S:= BuscarDesdeGrid(strgComplementos,ACol,ARow,dbNombre,dbUsuario,dbPass,cxTipo,cxNombre,cxServidor,cxProtocolo,cxCarpeta);
+end;
+
+procedure TfrmAXV.sstrgAlternativasEllipsClick(Sender: TObject; ACol,
+  ARow: Integer; var S: String);
+begin
+  S:=BuscarDesdeGrid(sstrgAlternativas,ACol,ARow,dbNombre,dbUsuario,dbPass,cxTipo,cxNombre,cxServidor,cxProtocolo,cxCarpeta);
 end;
 
 end.

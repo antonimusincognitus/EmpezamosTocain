@@ -99,25 +99,25 @@ begin
     SQL.Clear;
     if (frmBuscarCliente.tipoBusqueda='Clave') and (frmBuscarCliente.origenBusqueda='Cliente') then
       SQL.Add('select c.nombre, c.cliente_id as id, k.clave_cliente as clave from clientes as c '
-        + 'inner join claves_clientes as k on c.cliente_id = k.cliente_id and k.rol_clave_art_id=(select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S'')'
+        + 'inner join claves_clientes as k on c.cliente_id = k.cliente_id and k.rol_clave_art_id=(select id from roles_claves_articulos where es_ppal = ''S'')'
         + txtSQLbuscado('k.clave_cliente')
 //        + ' order by clave'
         )
     else if (frmBuscarCliente.tipoBusqueda='Nombre') and (frmBuscarCliente.origenBusqueda='Cliente') then
       SQL.Add('select c.nombre, c.cliente_id as id, k.clave_cliente as clave from clientes as c '
-        + 'left join claves_clientes as k on c.cliente_id = k.cliente_id and k.rol_clave_art_id=(select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S'')'
+        + 'left join claves_clientes as k on c.cliente_id = k.cliente_id and k.rol_clave_art_id=(select id from roles_claves_articulos where es_ppal = ''S'')'
         + txtSQLbuscado('c.nombre')
 //        + ' order by nombre'
         )
     else if (frmBuscarCliente.tipoBusqueda='Clave') and (frmBuscarCliente.origenBusqueda='Artículo') then
       SQL.Add('select a.nombre, a.articulo_id as id, k.clave_articulo as clave from articulos as a '
-        + 'inner join claves_articulos as k on a.articulo_id = k.articulo_id and k.rol_clave_art_id=(select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S'')'
+        + 'inner join claves_articulos as k on a.articulo_id = k.articulo_id and k.rol_clave_art_id=(select id from roles_claves_articulos where es_ppal = ''S'')'
         + txtSQLbuscado('k.clave_articulo')
 //        + ' order by clave'
         )
     else if (frmBuscarCliente.tipoBusqueda='Nombre') and (frmBuscarCliente.origenBusqueda='Artículo') then
       SQL.Add('select a.nombre, a.articulo_id as id, k.clave_articulo as clave from articulos as a '
-        + 'left join claves_articulos as k on a.articulo_id = k.articulo_id and k.rol_clave_art_id=(select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S'')'
+        + 'left join claves_articulos as k on a.articulo_id = k.articulo_id and k.rol_clave_art_id=(select id from roles_claves_articulos where es_ppal = ''S'')'
         + txtSQLbuscado('a.nombre')
 //        + ' order by nombre'
         );

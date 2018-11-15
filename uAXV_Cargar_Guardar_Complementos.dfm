@@ -500,8 +500,8 @@ object frmAXV: TfrmAXV
         GridFixedLineColor = 13947601
         OnCanAddRow = sstrgAlternativasCanAddRow
         OnCellValidate = sstrgAlternativasCellValidate
+        OnGetEditorType = sstrgAlternativasGetEditorType
         OnEllipsClick = sstrgAlternativasEllipsClick
-        OnButtonClick = sstrgAlternativasButtonClick
         HintShowCells = True
         HintShowLargeText = True
         HintShowSizing = True
@@ -645,6 +645,8 @@ object frmAXV: TfrmAXV
         GridFixedLineColor = 13947601
         OnCanAddRow = strgComplementosCanAddRow
         OnCellValidate = strgComplementosCellValidate
+        OnGetEditorType = strgComplementosGetEditorType
+        OnEllipsClick = strgComplementosEllipsClick
         ActiveCellFont.Charset = DEFAULT_CHARSET
         ActiveCellFont.Color = clWindowText
         ActiveCellFont.Height = -11

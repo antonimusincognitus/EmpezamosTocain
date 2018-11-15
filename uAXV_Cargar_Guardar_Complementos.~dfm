@@ -500,6 +500,7 @@ object frmAXV: TfrmAXV
         GridFixedLineColor = 13947601
         OnCanAddRow = sstrgAlternativasCanAddRow
         OnCellValidate = sstrgAlternativasCellValidate
+        OnGetEditorType = sstrgAlternativasGetEditorType
         OnEllipsClick = sstrgAlternativasEllipsClick
         HintShowCells = True
         HintShowLargeText = True
@@ -644,6 +645,8 @@ object frmAXV: TfrmAXV
         GridFixedLineColor = 13947601
         OnCanAddRow = strgComplementosCanAddRow
         OnCellValidate = strgComplementosCellValidate
+        OnGetEditorType = strgComplementosGetEditorType
+        OnEllipsClick = strgComplementosEllipsClick
         ActiveCellFont.Charset = DEFAULT_CHARSET
         ActiveCellFont.Color = clWindowText
         ActiveCellFont.Height = -11
@@ -700,6 +703,7 @@ object frmAXV: TfrmAXV
         FixedFont.Style = [fsBold]
         FloatFormat = '%.2f'
         Look = glVista
+        Navigation.AdvanceOnEnter = True
         PrintSettings.DateFormat = 'dd/mm/yyyy'
         PrintSettings.Font.Charset = DEFAULT_CHARSET
         PrintSettings.Font.Color = clWindowText
