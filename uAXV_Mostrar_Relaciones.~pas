@@ -19,6 +19,7 @@ type
     btnAceptar: TAdvGlowButton;
     btnCancelar: TAdvGlowButton;
     lblClave: TLabel;
+    lblRelacion: TLabel;
     procedure grdRelacionesCanEditCell(Sender: TObject; ARow,
       ACol: Integer; var CanEdit: Boolean);
     procedure grdRelacionesAutoAddRow(Sender: TObject; ARow: Integer);
@@ -112,7 +113,6 @@ begin
       + ' left join get_precio_art(a.articulo_id,(select precio_empresa_id from precios_empresa where nombre = ''Precio minimo''),1,''now'',(select precio_empresa_id from precios_empresa where nombre = ''Precio de lista'')) as p2'
       + '   on (a.articulo_id = p2.articulo_id)'
       + ' where a.articulo_id = ' + articulo_id_ori);
-    ShowMessage(SQL.GetText);
     ExecQuery;
     if fn('articulo').AsString <> '' then begin
         FrmMostrarRelaciones.lblArticulo.Caption:=fn('articulo').AsString;
@@ -208,11 +208,13 @@ end;
 procedure TFrmMostrarRelaciones.btnAceptarClick(Sender: TObject);
 var
   i:integer;
-  state:Boolean;
 begin
   for i:=1 to grdRelaciones.RowCount-1 do begin
-    grdRelaciones.GetCheckBoxState(cSelect,i,State);
-    if state then grdRelaciones.RemoveRows(i,1);
+    ShowMessage(BoolToStr(grdRelaciones.IsChecked(cSelect,i)));
+    if grdRelaciones.IsChecked(cSelect,i) then begin
+     ShowMessage(IntToStr(i));
+     //grdRelaciones.RemoveRows(i,1);
+    end;
   end;
 end;
 
@@ -221,11 +223,18 @@ begin
   ConectarADB;
   axv_CargarArticulo_Ori(articulo_id);
   axv_CargarRelaciones(articulo_id,relacion,grdRelaciones);
+  grdRelaciones.HideColumns(cArticulo_id,cArticulo_id);
   if relacion = 'C' then begin
     //
+    lblRelacion.Caption:='Complementos';
+    Self.Caption:='Complementos del articulo';
   end else if relacion = 'A' then begin
     //
+    lblRelacion.Caption:='Alternativas';
+    Self.Caption:='Alternativas del articulo';
   end;
+  //lblRelacion.Align:=alClient;
+  lblRelacion.Alignment:=taCenter;
 end;
 
 end.

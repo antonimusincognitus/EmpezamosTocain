@@ -229,10 +229,10 @@ object frmAXV: TfrmAXV
   end
   object PGCArticulos: TAdvPageControl
     Left = 8
-    Top = 59
+    Top = 63
     Width = 472
     Height = 270
-    ActivePage = tabAlternativas
+    ActivePage = tabComplementos
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11

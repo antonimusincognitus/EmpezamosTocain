@@ -2,9 +2,9 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
   Left = 192
   Top = 125
   Width = 736
-  Height = 425
+  Height = 440
   Caption = 'Relaciones del articulo'
-  Color = clBtnHighlight
+  Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -15,12 +15,12 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
   PixelsPerInch = 96
   TextHeight = 14
   object lblArticulo: TLabel
-    Left = 144
-    Top = 14
+    Left = 145
+    Top = 38
     Width = 77
     Height = 19
     Caption = 'lblArticulo'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -30,87 +30,102 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     ParentFont = False
   end
   object lblPrecioPublico: TLabel
-    Left = 16
-    Top = 38
-    Width = 116
-    Height = 19
+    Left = 17
+    Top = 62
+    Width = 104
+    Height = 18
     Caption = 'Precio p'#250'blico:'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
     Font.Name = 'Arial'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentColor = False
     ParentFont = False
   end
   object lblExistencias: TLabel
-    Left = 16
-    Top = 61
-    Width = 94
-    Height = 19
+    Left = 17
+    Top = 85
+    Width = 84
+    Height = 18
     Caption = 'Existencias:'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
     Font.Name = 'Arial'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentColor = False
     ParentFont = False
   end
   object lblPrecio1: TLabel
     Left = 144
-    Top = 38
-    Width = 76
-    Height = 19
+    Top = 63
+    Width = 70
+    Height = 18
     Caption = 'lblPrecio1'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
     Font.Name = 'Arial'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentColor = False
     ParentFont = False
   end
   object lblPrecioMinimo: TLabel
-    Left = 285
-    Top = 38
-    Width = 114
-    Height = 19
+    Left = 286
+    Top = 62
+    Width = 104
+    Height = 18
     Caption = 'Precio M'#237'nimo:'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
     Font.Name = 'Arial'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentColor = False
     ParentFont = False
   end
   object lblPrecio2: TLabel
-    Left = 409
-    Top = 38
-    Width = 76
-    Height = 19
+    Left = 410
+    Top = 62
+    Width = 70
+    Height = 18
     Caption = 'lblPrecio2'
-    Color = clBtnHighlight
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
     Font.Name = 'Arial'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentColor = False
     ParentFont = False
   end
   object lblExis1: TLabel
-    Left = 143
-    Top = 61
-    Width = 115
-    Height = 19
+    Left = 144
+    Top = 85
+    Width = 104
+    Height = 18
     Caption = 'lblExistencias1'
-    Color = clBtnHighlight
+    Color = clBtnFace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+  end
+  object lblClave: TLabel
+    Left = 17
+    Top = 38
+    Width = 67
+    Height = 19
+    Caption = 'lblClave:'
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -119,24 +134,24 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     ParentColor = False
     ParentFont = False
   end
-  object lblClave: TLabel
-    Left = 16
-    Top = 14
-    Width = 67
-    Height = 19
-    Caption = 'lblClave:'
-    Color = clBtnHighlight
+  object lblRelacion: TLabel
+    Left = 264
+    Top = -1
+    Width = 204
+    Height = 33
+    Caption = 'TIPO_RELACION'
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Arial'
+    Font.Color = clHotLight
+    Font.Height = -24
+    Font.Name = 'Arial Unicode MS'
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
   end
   object grdRelaciones: TAdvStringGrid
-    Left = 16
-    Top = 88
+    Left = 17
+    Top = 112
     Width = 689
     Height = 250
     Cursor = crDefault
@@ -167,8 +182,6 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
       'Precio Min'
       'Existencias'
       'Articulo_id')
-    ControlLook.FixedGradientFrom = clWhite
-    ControlLook.FixedGradientTo = clBtnFace
     ControlLook.FixedGradientHoverFrom = 13619409
     ControlLook.FixedGradientHoverTo = 12502728
     ControlLook.FixedGradientHoverMirrorFrom = 12502728
@@ -266,8 +279,8 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
       64)
   end
   object btnAceptar: TAdvGlowButton
-    Left = 477
-    Top = 344
+    Left = 478
+    Top = 368
     Width = 100
     Height = 25
     Caption = 'btnAceptar'
@@ -296,8 +309,8 @@ object FrmMostrarRelaciones: TFrmMostrarRelaciones
     Appearance.ColorMirrorDisabledTo = 15921906
   end
   object btnCancelar: TAdvGlowButton
-    Left = 605
-    Top = 344
+    Left = 606
+    Top = 368
     Width = 100
     Height = 25
     Caption = 'Cancelar'

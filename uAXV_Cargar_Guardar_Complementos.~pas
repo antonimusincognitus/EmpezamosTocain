@@ -243,7 +243,7 @@ var
 begin
   if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
   fqDummy.dbtTransaccion.Active:=true;
-  for i:=1 to frmAXV.strgComplementos.RowCount-1 do begin
+  for i:=1 to frmAXV.sstrgAlternativas.RowCount-1 do begin
     if frmAXV.sstrgAlternativas.Cells[cArticulo_id,i]<>'' then with fqDummy.figQuery do begin
       Close;
       SQL.Clear;

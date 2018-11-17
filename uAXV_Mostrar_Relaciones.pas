@@ -19,6 +19,7 @@ type
     btnAceptar: TAdvGlowButton;
     btnCancelar: TAdvGlowButton;
     lblClave: TLabel;
+    lblRelacion: TLabel;
     procedure grdRelacionesCanEditCell(Sender: TObject; ARow,
       ACol: Integer; var CanEdit: Boolean);
     procedure grdRelacionesAutoAddRow(Sender: TObject; ARow: Integer);
@@ -225,9 +226,15 @@ begin
   grdRelaciones.HideColumns(cArticulo_id,cArticulo_id);
   if relacion = 'C' then begin
     //
+    lblRelacion.Caption:='Complementos';
+    Self.Caption:='Complementos del articulo';
   end else if relacion = 'A' then begin
     //
+    lblRelacion.Caption:='Alternativas';
+    Self.Caption:='Alternativas del articulo';
   end;
+  lblRelacion.Align:=alTop;
+  lblRelacion.Alignment:=taCenter;
 end;
 
 end.

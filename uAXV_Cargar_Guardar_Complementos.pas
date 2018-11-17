@@ -390,8 +390,7 @@ begin
     end else begin
       sstrgAlternativas.RemoveRows(sstrgAlternativas.Row,1);
     end;
-  If (key=38) and (sstrgAlternativas.RowCount>2) then begin
-    if (sstrgAlternativas.Cells[cArticulo_id,sstrgAlternativas.Row]<>'') then axv_BorrarRelacion('C',sstrgAlternativas.Cells[cRelacion_id,sstrgAlternativas.Row]);
+  If (key=38) and (sstrgAlternativas.RowCount>2) and (sstrgAlternativas.Cells[cArticulo_id,sstrgAlternativas.Row]='') then begin
     sstrgAlternativas.RowCount:=sstrgAlternativas.RowCount-1;
     Abort;
   end;
@@ -573,6 +572,25 @@ begin
     Eliminar.Enabled:=True;
     Modificar.Enabled:=True;
   end;
+end;
+
+
+//llama al formulario para msotrar las relaciones con parametrso de entrada
+procedure MostrarRelaciones(grd:TAdvStringGrid; articulo_id,tipo_rel,dbNombre,dbUsuario,dbPass,cxTipo,cxNombre,cxServidor,cxProtocolo,cxCarpeta:string);
+begin
+  FrmMostrarRelaciones:=TFrmMostrarRelaciones.Create(nil);
+  FrmMostrarRelaciones.dbNombre:=dbNombre;   //  'Prueba_Diagonal';
+  FrmMostrarRelaciones.dbUsuario:=dbUsuario;  //  '16ANTONIOG';
+  FrmMostrarRelaciones.dbPass:=dbPass;     //  '123456';
+  FrmMostrarRelaciones.cxTipo:=cxTipo;     //  '1 local; 0 remoto';
+  FrmMostrarRelaciones.cxNombre:=cxNombre;   //  'Local,16Lumi, conexion, etc';
+  FrmMostrarRelaciones.cxCarpeta:=cxCarpeta;  //  ''C:\Microsip datos\';
+  FrmMostrarRelaciones.cxServidor:=cxServidor; //  '192.168.3.6; cualquiera que sea el servidor microsip';
+  FrmMostrarRelaciones.cxProtocolo:=cxProtocolo; //  0: tcp/ip 1: net/bieu   2: spx
+  FrmMostrarRelaciones.articulo_id:=articulo_id; //el articulo del que recuperamos la relación
+  FrmMostrarRelaciones.relacion:=tipo_rel;
+  FrmMostrarRelaciones.ShowModal;
+  FreeAndNil(FrmMostrarRelaciones);
 end;
 
 procedure TfrmAXV.MostrarAlternativasExecute(Sender: TObject);
