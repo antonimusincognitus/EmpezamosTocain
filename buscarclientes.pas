@@ -10,7 +10,7 @@ type
   TfrmBuscarCliente = class(TForm)
     cbxCoincidirMayusculas: TCheckBox;
     cbxPalabras: TCheckBox;
-    edt_Clave: TAdvEdit;
+    edtClave: TAdvEdit;
     lbllistaClentes: TLabel;
     sgBusqueda: TAdvStringGrid;
     btnBuscar: TButton;
@@ -23,18 +23,19 @@ type
       Shift: TShiftState);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnAceptarClick(Sender: TObject);
-    procedure edt_ClaveChange_(Sender: TObject);
+    procedure edtClaveChange_(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure edt_ClaveValueValidate(Sender: TObject; Value: String;
+    procedure edtClaveValueValidate(Sender: TObject; Value: String;
       var IsValid: Boolean);
-    procedure edt_ClaveChange(Sender: TObject);
-    procedure edt_ClaveKeyPress(Sender: TObject; var Key: Char);
+    procedure edtClaveChange(Sender: TObject);
+    procedure edtClaveKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
     dbNombre,dbUsuario,dbPass,cxTipo,cxNombre,cxServidor,cxProtocolo,cxCarpeta:string;
     resultadoClave, resultadoNombre, resultadoID, tipoBusqueda, origenBusqueda:string;
+    recupera_resultados : boolean;
     { Public declarations }
   end;
 
@@ -79,13 +80,13 @@ end;
 function txtSQLbuscado(campo:string):string;
 begin
   If frmBuscarCliente.cbxCoincidirMayusculas.Checked and frmBuscarCliente.cbxPalabras.Checked then
-    Result:= ('where ' + campo + ' like ' + QuotedStr('%' + frmBuscarCliente.edt_Clave.Text + '%'))
+    Result:= ('where ' + campo + ' like ' + QuotedStr('%' + frmBuscarCliente.edtClave.Text + '%'))
   else if frmBuscarCliente.cbxCoincidirMayusculas.Checked=false and frmBuscarCliente.cbxPalabras.Checked then
-    Result:= ('where upper(' + campo + ') like ' + QuotedStr('%' + UpperCase(frmBuscarCliente.edt_Clave.Text) + '%'))
+    Result:= ('where upper(' + campo + ') like ' + QuotedStr('%' + UpperCase(frmBuscarCliente.edtClave.Text) + '%'))
   else if frmBuscarCliente.cbxCoincidirMayusculas.Checked and frmBuscarCliente.cbxPalabras.Checked=false then
-    Result:= ('where ' + campo + ' like ' + QuotedStr(frmBuscarCliente.edt_Clave.Text + '%'))
+    Result:= ('where ' + campo + ' like ' + QuotedStr(frmBuscarCliente.edtClave.Text + '%'))
   else if frmBuscarCliente.cbxCoincidirMayusculas.Checked=false and frmBuscarCliente.cbxPalabras.Checked=false then
-    Result:= ('where upper(' + campo + ') like ' + QuotedStr(UpperCase(frmBuscarCliente.edt_Clave.Text) + '%'))
+    Result:= ('where upper(' + campo + ') like ' + QuotedStr(UpperCase(frmBuscarCliente.edtClave.Text) + '%'))
 end;
 
 procedure GetClientes;
@@ -157,26 +158,27 @@ procedure TfrmBuscarCliente.FormShow(Sender: TObject);
 var
   dbclientes:TdmQuerys;
 begin
+  recupera_resultados := false;
   if ConectarADB then
     begin
       IF tipoBusqueda='Nombre' then
         begin
-          edt_Clave.Left:=58;
-          edt_Clave.Width:=300;
+          edtClave.Left:=58;
+          edtClave.Width:=300;
           btnBuscar.Left:=370;
         end
       else if tipoBusqueda='Clave' then
         begin
-          edt_Clave.Left:=48;
-          edt_Clave.Width:=140;
+          edtClave.Left:=48;
+          edtClave.Width:=140;
           btnBuscar.Left:=200;
         end;
-      edt_Clave.LabelCaption:=tipoBusqueda+': ';
+      edtClave.LabelCaption:=tipoBusqueda+': ';
       resultadoClave:='';
       resultadoNombre:='';
       frmBuscarCliente.Caption:= 'Buscar ' + origenBusqueda + ' por ' + tipoBusqueda;
       frmBuscarCliente.lbllistaClentes.Caption := 'Lista de los ' + origenBusqueda + 's encontrados';
-      If edt_Clave.Text <> '' then GetClientes;
+      If edtClave.Text <> '' then GetClientes;
     end
   else frmBuscarCliente.Close;
 end;
@@ -197,12 +199,13 @@ begin
   resultadoClave:=sgBusqueda.Cells[cClave,sgBusqueda.Row];
   resultadoNombre:=sgBusqueda.Cells[cNombre,sgBusqueda.Row];
   resultadoID:=sgBusqueda.Cells[cID,sgBusqueda.Row];
+  recupera_resultados := true;
   frmBuscarCliente.Close;
 end;
 
-procedure TfrmBuscarCliente.edt_ClaveChange_(Sender: TObject);
+procedure TfrmBuscarCliente.edtClaveChange(Sender: TObject);
 begin
-  if edt_Clave.Text = '' then
+  if edtClave.Text = '' then
     btnBuscar.Enabled:=False
   else
     btnBuscar.Enabled:=true;
@@ -220,22 +223,22 @@ begin
   FreeAndNil(dbConectar);
 end;
 
-procedure TfrmBuscarCliente.edt_ClaveValueValidate(Sender: TObject;
+procedure TfrmBuscarCliente.edtClaveValueValidate(Sender: TObject;
   Value: String; var IsValid: Boolean);
 begin
 //
 end;
 
-procedure TfrmBuscarCliente.edt_ClaveChange(Sender: TObject);
+procedure TfrmBuscarCliente.edtClaveChange_(Sender: TObject);
 begin
-  if edt_Clave.Modified  then
+  if edtClave.Modified  then
     btnBuscar.Enabled:=False
   else
     btnBuscar.Enabled:=true;
 
 end;
 
-procedure TfrmBuscarCliente.edt_ClaveKeyPress(Sender: TObject;
+procedure TfrmBuscarCliente.edtClaveKeyPress(Sender: TObject;
   var Key: Char);
 begin
 //  

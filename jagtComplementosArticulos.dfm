@@ -1,6 +1,6 @@
 object frmjagt: Tfrmjagt
-  Left = 704
-  Top = 130
+  Left = 886
+  Top = 129
   BorderStyle = bsSingle
   Caption = 'Articulos complementarios'
   ClientHeight = 311
@@ -13,6 +13,7 @@ object frmjagt: Tfrmjagt
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
+  OnClose = FormClose
   OnCreate = FormCreate
   OnKeyPress = FormKeyPress
   OnShow = FormShow
@@ -243,6 +244,7 @@ object frmjagt: Tfrmjagt
     ActiveFont.Height = -11
     ActiveFont.Name = 'Tahoma'
     ActiveFont.Style = []
+    PopupMenu = axv_PopMenuAlternativas
     ActiveColor = clBtnHighlight
     TabBackGroundColor = clBtnHighlight
     TabMargin.RightMargin = 0
@@ -308,7 +310,6 @@ object frmjagt: Tfrmjagt
         ParentCtl3D = False
         TabOrder = 3
         Text = 'Unidades de medida'
-        OnKeyPress = edtClaveKeyPress
       end
       object cbxEstatus: TAdvComboBox
         Left = 296
@@ -498,9 +499,15 @@ object frmjagt: Tfrmjagt
         ScrollBars = ssVertical
         ShowHint = True
         TabOrder = 0
+        OnKeyDown = sstrgAlternativasKeyDown
+        OnSelectCell = sstrgAlternativasSelectCell
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
+        OnCanAddRow = sstrgAlternativasCanAddRow
         OnCellValidate = sstrgAlternativasCellValidate
+        OnGetEditorType = sstrgAlternativasGetEditorType
+        OnEllipsClick = sstrgAlternativasEllipsClick
+        OnEditCellDone = sstrgAlternativasEditCellDone
         HintShowCells = True
         HintShowLargeText = True
         HintShowSizing = True
@@ -552,6 +559,7 @@ object frmjagt: Tfrmjagt
         FilterDropDownClear = '(All)'
         FixedColWidth = 78
         FixedRowHeight = 22
+        FixedRowAlways = True
         FixedFont.Charset = DEFAULT_CHARSET
         FixedFont.Color = clWindowText
         FixedFont.Height = -11
@@ -638,9 +646,14 @@ object frmjagt: Tfrmjagt
         PopupMenu = axv_PopMenuComplementos
         ScrollBars = ssVertical
         TabOrder = 0
+        OnKeyDown = strgComplementosKeyDown
         GridLineColor = 15527152
         GridFixedLineColor = 13947601
+        OnCanAddRow = strgComplementosCanAddRow
         OnCellValidate = strgComplementosCellValidate
+        OnGetEditorType = strgComplementosGetEditorType
+        OnEllipsClick = strgComplementosEllipsClick
+        OnEditCellDone = strgComplementosEditCellDone
         ActiveCellFont.Charset = DEFAULT_CHARSET
         ActiveCellFont.Color = clWindowText
         ActiveCellFont.Height = -11
@@ -689,6 +702,7 @@ object frmjagt: Tfrmjagt
         FilterDropDownClear = '(All)'
         FixedColWidth = 78
         FixedRowHeight = 22
+        FixedRowAlways = True
         FixedFont.Charset = DEFAULT_CHARSET
         FixedFont.Color = clWindowText
         FixedFont.Height = -11
@@ -1083,6 +1097,16 @@ object frmjagt: Tfrmjagt
     object EliminarComplemento: TAction
       Caption = 'Eliminar Complemento'
       OnExecute = EliminarComplementoExecute
+    end
+    object MostrarAlternativas: TAction
+      Caption = 'Mostrar alternativas'
+      ShortCut = 24641
+      OnExecute = MostrarAlternativasExecute
+    end
+    object MostrarComplementos: TAction
+      Caption = 'Mostrar complementos'
+      ShortCut = 24643
+      OnExecute = MostrarComplementosExecute
     end
   end
   object ImgLstgrdArticulos: TImageList
