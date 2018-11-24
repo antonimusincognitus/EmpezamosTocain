@@ -23,14 +23,19 @@ type
       Shift: TShiftState);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnAceptarClick(Sender: TObject);
-    procedure edtClaveChange(Sender: TObject);
+    procedure edtClaveChange_(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure edtClaveValueValidate(Sender: TObject; Value: String;
+      var IsValid: Boolean);
+    procedure edtClaveChange(Sender: TObject);
+    procedure edtClaveKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
     dbNombre,dbUsuario,dbPass,cxTipo,cxNombre,cxServidor,cxProtocolo,cxCarpeta:string;
     resultadoClave, resultadoNombre, resultadoID, tipoBusqueda, origenBusqueda:string;
+    recupera_resultados : boolean;
     { Public declarations }
   end;
 
@@ -38,7 +43,7 @@ var
   frmBuscarCliente: TfrmBuscarCliente;
 
 implementation
-uses Database, Query, FIBQuery, pFIBQuery, Cotizacion;
+uses Database, Query, FIBQuery, pFIBQuery;
 var
   dbConectar:TdmDataBase;
 const
@@ -99,29 +104,25 @@ begin
     SQL.Clear;
     if (frmBuscarCliente.tipoBusqueda='Clave') and (frmBuscarCliente.origenBusqueda='Cliente') then
       SQL.Add('select c.nombre, c.cliente_id as id, k.clave_cliente as clave from clientes as c '
-        + 'inner join claves_clientes as k on c.cliente_id = k.cliente_id and k.rol_clave_art_id=(select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S'')'
-        + txtSQLbuscado('k.clave_cliente')
-//        + ' order by clave'
-        )
+        + 'inner join claves_clientes as k on c.cliente_id = k.cliente_id '
+        + txtSQLbuscado('k.clave_cliente'))
+//        + ' order by clave')
     else if (frmBuscarCliente.tipoBusqueda='Nombre') and (frmBuscarCliente.origenBusqueda='Cliente') then
       SQL.Add('select c.nombre, c.cliente_id as id, k.clave_cliente as clave from clientes as c '
-        + 'left join claves_clientes as k on c.cliente_id = k.cliente_id and k.rol_clave_art_id=(select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S'')'
-        + txtSQLbuscado('c.nombre')
-//        + ' order by nombre'
-        )
+        + 'left join claves_clientes as k on c.cliente_id = k.cliente_id '
+        + txtSQLbuscado('c.nombre'))
+//        + ' order by nombre')
     else if (frmBuscarCliente.tipoBusqueda='Clave') and (frmBuscarCliente.origenBusqueda='Artículo') then
       SQL.Add('select a.nombre, a.articulo_id as id, k.clave_articulo as clave from articulos as a '
         + 'inner join claves_articulos as k on a.articulo_id = k.articulo_id and k.rol_clave_art_id=(select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S'')'
-        + txtSQLbuscado('k.clave_articulo')
-//        + ' order by clave'
-        )
+        + txtSQLbuscado('k.clave_articulo'))
+//        + ' order by clave')
     else if (frmBuscarCliente.tipoBusqueda='Nombre') and (frmBuscarCliente.origenBusqueda='Artículo') then
       SQL.Add('select a.nombre, a.articulo_id as id, k.clave_articulo as clave from articulos as a '
         + 'left join claves_articulos as k on a.articulo_id = k.articulo_id and k.rol_clave_art_id=(select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S'')'
-        + txtSQLbuscado('a.nombre')
-//        + ' order by nombre'
-        );
-    ShowMessage(SQL.GetText); //***PARA VALIDAR QUE LA CONSULTA SEA CORRECTA***
+        + txtSQLbuscado('a.nombre'));
+//        + ' order by nombre');
+//    ShowMessage(SQL.GetText); //***PARA VALIDAR QUE LA CONSULTA SEA CORRECTA***
     ExecQuery;
     if fn('nombre').AsString ='' then
       begin
@@ -157,6 +158,7 @@ procedure TfrmBuscarCliente.FormShow(Sender: TObject);
 var
   dbclientes:TdmQuerys;
 begin
+  recupera_resultados := false;
   if ConectarADB then
     begin
       IF tipoBusqueda='Nombre' then
@@ -197,23 +199,49 @@ begin
   resultadoClave:=sgBusqueda.Cells[cClave,sgBusqueda.Row];
   resultadoNombre:=sgBusqueda.Cells[cNombre,sgBusqueda.Row];
   resultadoID:=sgBusqueda.Cells[cID,sgBusqueda.Row];
+  recupera_resultados := true;
   frmBuscarCliente.Close;
 end;
 
 procedure TfrmBuscarCliente.edtClaveChange(Sender: TObject);
 begin
-  if edtClave.Text = '' then btnBuscar.Enabled:=False else btnBuscar.Enabled:=true;
+  if edtClave.Text = '' then
+    btnBuscar.Enabled:=False
+  else
+    btnBuscar.Enabled:=true;
 end;
 
 procedure TfrmBuscarCliente.btnBuscarClick(Sender: TObject);
 begin
-  if ConectarADB then GetClientes;
+  if ConectarADB then
+    GetClientes;
 end;
 
 procedure TfrmBuscarCliente.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   FreeAndNil(dbConectar);
+end;
+
+procedure TfrmBuscarCliente.edtClaveValueValidate(Sender: TObject;
+  Value: String; var IsValid: Boolean);
+begin
+//
+end;
+
+procedure TfrmBuscarCliente.edtClaveChange_(Sender: TObject);
+begin
+  if edtClave.Modified  then
+    btnBuscar.Enabled:=False
+  else
+    btnBuscar.Enabled:=true;
+
+end;
+
+procedure TfrmBuscarCliente.edtClaveKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+//  
 end;
 
 end.

@@ -100,7 +100,7 @@ Conditionals=
 DebugSourceDirs=
 UsePackages=0
 [Parameters]
-RunParams=prueba_diagonal 16ANTONIOG 123456 1 loscal "c:\microsip datos\"
+RunParams=prueba_diagonal 16ANTONIOG 123456 0 loscal "C:\microsip datos\" 192.168.3.62 0 0 COA-10
 HostApplication=
 Launcher=
 UseLauncher=0
@@ -135,7 +135,5 @@ ProductName=
 ProductVersion=1.0.0.0
 Comments=
 [Excluded Packages]
-c:\program files (x86)\borland\delphi7\Projects\Bpl\dclIndyCore100.bpl=Indy 10 Core Design Time
-c:\program files (x86)\borland\delphi7\Projects\Bpl\dclIndyProtocols100.bpl=Indy 10 Protocols Design Time
 c:\program files (x86)\borland\delphi7\Projects\Bpl\dclIndyCore70.bpl=Indy 10 Core Design Time
 c:\program files (x86)\borland\delphi7\Projects\Bpl\dclIndyProtocols70.bpl=Indy 10 Protocols Design Time

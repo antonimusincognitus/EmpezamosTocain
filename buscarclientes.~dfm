@@ -1,6 +1,6 @@
 object frmBuscarCliente: TfrmBuscarCliente
   Left = 562
-  Top = 211
+  Top = 134
   BorderIcons = [biSystemMenu, biHelp]
   BorderStyle = bsSingle
   Caption = 'Buscar'
