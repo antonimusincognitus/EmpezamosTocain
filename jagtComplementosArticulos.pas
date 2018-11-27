@@ -8,7 +8,7 @@ uses
   StdCtrls, AdvEdit, AdvEdBtn,
   AdvCombo, AdvPageControl, ComCtrls,
   Menus, AdvMenus, AdvStickyPopupMenu,
-  ImgList, ActnList, AdvToolBar, AdvToolBarStylers;
+  ImgList, ActnList, AdvToolBar, AdvToolBarStylers, StdActns;
 
 type
   Tfrmjagt = class(TForm)
@@ -71,6 +71,34 @@ type
     Guardar1: TMenuItem;
     Guardarycerrar1: TMenuItem;
     Guardarynuevo1: TMenuItem;
+    ActionList2: TActionList;
+    popupEdicion: TAdvPopupMenu;
+    MenuItem4: TMenuItem;
+    Exportar_a_excel: TAction;
+    Importar_complementos: TAction;
+    Importar_alternativas: TAction;
+    Deshacer1: TMenuItem;
+    Cortar1: TMenuItem;
+    Copiar1: TMenuItem;
+    Pegar1: TMenuItem;
+    EliminarComplemento3: TMenuItem;
+    Selecionartodo1: TMenuItem;
+    N3: TMenuItem;
+    N2: TMenuItem;
+    N4: TMenuItem;
+    Eliminar1: TMenuItem;
+    Exportarcomplementos1: TMenuItem;
+    Importaralternativas1: TMenuItem;
+    Importarcomplementos1: TMenuItem;
+    Modificar1: TMenuItem;
+    popupVer: TAdvPopupMenu;
+    Barra_de_gerramienbtas: TMenuItem;
+    EditDelete1: TEditDelete;
+    EditCut1: TEditCut;
+    EditCopy1: TEditCopy;
+    EditPaste1: TEditPaste;
+    EditSelectAll1: TEditSelectAll;
+    EditUndo1: TEditUndo;
  
    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -126,6 +154,7 @@ type
     procedure strgComplementosCanAddRow(Sender: TObject;
       var CanAdd: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Barra_de_gerramienbtasClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -1163,11 +1192,18 @@ begin
     modificado := complemento_anterior <> strgComplementos.GridCells[ACol, ARow];
   if modificado then
   begin
-    Guardar.Enabled := alternativa_anterior <> strgComplementos.GridCells[ACol, ARow];
+    Guardar.Enabled       := alternativa_anterior <> strgComplementos.GridCells[ACol, ARow];
     GuardarCerrar.Enabled := alternativa_anterior <> strgComplementos.GridCells[ACol, ARow];
     GuardarNuevo.Enabled  := alternativa_anterior <> strgComplementos.GridCells[ACol, ARow];
     nuevo.Enabled := true;
   end;}
+end;
+
+procedure Tfrmjagt.Barra_de_gerramienbtasClick(Sender: TObject);
+begin
+  ATBBotones.Visible:=Barra_de_gerramienbtas.Checked;
+  PGCArticulos.Top:=advdpacciones.Height+1;
+  Self.Height:=PGCArticulos.Top+303;
 end;
 
 end.

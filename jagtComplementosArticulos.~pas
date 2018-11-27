@@ -8,7 +8,7 @@ uses
   StdCtrls, AdvEdit, AdvEdBtn,
   AdvCombo, AdvPageControl, ComCtrls,
   Menus, AdvMenus, AdvStickyPopupMenu,
-  ImgList, ActnList, AdvToolBar, AdvToolBarStylers;
+  ImgList, ActnList, AdvToolBar, AdvToolBarStylers, StdActns;
 
 type
   Tfrmjagt = class(TForm)
@@ -71,6 +71,36 @@ type
     Guardar1: TMenuItem;
     Guardarycerrar1: TMenuItem;
     Guardarynuevo1: TMenuItem;
+    ActionList2: TActionList;
+    popupEdicion: TAdvPopupMenu;
+    MenuItem4: TMenuItem;
+    Exportar_complementos: TAction;
+    Exportar_alternativas: TAction;
+    Importar_complementos: TAction;
+    Importar_alternativas: TAction;
+    Deshacer1: TMenuItem;
+    Cortar1: TMenuItem;
+    Copiar1: TMenuItem;
+    Pegar1: TMenuItem;
+    EliminarComplemento3: TMenuItem;
+    Selecionartodo1: TMenuItem;
+    N3: TMenuItem;
+    N2: TMenuItem;
+    N4: TMenuItem;
+    Eliminar1: TMenuItem;
+    Exportaralternativas1: TMenuItem;
+    Exportarcomplementos1: TMenuItem;
+    Importaralternativas1: TMenuItem;
+    Importarcomplementos1: TMenuItem;
+    Modificar1: TMenuItem;
+    popupVer: TAdvPopupMenu;
+    Barra_de_gerramienbtas: TMenuItem;
+    EditDelete1: TEditDelete;
+    EditCut1: TEditCut;
+    EditCopy1: TEditCopy;
+    EditPaste1: TEditPaste;
+    EditSelectAll1: TEditSelectAll;
+    EditUndo1: TEditUndo;
  
    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -79,7 +109,7 @@ type
     procedure axv_CargarAlternativas(articulo_id_ori:string);
     procedure axv_GuardarComplementos(articulo_id_ori:string);
     procedure axv_GuardarAlternativas(articulo_id_ori:string);
-    procedure axv_getArticulo(grd:TAdvStringGrid; columna,fila:integer; nombre,clave,art_id:string);
+    Function axv_getArticulo(grd:TAdvStringGrid; columna,fila:integer; nombre,clave,art_id:string):boolean;
     procedure NuevaAlternativaExecute(Sender: TObject);
     procedure NuevoComplementoExecute(Sender: TObject);
     procedure edtClaveExit(Sender: TObject);
@@ -126,13 +156,7 @@ type
     procedure strgComplementosCanAddRow(Sender: TObject;
       var CanAdd: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-
-
-
-
-
-
-
+    procedure Barra_de_gerramienbtasClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -148,7 +172,6 @@ type
     : string;
     articulo_id : string;
     es_nuevo : boolean;
-
   end;
     { Public declarations }
 
@@ -491,13 +514,7 @@ begin
 end;
 
 procedure Tfrmjagt.axv_BorrarRelacion(TipoRel,Rel_Id:string);
-//var
-  //fqGuardar:TdmQuerys;
 begin
-  {fqGuardar:=TdmQuerys.Create(nil);
-  fqGuardar.dbtTransaccion.DefaultDatabase:=dbConectar.idbDatabase;
-  fqGuardar.dbtTransaccion.Active:=true;
-  fqGuardar.figQuery.Database:=dbConectar.idbDatabase;}
   if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
   fqDummy.dbtTransaccion.Active:=true;
   with fqDummy.figQuery do begin
@@ -509,7 +526,6 @@ begin
     ExecQuery;
   end;//with
   if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
-//  FreeAndNil(fqDummy);
 end;
 
 procedure Tfrmjagt.sstrgAlternativasKeyDown(Sender: TObject; var Key: Word;
@@ -587,13 +603,14 @@ begin
 }
 end;
 
-Procedure Tfrmjagt.axv_getArticulo(grd:TAdvStringGrid;columna,fila:integer; nombre,clave,art_id:string);
+Function Tfrmjagt.axv_getArticulo(grd:TAdvStringGrid;columna,fila:integer; nombre,clave,art_id:string):Boolean;
 var
   fqCargar:TdmQuerys;
   C1,N1:String;
   Repetido:Boolean;
   i:integer;
 begin
+  Result:=false;
   Repetido:=False;
   C1:=grd.Cells[cClave,Fila];
   N1:=grd.Cells[cNombre,Fila];
@@ -621,27 +638,23 @@ begin
           + ' where a.articulo_id = ' + art_id);
     ExecQuery;
     IF fn('articulo_id').AsString='' then begin
-
       MessageDlg('El articulo no se encuentra registrado' +#13#10
         + 'puede localizar el articul por medio de la clave' +#13#10
         + 'o el nombre. Para buscarlo oprima F4.',mtWarning,[mbOK],0);
       grd.Cells[cClave,Fila]:=C1;
       grd.Cells[cNombre,fila]:=N1;
-
     end else begin
-
       for i:=1 to grd.RowCount-1 do if (i <> fila) and (grd.Cells[cArticulo_id,i]=fn('articulo_id').AsString) then Repetido:=True;
-      if Repetido then begin
-        MessageDlg('Este articulo ya esta registrado',mtInformation,[mbOK],0);
-      end else begin
+      if Repetido then MessageDlg('Este articulo ya esta registrado',mtInformation,[mbOK],0)
+      else begin
         grd.Cells[cClave,fila]:=(fn('clave_articulo').AsString);
         grd.Cells[cNombre,fila]:=(fn('nombre').AsString);
         grd.Cells[cArticulo_id,fila]:=fn('articulo_id').AsString;
         grd.Ints[cPiezas,fila]:=1;
         grd.FocusCell(columna,fila);
+        Result:=True;
       end; // IF REPETIDO
-
-    end;//IF
+    end;//IF articulo_id = ''
   end;//with
   fqCargar.dbtTransaccion.Commit;
   FreeAndNil(fqCargar);
@@ -702,13 +715,13 @@ procedure Tfrmjagt.strgComplementosCellValidate(  Sender: TObject; ACol, ARow: I
 var
   nombre,clave,art_id:string;
 begin
-  if ((aCol=cNombre) or (acol=cClave)) and (strgComplementos.Cells[cArticulo_id,aRow]='') then begin
+  if ((aCol=cNombre) or (acol=cClave)) then begin //and (strgComplementos.Cells[cArticulo_id,aRow]='') then begin
     case ACol of
       cNombre: nombre:=Value;
       cClave: clave:=Value;
       cArticulo_id:art_id:=Value;
     end;
-    axv_getArticulo(strgComplementos,ACol,Arow,nombre,clave,art_id);
+    Valid:=axv_getArticulo(strgComplementos,ACol,Arow,nombre,clave,art_id);
   end;
 end;
 
@@ -747,13 +760,13 @@ procedure Tfrmjagt.sstrgAlternativasCellValidate(Sender: TObject; ACol, ARow: In
 var
   nombre,clave,art_id:string;
 begin
-  if ((aCol=cNombre) or (acol=cClave)) and (sstrgAlternativas.Cells[cArticulo_id,aRow]='') then begin
+  if ((aCol=cNombre) or (acol=cClave))then begin// and (sstrgAlternativas.Cells[cArticulo_id,aRow]='') then begin
     case ACol of
       cNombre: nombre:=Value;
       cClave: clave:=Value;
       cArticulo_id:art_id:=Value;
     end;
-    axv_getArticulo(sstrgAlternativas,ACol,Arow,nombre,clave,art_id);
+    Valid:=axv_getArticulo(sstrgAlternativas,ACol,Arow,nombre,clave,art_id);
   end;
 end;
 
@@ -874,8 +887,13 @@ begin
 end;
 
 function BuscarDesdeGrid(var grd:TAdvStringGrid; C,R:integer;dbNombre,dbUsuario,dbPass,cxTipo,cxNombre,cxServidor,cxProtocolo,cxCarpeta:string):string;
+VAR
+  i:integer;
+  Repetido:Boolean;
 begin
-    if((C = cClave) or (C = cNombre)) then begin
+  Repetido:=false;
+  Result:=grd.Cells[C,R];
+  if((C = cClave) or (C = cNombre)) then begin
     frmBuscarCliente:=TfrmBuscarCliente.Create(nil);
     frmBuscarCliente.dbNombre := dbNombre;
     frmBuscarCliente.dbUsuario := dbUsuario;
@@ -885,6 +903,7 @@ begin
     frmBuscarCliente.cxServidor := cxServidor;
     frmBuscarCliente.cxProtocolo := cxProtocolo;
     frmBuscarCliente.cxCarpeta := cxCarpeta;
+    frmBuscarCliente.recupera_resultados:=False;
     if C = cClave then begin
       frmBuscarCliente.tipoBusqueda:='Clave';
       frmBuscarCliente.edtClave.text:= grd.GridCells[cClave,R];
@@ -894,16 +913,20 @@ begin
     end;
     frmBuscarCliente.origenBusqueda:='Artículo';
     frmBuscarCliente.ShowModal;
-    if frmBuscarCliente.resultadoClave <> '' then begin
-      grd.Cells[cClave,R]:=frmBuscarCliente.resultadoClave;
-      grd.Cells[cNombre,R]:=frmBuscarCliente.resultadoNombre;
-      grd.Cells[cArticulo_id,R]:=frmBuscarCliente.resultadoID;
-      grd.AllInts[cPiezas,R]:=1;
-    end;
-    case C of
-      cClave: Result:=frmBuscarCliente.resultadoClave;
-      cNombre: Result:=frmBuscarCliente.resultadoNombre;
-    end;
+    if frmBuscarCliente.recupera_resultados then begin
+      for i:=1 to grd.RowCount-1 do if (i <> R) and (grd.Cells[cArticulo_id,i]=frmBuscarCliente.resultadoID) then Repetido:=True;
+      if Repetido then MessageDlg('Este articulo ya esta registrado',mtInformation,[mbOK],0)
+      else begin
+        grd.Cells[cClave,R]:=frmBuscarCliente.resultadoClave;
+        grd.Cells[cNombre,R]:=frmBuscarCliente.resultadoNombre;
+        grd.Cells[cArticulo_id,R]:=frmBuscarCliente.resultadoID;
+        grd.AllInts[cPiezas,R]:=1;
+        case C of
+          cClave: Result:=frmBuscarCliente.resultadoClave;
+          cNombre: Result:=frmBuscarCliente.resultadoNombre;
+        end;//case
+      end;// if repetido
+    end;// if recuperar_resultado
     FreeAndNil(frmBuscarCliente);
   end;
 end;
@@ -1171,11 +1194,18 @@ begin
     modificado := complemento_anterior <> strgComplementos.GridCells[ACol, ARow];
   if modificado then
   begin
-    Guardar.Enabled := alternativa_anterior <> strgComplementos.GridCells[ACol, ARow];
+    Guardar.Enabled       := alternativa_anterior <> strgComplementos.GridCells[ACol, ARow];
     GuardarCerrar.Enabled := alternativa_anterior <> strgComplementos.GridCells[ACol, ARow];
     GuardarNuevo.Enabled  := alternativa_anterior <> strgComplementos.GridCells[ACol, ARow];
     nuevo.Enabled := true;
   end;}
+end;
+
+procedure Tfrmjagt.Barra_de_gerramienbtasClick(Sender: TObject);
+begin
+  ATBBotones.Visible:=Barra_de_gerramienbtas.Checked;
+  PGCArticulos.Top:=advdpacciones.Height+1;
+  Self.Height:=PGCArticulos.Top+303;
 end;
 
 end.
