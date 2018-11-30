@@ -331,7 +331,7 @@ begin
         + ' ,' + QuotedStr(sstrgAlternativas.Cells[cNotas,i]) //notas
         + ' ,''A'')' //tipo_relacion
         + ' matching (articulo_rel_id)');
-      //ShowMessage(SQL.GetText);
+      inputbox ('','',sql.Text);
       ExecQuery;
     end;//with
     if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
@@ -357,7 +357,7 @@ begin
         + ' ,' + QuotedStr(strgComplementos.Cells[cNotas,i]) //notas
         + ' ,''C'')' //tipo_relacion
         + ' matching (articulo_rel_id)');
-inputbox ('','',sql.Text);
+      inputbox ('','',sql.Text);
       ExecQuery;
     end;//with
   	if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
@@ -721,6 +721,8 @@ begin
   Guardar.Enabled := true;
   GuardarCerrar.Enabled := true;
   GuardarNuevo.Enabled := True;
+  edtNombre.Enabled:=false;
+  edtClave.Enabled:=False;
   Importar_alternativas.Enabled:=True;
   Importar_complementos.Enabled:=True;
   case PGCArticulos.ActivePageIndex of
@@ -771,6 +773,8 @@ begin
     Importar_alternativas.Enabled:=False;
     Eliminar.Enabled:=True;
     Modificar.Enabled:=True;
+    edtNombre.Enabled:=True;
+    edtClave.Enabled:=True;
     modificado := false;
   end;
 end;
@@ -829,8 +833,14 @@ end;
 
 procedure Tfrmjagt.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  if (Modificar.Enabled=false) then
+    case MessageDlg('Se modificó este registro.' + #13#10
+      + '¿Desea guardar los cambios?',mtWarning,[mbYes,mbNo,mbCancel],0) of
+      mrYes:Guardar.Execute;
+      mrNo:LiberarDummy;
+      mrCancel:Abort;
+    end;
   FreeAndNil(dbConectar);
-  FreeAndNil(fqDummy);
 end;
 
 procedure Tfrmjagt.sstrgAlternativasGetEditorType(Sender: TObject; ACol,
@@ -1218,7 +1228,7 @@ var
   direccion:string;
   I:INTEGER;
 begin
-  if (articulo_id<>'') and (strgComplementos.RowCount>=2) and (Modificar.Enabled=false)
+  if (articulo_id<>'') and (Modificar.Enabled=false)
   then begin
     OpenDialog1 := TOpenDialog.Create(self);
     OpenDialog1.InitialDir := GetCurrentDir;

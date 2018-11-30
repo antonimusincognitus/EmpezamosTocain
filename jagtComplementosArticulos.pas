@@ -331,7 +331,7 @@ begin
         + ' ,' + QuotedStr(sstrgAlternativas.Cells[cNotas,i]) //notas
         + ' ,''A'')' //tipo_relacion
         + ' matching (articulo_rel_id)');
-      inputbox ('','',sql.Text);
+      //inputbox ('','',sql.Text);
       ExecQuery;
     end;//with
     if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
@@ -357,7 +357,7 @@ begin
         + ' ,' + QuotedStr(strgComplementos.Cells[cNotas,i]) //notas
         + ' ,''C'')' //tipo_relacion
         + ' matching (articulo_rel_id)');
-      inputbox ('','',sql.Text);
+      //inputbox ('','',sql.Text);
       ExecQuery;
     end;//with
   	if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
