@@ -118,8 +118,8 @@ begin
         + txtSQLbuscado('k.clave_articulo'))
 //        + ' order by clave')
     else if (frmBuscarCliente.tipoBusqueda='Nombre') and (frmBuscarCliente.origenBusqueda='Artículo') then
-      SQL.Add('select a.nombre, a.articulo_id as id, k.clave_articulo as clave from articulos as a and k.rol_clave_art_id=(select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S'')'
-        + 'left join claves_articulos as k on a.articulo_id = k.articulo_id '
+      SQL.Add('select a.nombre, a.articulo_id as id, k.clave_articulo as clave from articulos as a '
+        + 'left join claves_articulos as k on a.articulo_id = k.articulo_id and k.rol_clave_art_id=(select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S'')'
         + txtSQLbuscado('a.nombre'));
 //        + ' order by nombre');
 //    ShowMessage(SQL.GetText); //***PARA VALIDAR QUE LA CONSULTA SEA CORRECTA***

@@ -8,7 +8,8 @@ uses
   StdCtrls, AdvEdit, AdvEdBtn,
   AdvCombo, AdvPageControl, ComCtrls,
   Menus, AdvMenus, AdvStickyPopupMenu,
-  ImgList, ActnList, AdvToolBar, AdvToolBarStylers, StdActns;
+  ImgList, ActnList, AdvToolBar, AdvToolBarStylers, StdActns,
+  tmsAdvGridExcel, AdvMenuStylers;
 
 type
   Tfrmjagt = class(TForm)
@@ -74,8 +75,7 @@ type
     ActionList2: TActionList;
     popupEdicion: TAdvPopupMenu;
     MenuItem4: TMenuItem;
-    Exportar_complementos: TAction;
-    Exportar_alternativas: TAction;
+    Exportar_a_excel: TAction;
     Importar_complementos: TAction;
     Importar_alternativas: TAction;
     Deshacer1: TMenuItem;
@@ -86,12 +86,7 @@ type
     Selecionartodo1: TMenuItem;
     N3: TMenuItem;
     N2: TMenuItem;
-    N4: TMenuItem;
     Eliminar1: TMenuItem;
-    Exportaralternativas1: TMenuItem;
-    Exportarcomplementos1: TMenuItem;
-    Importaralternativas1: TMenuItem;
-    Importarcomplementos1: TMenuItem;
     Modificar1: TMenuItem;
     popupVer: TAdvPopupMenu;
     Barra_de_gerramienbtas: TMenuItem;
@@ -101,6 +96,14 @@ type
     EditPaste1: TEditPaste;
     EditSelectAll1: TEditSelectAll;
     EditUndo1: TEditUndo;
+    ExcelIO1Alternativas: TAdvGridExcelIO;
+    N5: TMenuItem;
+    Exportaraexcel1: TMenuItem;
+    Importaralternativas2: TMenuItem;
+    Importarcomplementos2: TMenuItem;
+    ExcelIO1Complementos: TAdvGridExcelIO;
+    OpenDialog1: TOpenDialog;
+    AdvMenuOfficeStyler1: TAdvMenuOfficeStyler;
  
    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -157,6 +160,9 @@ type
       var CanAdd: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Barra_de_gerramienbtasClick(Sender: TObject);
+    procedure Exportar_a_excelExecute(Sender: TObject);
+    procedure Importar_complementosExecute(Sender: TObject);
+    procedure Importar_alternativasExecute(Sender: TObject);
 
   private
     { Private declarations }
@@ -446,23 +452,18 @@ begin
   cxNombre    :=ParamStr(5);//  'Local';
   cxCarpeta   :=ParamStr(6);//  ''C:\Microsip datos\';
   if cxtipo = '0' then
-  begin
-    cxServidor  :=ParamStr(7);//  '';
-    cxProtocolo :=ParamStr(8);//  '';
-    es_nuevo := ParamStr(9) = '1';
-    edtClave.Text := ParamStr(10);
-  end
+    begin
+      cxServidor  :=ParamStr(7);//  '';
+      cxProtocolo :=ParamStr(8);//  '';
+      es_nuevo := ParamStr(9) = '1';
+      edtClave.Text := ParamStr(10);
+    end
   else
-  begin
-    es_nuevo := ParamStr(7) = '1';
-    edtClave.Text := ParamStr(8);
-  end;
+    begin
+      es_nuevo := ParamStr(7) = '1';
+      edtClave.Text := ParamStr(8);
+    end;
   ConectarADB;
-{
-  ConectarADB(dbconectar,articulo_id,cxTipo,cxCarpeta,dbNombre,cxProtocolo,cxServidor,dbUsuario,dbPass,cxNombre);
-  if articulo_id <> '' then
-  ShowMessage(articulo_id);
-}
 end;
 
 procedure Tfrmjagt.FormShow(Sender: TObject);
@@ -478,10 +479,10 @@ begin
   begin
     ATBBModificar.Enabled := true;
     ATBBEliminar.Enabled := true;
-    guardar.Enabled := false;
-    guardarcerrar.enabled:=false;
-    guardarnuevo.Enabled := false;
-    nuevo.Enabled := false;
+    //guardar.Enabled := false;
+    //guardarcerrar.enabled:=false;
+    //guardarnuevo.Enabled := false;
+    //nuevo.Enabled := false;
     edtClaveExit(nil);
     modificado:= false;
     articulo_anterior := edtClave.Text;
@@ -596,11 +597,6 @@ procedure Tfrmjagt.GuardarCerrarExecute(Sender: TObject);
 begin
   Guardar.Execute;
   Self.Close;
-{
-  axv_GuardarComplementos(articulo_id);
-  axv_GuardarAlternativas(articulo_id);
-  Self.Close;
-}
 end;
 
 Function Tfrmjagt.axv_getArticulo(grd:TAdvStringGrid;columna,fila:integer; nombre,clave,art_id:string):Boolean;
@@ -678,23 +674,6 @@ begin
   end;//CASE
   LiberarDummy;
 end;
-{
-var
-  i:integer;
-begin
-  case MessageDlg('¿Desea eliminar permanentemente las alternativas'
-      + #13#10 + 'y artículos complementarios de este artículo?',mtConfirmation,[mbYes,mbNo],0)
-  of mrYes: begin
-    for i:=1 to sstrgAlternativas.RowCount-1 do axv_BorrarRelacion('A',sstrgAlternativas.Cells[cRelacion_id,i]);
-    sstrgAlternativas.ClearRows(1,sstrgAlternativas.RowCount-1);
-    sstrgAlternativas.RowCount:=2;
-    for i:=1 to strgComplementos.RowCount-1 do axv_BorrarRelacion('C',strgComplementos.Cells[cRelacion_id,i]);
-    strgComplementos.ClearRows(1,strgComplementos.RowCount-1);
-    strgComplementos.RowCount:=2;
-  end;
-  end;
-end;
-}
 
 procedure Tfrmjagt.EliminarAlternativaExecute(Sender: TObject);
 begin
@@ -742,6 +721,8 @@ begin
   Guardar.Enabled := true;
   GuardarCerrar.Enabled := true;
   GuardarNuevo.Enabled := True;
+  Importar_alternativas.Enabled:=True;
+  Importar_complementos.Enabled:=True;
   case PGCArticulos.ActivePageIndex of
     0 :
       if edtClave.Enabled then
@@ -786,6 +767,8 @@ begin
     EliminarComplemento.Enabled:=false;
     NuevaAlternativa.Enabled:=false;
     NuevoComplemento.Enabled:=false;
+    Importar_complementos.Enabled:=False;
+    Importar_alternativas.Enabled:=False;
     Eliminar.Enabled:=True;
     Modificar.Enabled:=True;
     modificado := false;
@@ -966,6 +949,7 @@ begin
       MessageDlg('La clave del artículo '+ edtClave.Text + ' no se encuentra registrada.'
         + #13#10 + 'Puede localizar el artículo por medio de la clave o del nombre.'
         + #13#10 + 'Para buscarlo oprima la tecla F4.', mtError, [mbOK],0);
+      edtClave.Text:=articulo_anterior;
       edtClave.SetFocus;
       dmQuerys.dbtTransaccion.Rollback;   //Libera recurso
       exit;
@@ -979,7 +963,7 @@ begin
     dmQuerys.dbtTransaccion.Rollback;   //Libera recurso
     axv_CargarComplementos(articulo_id);
     axv_CargarAlternativas(articulo_id);
-  end;
+  end else edtClave.Text:=articulo_anterior;
 end;
 
 procedure Tfrmjagt.FormKeyPress(Sender: TObject;
@@ -1129,30 +1113,22 @@ begin
 //    InputBox('','',text_consulta);
     ejecuta_consulta_lectura(dbConectar,dmQuerys,text_consulta);
     manipula_formulario (dmQuerys);
-
     axv_CargarComplementos(articulo_id);
     axv_CargarAlternativas(articulo_id);
-  end;
-
+  end else edtNombre.Text:= nombre_anterior;
 end;
 
 procedure Tfrmjagt.NuevoExecute(Sender: TObject);
 begin
-  if modificado then showmessage('hubo cambios');
-  //preguntar y determinar que hacer con la respuesta
+  if modificado then //preguntar y determinar que hacer con la respuesta
+    case MessageDlg('Se modificaron las relaciones.' + #13#10 + '¿Desea guardar los cambios?',mtConfirmation,[mbYes,mbNo],0) of
+      mrYes: Guardar.Execute;
+    end;
   if not es_nuevo then es_nuevo:= true;
-
-      edtclave.text := '';
-    ATBBModificar.Enabled := false;
-    ATBBEliminar.Enabled := false;
-
-  ATBBModificar.Enabled := false;
-  ATBBEliminar.Enabled := false;
+  edtclave.text := '';
   PGCArticulos.ActivePageIndex := 0;
   limpia_formulario;
   edtClave.SetFocus;
-  guardar.Enabled := false;
-  nuevo.Enabled := false;
   modificar.Enabled:= true;
   eliminar.Enabled := true;
 end;
@@ -1168,31 +1144,28 @@ procedure Tfrmjagt.sstrgAlternativasSelectCell(Sender: TObject; ACol,
   ARow: Integer; var CanSelect: Boolean);
 begin
 //  showmessage('Selected Cell ' + sstrgAlternativas.GridCells[Acol,aRow]);
-  alternativa_anterior := sstrgAlternativas.GridCells[Acol,aRow]
+  alternativa_anterior := sstrgAlternativas.GridCells[Acol,aRow] // guardar alternativa_anterior para compararla con lo que se escribe
 end;
 
 procedure Tfrmjagt.sstrgAlternativasEditCellDone(Sender: TObject; ACol,
   ARow: Integer);
 begin
-{  if not modificado then
-    modificado := alternativa_anterior <> sstrgAlternativas.GridCells[ACol, ARow];
-  if modificado then
+  if not modificado then modificado := alternativa_anterior <> sstrgAlternativas.GridCells[ACol, ARow];
+  {if modificado then //évitar que se pueda guardar si no se ha cambiado ningun dato
   begin
-//    showmessage ('Edit Cell Done');
+    //showmessage ('Edit Cell Done');
     Guardar.Enabled := alternativa_anterior <> sstrgAlternativas.GridCells[ACol, ARow];
     GuardarCerrar.Enabled := alternativa_anterior <> sstrgAlternativas.GridCells[ACol, ARow];
     GuardarNuevo.Enabled  := alternativa_anterior <> sstrgAlternativas.GridCells[ACol, ARow];
     nuevo.Enabled := true;
-  end;
-}
+  end;}
 end;
 
 procedure Tfrmjagt.strgComplementosEditCellDone(Sender: TObject; ACol,
   ARow: Integer);
 begin
-{  if not modificado then
-    modificado := complemento_anterior <> strgComplementos.GridCells[ACol, ARow];
-  if modificado then
+  if not modificado then modificado := complemento_anterior <> strgComplementos.GridCells[ACol, ARow];
+  {if modificado then //évitar que se pueda guardar si no se ha cambiado ningun dato
   begin
     Guardar.Enabled       := alternativa_anterior <> strgComplementos.GridCells[ACol, ARow];
     GuardarCerrar.Enabled := alternativa_anterior <> strgComplementos.GridCells[ACol, ARow];
@@ -1206,6 +1179,106 @@ begin
   ATBBotones.Visible:=Barra_de_gerramienbtas.Checked;
   PGCArticulos.Top:=advdpacciones.Height+1;
   Self.Height:=PGCArticulos.Top+303;
+end;
+
+procedure Tfrmjagt.Exportar_a_excelExecute(Sender: TObject);
+var
+  direccion:string;
+begin
+  OpenDialog1 := TOpenDialog.Create(self);
+  OpenDialog1.InitialDir := GetCurrentDir;
+  OpenDialog1.Filter:='Excel Worksheets|*.xlsx|*.xls';
+  OpenDialog1.FileName:= 'Altr y cmpl de ' + edtClave.Text + '.xls';
+  if openDialog1.Execute then begin
+    direccion:=OpenDialog1.FileName;
+    {Primero exportamos el grid alternativas si es que existe alguna}
+    if (sstrgAlternativas.RowCount > 1) and (sstrgAlternativas.Cells[carticulo_id,sstrgAlternativas.RowCount-1]<>'')
+    then with ExcelIO1Alternativas do begin
+        GridStartRow:=1;
+        GridStartCol:=0;
+        XlsStartRow:=1;
+        XlsStartCol:=1;
+        XLSExport(direccion,'Alternativas');
+    end;// with ALTERNATIVAS
+    {luego exportamos el grid complementos si es que existe alguno}
+    if (strgComplementos.RowCount > 1) and (strgComplementos.Cells[carticulo_id,strgComplementos.RowCount-1]<>'')
+    then with ExcelIO1Complementos do begin
+      GridStartRow:=1;
+      GridStartCol:=0;
+      XlsStartRow:=1;
+      XlsStartCol:=1;
+      XLSExport(direccion,'Complementos');
+    end;//with COMPLEMENTOS
+  end;//if OpenDialog1.excecute
+  OpenDialog1.Free;
+end;
+
+procedure Tfrmjagt.Importar_complementosExecute(Sender: TObject);
+var
+  direccion:string;
+  I:INTEGER;
+begin
+  if (articulo_id<>'') and (strgComplementos.RowCount>=2) and (Modificar.Enabled=false)
+  then begin
+    OpenDialog1 := TOpenDialog.Create(self);
+    OpenDialog1.InitialDir := GetCurrentDir;
+    //OpenDialog1.Filter:='Excel Worksheets|*.xlsx|*.xls';
+    if openDialog1.Execute then begin
+      direccion:=OpenDialog1.FileName;
+      //ShowMessage(direccion);
+      with ExcelIO1Complementos do begin
+        GridStartRow:=1;
+        GridStartCol:=0;
+        XlsStartRow:=1;
+        XlsStartCol:=1;
+        XLSImport(direccion);
+      end;//with COMPLEMENTOS
+      For i:=0 to strgComplementos.ColumnHeaders.Count-1 do BEGIN
+        strgComplementos.Cells[i,0]:= strgComplementos.ColumnHeaders[i];
+      END;
+      For i:=1 to strgComplementos.RowCount-1 do begin
+        axv_getArticulo(strgComplementos,cClave,i,
+          strgComplementos.Cells[cNombre,i],
+          strgComplementos.Cells[cClave,i],
+          strgComplementos.Cells[cArticulo_id,i])
+      end;
+    end;//if OpenDialog1.excecute
+    OpenDialog1.Free;
+  end;
+end;
+
+procedure Tfrmjagt.Importar_alternativasExecute(Sender: TObject);
+var
+  direccion:string;
+  i:integer;
+begin
+  if (articulo_id<>'') and (Modificar.Enabled=false)
+  then begin
+    OpenDialog1 := TOpenDialog.Create(self);
+    OpenDialog1.InitialDir := GetCurrentDir;
+    //OpenDialog1.Filter:='Excel Worksheets|*.xlsx|*.xls';
+    if openDialog1.Execute then begin
+      direccion:=OpenDialog1.FileName;
+      //ShowMessage(direccion);
+      with ExcelIO1Alternativas do begin
+        GridStartRow:=1;
+        GridStartCol:=0;
+        XlsStartRow:=1;
+        XlsStartCol:=1;
+        XLSImport(direccion);
+      end;//with COMPLEMENTOS
+      For i:=0 to sstrgAlternativas.ColumnHeaders.Count-1 do BEGIN
+        sstrgAlternativas.Cells[i,0]:= sstrgAlternativas.ColumnHeaders[i];
+      END;
+      For i:=1 to strgComplementos.RowCount-1 do begin
+        axv_getArticulo(sstrgAlternativas,cClave,i,
+          sstrgAlternativas.Cells[cNombre,i],
+          sstrgAlternativas.Cells[cClave,i],
+          sstrgAlternativas.Cells[cArticulo_id,i])
+      end;
+    end;//if OpenDialog1.excecute
+    OpenDialog1.Free;
+  end;//if excecute
 end;
 
 end.
