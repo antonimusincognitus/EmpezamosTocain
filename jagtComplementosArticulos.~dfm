@@ -240,7 +240,7 @@ object frmjagt: Tfrmjagt
     Top = 59
     Width = 472
     Height = 270
-    ActivePage = tabAlternativas
+    ActivePage = tabGeneral
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -255,7 +255,7 @@ object frmjagt: Tfrmjagt
     TabOrder = 0
     OnChange = PGCArticulosChange
     object tabGeneral: TAdvTabSheet
-      Caption = 'General'
+      Caption = '   General '
       Color = clBtnHighlight
       ColorTo = clNone
       TabColor = clBtnFace
