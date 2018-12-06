@@ -252,6 +252,7 @@ begin
       + '   on (r.articulo_id_dest=c.articulo_id and c.rol_clave_art_id = (select rol_clave_art_id from roles_claves_articulos where es_ppal = ''S''))'
       + ' where r.tipo_relacion = ''C'''
       + '   and r.articulo_id_ori = ' + articulo_id_ori);
+    //inputbox ('','',sql.Text);
     ExecQuery;
     if fn('articulo').AsString <> '' then begin
       while not eof do begin
@@ -292,6 +293,7 @@ begin
       + ' where r.tipo_relacion = ''A'''
       + '   and r.articulo_id_ori = '
       + articulo_id_ori);
+    //inputbox ('','',sql.Text);
     ExecQuery;
     if fn('articulo').AsString <> '' then begin
       while not eof do begin
@@ -327,7 +329,7 @@ begin
       else SQL.Add('values  ('+sstrgAlternativas.Cells[cRelacion_id,i]);
       SQL.Add(' ,' + articulo_id_ori //id_ori
         + ' ,' + sstrgAlternativas.Cells[cArticulo_id,i] //id_dest
-        + ' ,' + sstrgAlternativas.Cells[cPiezas,i] //unidades_relacionadas
+        + ' ,1' //+ sstrgAlternativas.Cells[cPiezas,i] //unidades_relacionadas
         + ' ,' + QuotedStr(sstrgAlternativas.Cells[cNotas,i]) //notas
         + ' ,''A'')' //tipo_relacion
         + ' matching (articulo_rel_id)');
@@ -347,18 +349,20 @@ begin
     with fqDummy.figQuery do begin
       Close;
       SQL.Clear;
-      SQL.Add('update or insert into lm_articulos_rel (articulo_rel_id, articulo_id_ori, articulo_id_dest,unidades_relacionadas, notas,tipo_relacion)');
-      if strgComplementos.Cells[cRelacion_id,i] = ''
-      then SQL.Add('values  ((gen_id(id_articulos_rel,1))')
-      else SQL.Add('values ('+strgComplementos.Cells[cRelacion_id,i]);
-      SQL.Add(' ,' + articulo_id_ori //id_ori
-        + ' ,' + strgComplementos.Cells[cArticulo_id,i] //id_dest
-        + ' ,' + strgComplementos.Cells[cPiezas,i] //unidades_relacionadas
-        + ' ,' + QuotedStr(strgComplementos.Cells[cNotas,i]) //notas
-        + ' ,''C'')' //tipo_relacion
-        + ' matching (articulo_rel_id)');
-      //inputbox ('','',sql.Text);
-      ExecQuery;
+      if (self.strgComplementos.Cells[cArticulo_id,i]<>'') and(self.strgComplementos.Ints[cPiezas,i]>0) then begin
+        SQL.Add('update or insert into lm_articulos_rel (articulo_rel_id, articulo_id_ori, articulo_id_dest,unidades_relacionadas, notas,tipo_relacion)');
+        if strgComplementos.Cells[cRelacion_id,i] = ''
+        then SQL.Add('values  ((gen_id(id_articulos_rel,1))')
+        else SQL.Add('values ('+strgComplementos.Cells[cRelacion_id,i]);
+        SQL.Add(' ,' + articulo_id_ori //id_ori
+          + ' ,' + strgComplementos.Cells[cArticulo_id,i] //id_dest
+          + ' ,' + strgComplementos.Cells[cPiezas,i] //unidades_relacionadas
+          + ' ,' + QuotedStr(strgComplementos.Cells[cNotas,i]) //notas
+          + ' ,''C'')' //tipo_relacion
+          + ' matching (articulo_rel_id)');
+        //inputbox ('','',sql.Text);
+        ExecQuery;
+      end; //if grid complementos tiene valores validos
     end;//with
   	if fqDummy.dbtTransaccion.Active then fqDummy.dbtTransaccion.Commit;
   end;//for
@@ -469,7 +473,6 @@ end;
 procedure Tfrmjagt.FormShow(Sender: TObject);
 begin
   modificado := false;
-
   if es_nuevo then
   begin
   nuevo.Execute;
@@ -487,11 +490,11 @@ begin
     modificado:= false;
     articulo_anterior := edtClave.Text;
     nombre_anterior := edtNombre.Text;
-  strgComplementos.HideColumn(cArticulo_id);
+  {strgComplementos.HideColumn(cArticulo_id);
   strgComplementos.HideColumn(cRelacion_id);
   sstrgAlternativas.HideColumn(cArticulo_id);
   sstrgAlternativas.HideColumn(cRelacion_id);
-  sstrgAlternativas.HideColumn(cPiezas);
+  sstrgAlternativas.HideColumn(cPiezas);}
   end;
   if edtClave.Text <> '' then
   edtClave.SetFocus;
@@ -632,6 +635,7 @@ begin
           + ' from articulos as a'
           + ' left join claves_articulos as ca on a.articulo_id = ca.articulo_id'
           + ' where a.articulo_id = ' + art_id);
+    //inputbox ('','',sql.Text);
     ExecQuery;
     IF fn('articulo_id').AsString='' then begin
       MessageDlg('El articulo no se encuentra registrado' +#13#10
@@ -763,6 +767,8 @@ begin
     LiberarDummy;
     sstrgAlternativas.Enabled:=False;
     strgComplementos.Enabled:=False;
+    //Eliminar.Enabled:=True;
+    //Modificar.Enabled:=True;
     axv_CargarComplementos(articulo_id);
     axv_CargarAlternativas(articulo_id);
     EliminarAlternativa.Enabled:=false;
@@ -974,6 +980,7 @@ begin
     axv_CargarComplementos(articulo_id);
     axv_CargarAlternativas(articulo_id);
   end else edtClave.Text:=articulo_anterior;
+  if (es_nuevo) and (edtClave.Text<>'') then DummyUpdate(articulo_id)
 end;
 
 procedure Tfrmjagt.FormKeyPress(Sender: TObject;
@@ -1139,8 +1146,8 @@ begin
   PGCArticulos.ActivePageIndex := 0;
   limpia_formulario;
   edtClave.SetFocus;
-  modificar.Enabled:= true;
-  eliminar.Enabled := true;
+  Modificar.Enabled:= False;
+  eliminar.Enabled := False;
 end;
 
 procedure Tfrmjagt.GuardarNuevoExecute(
