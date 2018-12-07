@@ -4,12 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Grids, AdvObj, BaseGrid, AdvGrid, 
+  Dialogs, Grids, AdvObj, BaseGrid, AdvGrid,
   StdCtrls, AdvEdit, AdvEdBtn,
   AdvCombo, AdvPageControl, ComCtrls,
   Menus, AdvMenus, AdvStickyPopupMenu,
   ImgList, ActnList, AdvToolBar, AdvToolBarStylers, StdActns,
-  tmsAdvGridExcel, AdvMenuStylers;
+  tmsAdvGridExcel, AdvMenuStylers, ExtCtrls;
 
 type
   Tfrmjagt = class(TForm)
@@ -44,13 +44,8 @@ type
     tabGeneral: TAdvTabSheet;
     cbxLineas: TAdvComboBox;
     cbxUnidadMedida: TAdvComboBox;
-    cbxEstatus: TAdvComboBox;
     edtNombre: TAdvEditBtn;
     edtClave: TAdvEditBtn;
-    cbAlmacenable: TCheckBox;
-    cbJuego: TCheckBox;
-    cbPesarEnBascula: TCheckBox;
-    edtPesoUnit: TAdvEdit;
     tabAlternativas: TAdvTabSheet;
     sstrgAlternativas: TAdvStringGrid;
     tabComplementos: TAdvTabSheet;
@@ -104,6 +99,8 @@ type
     ExcelIO1Complementos: TAdvGridExcelIO;
     OpenDialog1: TOpenDialog;
     AdvMenuOfficeStyler1: TAdvMenuOfficeStyler;
+    Panel1: TPanel;
+    Panel2: TPanel;
  
    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -413,11 +410,6 @@ begin
     frmjagt.text := '';
     frmjagt.cbxLineas.text := '';
     frmjagt.cbxUnidadMedida.text := '';
-    frmjagt.cbAlmacenable.Checked := false;
-    frmjagt.cbJuego.Checked := false;
-    frmjagt.cbPesarEnBascula.Checked := false;
-    frmjagt.edtPesoUnit.text := '';
-    frmjagt.cbxEstatus.text := '';
     articulo_anterior := '';
     nombre_anterior := '';
   {Pantalla Alternativas}
@@ -436,11 +428,11 @@ begin
     frmjagt.Text := frmjagt.edtNombre.text; //edtClave.Text;
     frmjagt.cbxLineas.Text := dmQuerys.figQuery.FldByName['la_nom'].AsString;
     frmjagt.cbxUnidadMedida.Text := dmQuerys.figQuery.FldByName['unidad_venta'].AsString;
-    frmjagt.cbAlmacenable.Checked := dmQuerys.figQuery.FldByName['es_almacenable'].AsString = 'S';
-    frmjagt.cbJuego.Checked := dmQuerys.figQuery.FldByName['es_juego'].AsString = 'S';
-    frmjagt.cbPesarEnBascula.Checked := dmQuerys.figQuery.FldByName['es_peso_variable'].AsString = 'S';
-    frmjagt.edtPesoUnit.Text := dmQuerys.figQuery.FldByName['peso_unitario'].AsString;
-    frmjagt.cbxEstatus.Text := dmQuerys.figQuery.FldByName['ar_st'].AsString;
+    //frmjagt.cbAlmacenable.Checked := dmQuerys.figQuery.FldByName['es_almacenable'].AsString = 'S';
+    //frmjagt.cbJuego.Checked := dmQuerys.figQuery.FldByName['es_juego'].AsString = 'S';
+    //frmjagt.cbPesarEnBascula.Checked := dmQuerys.figQuery.FldByName['es_peso_variable'].AsString = 'S';
+    //frmjagt.edtPesoUnit.Text := dmQuerys.figQuery.FldByName['peso_unitario'].AsString;
+    //frmjagt.cbxEstatus.Text := dmQuerys.figQuery.FldByName['ar_st'].AsString;
   end;
 end;
 
@@ -490,11 +482,11 @@ begin
     modificado:= false;
     articulo_anterior := edtClave.Text;
     nombre_anterior := edtNombre.Text;
-  {strgComplementos.HideColumn(cArticulo_id);
-  strgComplementos.HideColumn(cRelacion_id);
-  sstrgAlternativas.HideColumn(cArticulo_id);
-  sstrgAlternativas.HideColumn(cRelacion_id);
-  sstrgAlternativas.HideColumn(cPiezas);}
+    strgComplementos.HideColumn(cArticulo_id);
+    strgComplementos.HideColumn(cRelacion_id);
+    sstrgAlternativas.HideColumn(cArticulo_id);
+    sstrgAlternativas.HideColumn(cRelacion_id);
+    sstrgAlternativas.HideColumn(cPiezas);
   end;
   if edtClave.Text <> '' then
   edtClave.SetFocus;
@@ -712,7 +704,7 @@ procedure Tfrmjagt.ModificarExecute(Sender: TObject);
 begin
   DummyUpdate(articulo_id);
   Eliminar.Enabled:=False;
-  Modificar.Enabled:=False;
+  //Modificar.Enabled:=False;
   strgComplementos.Enabled:=True;
   if strgComplementos.RowCount=1 then strgComplementos.AddRow;
   sstrgAlternativas.Enabled:=True;
@@ -980,7 +972,11 @@ begin
     axv_CargarComplementos(articulo_id);
     axv_CargarAlternativas(articulo_id);
   end else edtClave.Text:=articulo_anterior;
-  if (es_nuevo) and (edtClave.Text<>'') then DummyUpdate(articulo_id)
+  if (es_nuevo) and (edtClave.Text<>'') and (Modificar.Enabled = false)and (articulo_id<>'')
+  then BEGIN
+    Modificar.Enabled:=True;
+    Modificar.Execute;
+  end;
 end;
 
 procedure Tfrmjagt.FormKeyPress(Sender: TObject;
@@ -1146,7 +1142,7 @@ begin
   PGCArticulos.ActivePageIndex := 0;
   limpia_formulario;
   edtClave.SetFocus;
-  Modificar.Enabled:= False;
+  //Modificar.Enabled:= False;
   eliminar.Enabled := False;
 end;
 

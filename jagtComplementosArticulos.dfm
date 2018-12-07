@@ -1,6 +1,7 @@
 object frmjagt: Tfrmjagt
-  Left = 475
-  Top = 196
+  Left = 479
+  Top = 152
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Articulos complementarios'
   ClientHeight = 333
@@ -200,6 +201,120 @@ object frmjagt: Tfrmjagt
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
+        Glyph.Data = {
+          06030000424D06030000000000003600000028000000100000000F0000000100
+          180000000000D0020000000000000000000000000000000000000000007F7F7F
+          C3C3C3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFF7F7F7FB0E4EF9DCAF594B5D5FFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB0E4EF
+          B0E4EF69A3D15992B6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF73ACCC5497C2599CC6649FC4FFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFF72ACCD65A5CC6BAAD170ACCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF91BDD97CB6D980BADC70
+          ACCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFF70ABCC95C8E595CAE670ACCFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9AC7E0AC
+          D6EDA8D7EF70ACCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9ECEE9C1E3F5B9E1F670ACCFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFA4D4ECD2EDFAC6EAFB70ACCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA7D9F1B0E4EFCAE8F5ABC6
+          D4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFAEDBF0CCD3D6A7ABAD858A8BFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBABEC0797B
+          7A8488AD7878BCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFC3C3C30000FF3031C59A9ADCFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FF9A9ADC9A9ADCB8B8DC}
+        GlyphHot.Data = {
+          46020000424D460200000000000036000000280000000E0000000C0000000100
+          18000000000010020000C30E0000C30E00000000000000000000241CED241CED
+          CEC3BE806F5F90775F906F5F0000000000000000000000000000000000000000
+          000000000000241CEDB0906FB0906FD0B0A0D0B0A0B0906FB098805F472FBCAC
+          A5241CED241CED241CED241CED241CED0000B0906FE0C0B0D0C0B0E0D0C0F0E0
+          E0FFFFFFB0906FA090805F472FB9A8A1241CED241CED241CED241CED0000B090
+          6FFFFFFFFFFFFFF0F0F0DECFC0F0E0E0FFFFFFB0906FA090805F472FB6A49D24
+          1CED241CED241CED0000B0906FFFFFFFFFFFFFFFFFFFF0F0F0DECFC0F0E0E0FF
+          FFFFB0906FA090805F472FB3A099241CED241CED0000241CEDB0906FFFFFFFFF
+          FFFFFFFFFFF0F0F0DECFC0F0E0E0FFFFFFB0906FA090805F472FAF9B94241CED
+          0000241CED241CEDB0906FFFFFFFFFFFFFFFFFFFF0F0F0DECFC0F0E0E0FFFFFF
+          B0906FA090805F472F241CED0000241CED241CED241CEDB0906FFFFFFFFFFFFF
+          FFFFFFF0F0F0DECFC0F0E0E0FFFFFFB0906F805F4F241CED0000241CED241CED
+          241CED241CEDB0906FFFFFFFFFFFFFFFFFFFF0F0F0DECFC0F0E0E0FFFFFFB090
+          6F241CED0000241CED241CED241CED241CED241CEDB0906FFFFFFFFFFFFFFFFF
+          FFF0F0F0DECFC0F0E0E0B0906F241CED0000241CED241CED241CED241CED241C
+          ED241CEDB0906FFFFFFFFFFFFFFFFFFFF0F0F0B0906F241CED241CED0000241C
+          ED241CED241CED241CED241CED241CED241CEDB0906FB0906FB0906FB0906F24
+          1CED241CED241CED0000}
+        GlyphDown.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000C40E0000C40E00000000000000000000241CED241CED
+          241CED241CED241CEDE7E7E8DDDCDCD8D6D5D8D6D5DDDCDCE7E7E8241CED241C
+          ED241CED241CED241CED241CED241CED241CEDD9D6D3A59683A18660A6844FA9
+          8449A88449A583509F8560A49583D8D6D3241CED241CED241CED241CED241CED
+          F8F7F6A38B6E8C611EA57A28B08930B48E33B48F33B08930A479288B5F1EA389
+          6E241CED241CED241CED241CED241CEDB8A18681561CA37B2AB79538C2A441C7
+          AA46C7AA46C2A341B89438898323636716B79F86241CED241CED241CED241CED
+          9F78448C5C17B79234CCB246D8C353DDCB5ADDCB59D8C253CBAD455DB91D2CA9
+          049C7644241CED241CED241CED241CEDB7935B9D6E1DC29D36DDCB50E9DE60EF
+          E668F0E669D9D95A57CB201ADF080DDD013ABC1E241CED241CED241CED241CED
+          E7D4ADC8A543CAA136EEE161F7F47DFBF98AFBF98AEFF17AA5DA4841D4132CDC
+          129AD980241CED241CED241CED241CEDFDFAF5ECD594D5A941F5E26DFCFA9FFE
+          FEB6FEFEB7FCFA9FFBE16F83B72472D95EFFF7F6241CED241CED241CED241CED
+          241CEDFDF9F1E9C991DAA947E5CD67E4D981E4D981E5CC67DAA847E1C68DF2F6
+          EB241CED241CED241CED241CED241CED241CED241CED241CEDE3CFB8B28845A3
+          7D28A37D28B28844E3CFB8241CED241CED241CED241CED241CED241CED241CED
+          241CED241CED241CEDD2BD9FB18934BE9A34BE9A34B18934D2BD9F241CED241C
+          ED241CED241CED241CED241CED241CED241CED241CEDF3EDE6AF8744B69031C1
+          A23DC1A23DB69131AF8744F3EDE6241CED241CED241CED241CED241CED241CED
+          241CED241CEDEDE2D6B98E3ACDB140DAC852DAC852CDB140B98F3AEDE2D6241C
+          ED241CED241CED241CED241CED241CED241CED241CEDF7F1EBD2A958E8D46CF5
+          F09FF6F1A0E8D56FD2AA59F7F1EB241CED241CED241CED241CED241CED241CED
+          241CED241CEDFFFFFFF1DDBDF6E4A4FFFCD6FFFDD8F7E5A7F1DDBDFFFFFF241C
+          ED241CED241CED241CED241CED241CED241CED241CED241CEDFFFEFEFBF3E3FA
+          F1D6FAF1D7FBF3E3FFFEFE241CED241CED241CED241CED241CED}
+        GlyphDisabled.Data = {
+          06030000424D06030000000000003600000028000000100000000F0000000100
+          180000000000D0020000000000000000000000000000000000000000007F7F7F
+          C3C3C3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFF7F7F7FB0E4EF9DCAF594B5D5FFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB0E4EF
+          B0E4EF69A3D15992B6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF73ACCC5497C2599CC6649FC4FFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFF72ACCD65A5CC6BAAD170ACCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF91BDD97CB6D980BADC70
+          ACCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFF70ABCC95C8E595CAE670ACCFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9AC7E0AC
+          D6EDA8D7EF70ACCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9ECEE9C1E3F5B9E1F670ACCFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFA4D4ECD2EDFAC6EAFB70ACCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA7D9F1B0E4EFCAE8F5ABC6
+          D4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFAEDBF0CCD3D6A7ABAD858A8BFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBABEC0797B
+          7A8488AD7878BCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFC3C3C30000FF3031C59A9ADCFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FF9A9ADC9A9ADCB8B8DC}
+        GlyphChecked.Data = {
+          9E010000424D9E0100000000000036000000280000000B0000000A0000000100
+          1800000000006801000000000000000000000000000000000000FFFFFFFFFFFF
+          FFFFFFFDA278FDA278C26942C26942C26942FFFFFFFFFFFFFFFFFF000000FFFF
+          FFFFFFFFFFFFFFFDA278F8B698F8B698F8B698C26942FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFFFFFFFFC26942F8B698F8B698FF9F72A8522EFFFFFFFFFFFF
+          FFFFFF000000FFFFFFFFFFFFFFFFFFC26942F8B698FF9F72FF9F72A8522EFFFF
+          FFFFFFFFFFFFFF000000A8522EED8754ED8754C26942FF9F72FF9F72ED8754A8
+          522EA8522EA8522EA8522E000000FFFFFFA8522EFDA278FF9F72FF9F72ED8754
+          ED8754C26942C26942A8522EFFFFFF000000FFFFFFFFFFFFA8522EFDA278ED87
+          54ED8754C26942C26942A8522EFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFA8
+          522EED8754C26942C26942A8522EFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFF
+          FFFFFFFFFFFFA8522EA8522EA8522EFFFFFFFFFFFFFFFFFFFFFFFF000000FFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFA8522EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
         ImageIndex = 5
         ParentFont = False
         Position = daTop
@@ -261,9 +376,9 @@ object frmjagt: Tfrmjagt
       TabColor = clBtnFace
       TabColorTo = clNone
       object cbxLineas: TAdvComboBox
-        Left = 64
-        Top = 78
-        Width = 145
+        Left = 104
+        Top = 136
+        Width = 201
         Height = 23
         Color = clBtnHighlight
         Version = '1.3.2.2'
@@ -271,26 +386,24 @@ object frmjagt: Tfrmjagt
         Flat = True
         Ctl3D = False
         DropWidth = 0
-        Enabled = False
+        Enabled = True
         ItemIndex = -1
         ItemHeight = 15
-        LabelCaption = 'Linea:      '
+        LabelCaption = 'Linea del articulo:  '
         LabelPosition = lpLeftCenter
         LabelFont.Charset = DEFAULT_CHARSET
         LabelFont.Color = clWindowText
         LabelFont.Height = -11
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
-        ParentColor = True
         ParentCtl3D = False
         TabOrder = 2
-        Text = 'Lineas'
         OnKeyPress = edtClaveKeyPress
       end
       object cbxUnidadMedida: TAdvComboBox
-        Left = 64
-        Top = 111
-        Width = 145
+        Left = 104
+        Top = 186
+        Width = 65
         Height = 23
         Color = clBtnHighlight
         Version = '1.3.2.2'
@@ -298,74 +411,51 @@ object frmjagt: Tfrmjagt
         Flat = True
         Ctl3D = False
         DropWidth = 0
-        Enabled = False
+        Enabled = True
         ItemIndex = -1
         ItemHeight = 15
-        LabelCaption = 'Unidades:'
+        LabelCaption = 'Unidad de medida:'
         LabelPosition = lpLeftCenter
         LabelFont.Charset = DEFAULT_CHARSET
         LabelFont.Color = clWindowText
         LabelFont.Height = -11
         LabelFont.Name = 'MS Sans Serif'
         LabelFont.Style = []
-        ParentColor = True
         ParentCtl3D = False
         TabOrder = 3
-        Text = 'Unidades de medida'
-      end
-      object cbxEstatus: TAdvComboBox
-        Left = 317
-        Top = 111
-        Width = 135
-        Height = 23
-        Color = clBtnHighlight
-        Version = '1.3.2.2'
-        Visible = True
-        Flat = True
-        Ctl3D = False
-        DropWidth = 0
-        Enabled = False
-        ItemIndex = -1
-        ItemHeight = 15
-        LabelCaption = 'Estatus:  '
-        LabelPosition = lpLeftCenter
-        LabelFont.Charset = DEFAULT_CHARSET
-        LabelFont.Color = clWindowText
-        LabelFont.Height = -11
-        LabelFont.Name = 'MS Sans Serif'
-        LabelFont.Style = []
-        ParentColor = True
-        ParentCtl3D = False
-        TabOrder = 8
-        Text = 'Estatus'
-        OnKeyPress = edtClaveKeyPress
       end
       object edtNombre: TAdvEditBtn
-        Left = 64
-        Top = 45
-        Width = 145
-        Height = 21
+        Left = 104
+        Top = 19
+        Width = 345
+        Height = 20
         EmptyText = 'Buscar'
         Flat = True
         FocusColor = clBtnHighlight
-        LabelCaption = 'Nombre:  '
+        LabelCaption = 'Nombre:                '
         LabelPosition = lpLeftCenter
         LabelFont.Charset = DEFAULT_CHARSET
         LabelFont.Color = clWindowText
         LabelFont.Height = -11
-        LabelFont.Name = 'MS Sans Serif'
+        LabelFont.Name = 'Arial Unicode MS'
         LabelFont.Style = []
         Lookup.Separator = ';'
         BorderStyle = bsNone
         Color = clBtnHighlight
         Enabled = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial Unicode MS'
+        Font.Style = []
+        ParentFont = False
         ReadOnly = False
         TabOrder = 1
         Visible = True
         OnExit = edtNombreExit
         OnKeyPress = edtClaveKeyPress
         Version = '1.3.2.8'
-        ButtonStyle = bsButton
+        ButtonStyle = bsDropDown
         ButtonWidth = 16
         Etched = False
         Glyph.Data = {
@@ -377,31 +467,37 @@ object frmjagt: Tfrmjagt
         OnClickBtn = edtNombreClickBtn
       end
       object edtClave: TAdvEditBtn
-        Left = 64
-        Top = 13
-        Width = 145
-        Height = 21
+        Left = 104
+        Top = 86
+        Width = 201
+        Height = 20
         EmptyText = 'Buscar'
         Flat = True
         FocusColor = clBtnHighlight
-        LabelCaption = 'Clave:     '
+        LabelCaption = 'Clave del articulo: '
         LabelPosition = lpLeftCenter
         LabelFont.Charset = DEFAULT_CHARSET
         LabelFont.Color = clWindowText
         LabelFont.Height = -11
-        LabelFont.Name = 'MS Sans Serif'
+        LabelFont.Name = 'Arial Unicode MS'
         LabelFont.Style = []
         Lookup.Separator = ';'
         BorderStyle = bsNone
         Color = clBtnHighlight
         Enabled = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial Unicode MS'
+        Font.Style = []
+        ParentFont = False
         ReadOnly = False
         TabOrder = 0
         Visible = True
         OnExit = edtClaveExit
         OnKeyPress = edtClaveKeyPress
         Version = '1.3.2.8'
-        ButtonStyle = bsButton
+        ButtonStyle = bsDropDown
         ButtonWidth = 16
         Etched = False
         Glyph.Data = {
@@ -412,65 +508,19 @@ object frmjagt: Tfrmjagt
           0000000000000000000000000000000000000000000000000000}
         OnClickBtn = edtClaveClickBtn
       end
-      object cbAlmacenable: TCheckBox
-        Left = 272
-        Top = 16
-        Width = 97
-        Height = 17
-        Caption = 'Almacenable'
-        Enabled = False
+      object Panel1: TPanel
+        Left = 12
+        Top = 61
+        Width = 433
+        Height = 3
         TabOrder = 4
-        OnKeyPress = edtClaveKeyPress
-      end
-      object cbJuego: TCheckBox
-        Left = 272
-        Top = 35
-        Width = 96
-        Height = 18
-        Caption = 'Juego (Kit)'
-        Enabled = False
-        TabOrder = 5
-        OnKeyPress = edtClaveKeyPress
-      end
-      object cbPesarEnBascula: TCheckBox
-        Left = 273
-        Top = 55
-        Width = 112
-        Height = 17
-        Caption = 'Pesar en bascula'
-        Enabled = False
-        TabOrder = 6
-        OnKeyPress = edtClaveKeyPress
-      end
-      object edtPesoUnit: TAdvEdit
-        Left = 327
-        Top = 78
-        Width = 121
-        Height = 21
-        Flat = True
-        FocusColor = clBtnHighlight
-        LabelCaption = 'Peso unit:   '
-        LabelPosition = lpLeftCenter
-        LabelFont.Charset = DEFAULT_CHARSET
-        LabelFont.Color = clWindowText
-        LabelFont.Height = -11
-        LabelFont.Name = 'Arial Unicode MS'
-        LabelFont.Style = []
-        Lookup.Separator = ';'
-        BorderStyle = bsNone
-        Color = clBtnHighlight
-        Enabled = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial Unicode MS'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 7
-        Text = '0.000'
-        Visible = True
-        OnKeyPress = edtClaveKeyPress
-        Version = '2.9.0.0'
+        object Panel2: TPanel
+          Left = 0
+          Top = -8
+          Width = 433
+          Height = 2
+          TabOrder = 0
+        end
       end
     end
     object tabAlternativas: TAdvTabSheet
@@ -1121,7 +1171,7 @@ object frmjagt: Tfrmjagt
     Left = 359
     Top = 1
     Bitmap = {
-      494C010109000E00040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C010109000E00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1653,7 +1703,8 @@ object frmjagt: Tfrmjagt
       800380030001FFFF000300030001FFFF000300030001FFFF000300030001FFFF
       000300030001FEFF000300030001FC7F000300030001F83F000300030001F01F
       000300030001FFFF000300030001FFFF000300030001FFFF800380030001FFFF
-      C003C003F07FFFFFE003E003FFFFFFFF}
+      C003C003F07FFFFFE003E003FFFFFFFF00000000000000000000000000000000
+      000000000000}
   end
   object imgMenus: TImageList
     ShareImages = True
@@ -2567,41 +2618,41 @@ object frmjagt: Tfrmjagt
     end
     object EditDelete1: TEditDelete
       Category = 'Edit'
-      Caption = '&Delete'
+      Caption = 'Borr&ar'
       Hint = 'Delete|Erases the selection'
       ImageIndex = 5
       ShortCut = 46
     end
     object EditCut1: TEditCut
       Category = 'Edit'
-      Caption = 'Cu&t'
+      Caption = 'Cor&tar'
       Hint = 'Cut|Cuts the selection and puts it on the Clipboard'
       ImageIndex = 7
       ShortCut = 16472
     end
     object EditCopy1: TEditCopy
       Category = 'Edit'
-      Caption = '&Copy'
+      Caption = '&Copiar'
       Hint = 'Copy|Copies the selection and puts it on the Clipboard'
       ImageIndex = 4
       ShortCut = 16451
     end
     object EditPaste1: TEditPaste
       Category = 'Edit'
-      Caption = '&Paste'
+      Caption = '&Pegar'
       Hint = 'Paste|Inserts Clipboard contents'
       ImageIndex = 6
       ShortCut = 16470
     end
     object EditSelectAll1: TEditSelectAll
       Category = 'Edit'
-      Caption = 'Select &All'
+      Caption = '&Seleccionar todo'
       Hint = 'Select All|Selects the entire document'
       ShortCut = 16449
     end
     object EditUndo1: TEditUndo
       Category = 'Edit'
-      Caption = '&Undo'
+      Caption = '&Deshacer'
       Hint = 'Undo|Reverts the last action'
       ImageIndex = 8
       ShortCut = 16474
